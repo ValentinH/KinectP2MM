@@ -214,7 +214,7 @@ namespace TestKinect
                     hand.attachedObjectName = "";
                 }
 
-            //set the just grip value
+            //set the just grip or just release value
             var lastHandEvent = h.HandType == InteractionHandType.Left ? _lastLeftHandEvent : _lastRightHandEvent;
             if (h.HandEventType == InteractionHandEventType.Grip && lastHandEvent != InteractionHandEventType.Grip)
             {
@@ -223,6 +223,18 @@ namespace TestKinect
             }
             else
                 hand.justGrip = false;
+
+            //set just release value
+            if (h.HandEventType == InteractionHandEventType.GripRelease && lastHandEvent != InteractionHandEventType.GripRelease)
+            {
+                hand.justRelease = true;
+                hands_distance = getDistanceHands();
+            }
+            else
+                hand.justRelease = false;
+
+
+
 
             //update of the lastHandEvent
             lastHandEvent = h.HandEventType;
