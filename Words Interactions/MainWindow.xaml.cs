@@ -338,7 +338,7 @@ namespace TestKinect
                 {
                     Canvas.SetLeft(word, newPos.X);
                     Canvas.SetTop(word, newPos.Y);
-                    if (hoverCorbeille!=0)
+                    if (hoverCorbeille==which)
                     {
                         this.canvas.Children.Remove(word);
                     }
