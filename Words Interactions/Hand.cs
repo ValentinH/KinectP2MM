@@ -15,6 +15,7 @@ namespace TestKinect
         public bool grip { get; set; }
         public bool pressed { get; set; }
         public bool justGrip { get; set; }
+        public bool justReleased { get; set; }
         public String attachedObjectName { get; set; }
         
 
