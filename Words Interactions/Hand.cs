@@ -18,13 +18,14 @@ namespace TestKinect
         public String attachedObjectName { get; set; }
         
 
-        public Hand()
+       public Hand()
         {
             this.x = 0;
             this.y = 0;
             this.grip = false;
-            this.grip = false;
+            this.pressed = false;
             this.justGrip = false;
+            this.justReleased = false;
             this.attachedObjectName = "";
         }
 
