@@ -50,7 +50,8 @@ namespace TestKinect
         private Dictionary<String, double> words_begin_rotation;
 
         //to know if the current word is hover
-        private bool hoverWord, hoverCorbeille;
+        private bool hoverWord; 
+        private int hoverCorbeille;  // 0 = not Hover, 1= Hand1, 2= Hand2
 
         public MainWindow()
         {
@@ -285,10 +286,10 @@ namespace TestKinect
 
         private void interactionOnBin()
         {
-            hoverCorbeille = false;
+            hoverCorbeille = 0;
             moveDetectionBin(corbeille, 1);
             moveDetectionBin(corbeille, 2);
-            if (hoverCorbeille)
+            if (hoverCorbeille!=0)
             {
                 corbeille.Opacity = 0.6;
             }
@@ -337,7 +338,7 @@ namespace TestKinect
                 {
                     Canvas.SetLeft(word, newPos.X);
                     Canvas.SetTop(word, newPos.Y);
-                    if (hoverCorbeille)
+                    if (hoverCorbeille!=0)
                     {
                         this.canvas.Children.Remove(word);
                     }
@@ -359,11 +360,12 @@ namespace TestKinect
 
             Point posBin = new Point(Canvas.GetLeft(bin), Canvas.GetTop(bin));
 
-            //if the hand is on the text
+            //if the hand is on the bin
             if (hand.x + cursor.ActualWidth / 2 >= posBin.X && (hand.x < posBin.X + bin.ActualWidth) && hand.y + cursor.ActualHeight / 2 >= posBin.Y && (hand.y < posBin.Y + bin.ActualHeight))
             {    
-                hoverCorbeille = true;
+                hoverCorbeille = which; 
             }
+
         }
 
         // method to manage to zoom detection
