@@ -227,11 +227,11 @@ namespace TestKinect
             //set just release value
             if (h.HandEventType == InteractionHandEventType.GripRelease && lastHandEvent != InteractionHandEventType.GripRelease)
             {
-                hand.justRelease = true;
+                hand.justReleased = true;
                 hands_distance = getDistanceHands();
             }
             else
-                hand.justRelease = false;
+                hand.justReleased = false;
 
 
 
