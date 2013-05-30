@@ -5,11 +5,21 @@
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Margin="406,0,405,0" />
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="790" Margin="10,0,10,10" VerticalAlignment="Bottom" Width="1172" Background="#FFE9FFF4">
-            <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="343" Canvas.Top="370" Source="images/left_cursor.png"/>
-            <local:Hand x:Name="rightCursor" Height="50" Width="50" Canvas.Left="721" Canvas.Top="370" Source="images/right_cursor.png"/>
+            <!--<Grid Width="50" Height="50" Canvas.Left="343" Canvas.Top="370" >
+                <Image HorizontalAlignment="Left" Height="50" Margin="0,0" VerticalAlignment="Top" Width="50" Source="images/right_cursor.png"/>
+            </Grid>-->
+            <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="343" Canvas.Top="370" >
+                <Image x:Name="cursorImage" Height="50" Width="50" Margin="0,0" Source="images/left_cursor.png"/>
+            </local:Hand>
+            <local:Hand x:Name="rightCursor" Height="50" Width="50" Canvas.Left="570" Canvas.Top="370" >
+                <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
+            </local:Hand>
+
+
+            <!--<local:Hand x:Name="rightCursor" Height="50" Width="50" Canvas.Left="721" Canvas.Top="370" Source="images/right_cursor.png"/>
             <local:Word x:Name="tomateObject" Height="85" Canvas.Left="200" Canvas.Top="500" Width="344" Source="images/tomate.png" RenderTransformOrigin="0.5,0.5"/>
             <local:Word x:Name="bananeObject" Height="85" Canvas.Left="600" Canvas.Top="503" Width="344" Source="images/banane.png" RenderTransformOrigin="0.5,0.5"/>
-            <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" Source="images/corbeille.png"/>
+            <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" Source="images/corbeille.png"/>-->
         </Canvas>
         
         <Label x:Name="userText" Content="No User Detected" HorizontalAlignment="Left" Margin="30,39,0,0" VerticalAlignment="Top" Width="108"/>
