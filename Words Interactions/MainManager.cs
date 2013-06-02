@@ -31,16 +31,15 @@ namespace TestKinect
         public MainManager(MainWindow window)
         {
             this.window = window;
-
             this.hands = new Tuple<Hand, Hand>(this.window.leftCursor, this.window.rightCursor);
             this.hands.Item1.path = "images/left_cursor";
             this.hands.Item2.path = "images/right_cursor";
-
+            /*
             words = new List<Word>();
             words.Add(this.window.tomateObject);
             words.Add(this.window.bananeObject);
 
-            bin = this.window.corbeille;
+            bin = this.window.corbeille;*/
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);
@@ -136,14 +135,14 @@ namespace TestKinect
                 if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
                 {
                     zoomDetection(word, hands.Item2);
-                    rotationDetection(word, hands.Item1);
+                    rotationDetection(word, hands.Item2);
                 }
                 else
                     //if the right hand is on the word
                     if (hands.Item2.grip && hands.Item2.attachedObjectName == word.Name)
                     {
                         zoomDetection(word, hands.Item1);
-                        rotationDetection(word, hands.Item2);
+                        rotationDetection(word, hands.Item1);
                     }
 
             }
@@ -211,16 +210,20 @@ namespace TestKinect
             if (secondHand.grip && secondHand.attachedObjectName == "")
             {
                 var distance = ImageTools.getDistance(hands.Item1, hands.Item2);
-                if (distance > Hand.distance && word.Width * Word.ZOOM_FACTOR <= Word.MAX_WIDTH)
+                var difference = distance - Hand.distance;
+                var facteur = difference / 1000000 + 1;
+                if (difference>5000 && word.Width * facteur <= Word.MAX_WIDTH)
                 {
-                    word.Width *= Word.ZOOM_FACTOR;
-                    word.Height *= Word.ZOOM_FACTOR;
+                    
+                    word.Width *= facteur;
+                    word.Height *= facteur;
+                    Console.WriteLine(facteur);
                 }
                 else
-                    if (distance < Hand.distance && word.Width * Word.UNZOOM_FACTOR >= Word.MIN_WIDTH)
+                    if (difference < -5000 && word.Width * facteur >= Word.MIN_WIDTH)
                     {
-                        word.Width *= Word.UNZOOM_FACTOR;
-                        word.Height *= Word.UNZOOM_FACTOR;
+                        word.Width *= facteur;
+                        word.Height *= facteur; Console.WriteLine(facteur);
                     }
                 Hand.distance = distance;
             }
@@ -228,10 +231,10 @@ namespace TestKinect
         }
 
         // method to manage to rotate detection
-        private void rotationDetection(Word word, Hand mainHand)
+        private void rotationDetection(Word word, Hand secondHand)
         {
             //mzoom if second hand open and without a text attached
-            if (mainHand.grip && mainHand.pressed)
+            if (secondHand.grip && secondHand.attachedObjectName == "")
             {
                 double wordRotation = word.beginRotation;
 
