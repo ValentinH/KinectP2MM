@@ -9,6 +9,9 @@ namespace TestKinect
         public static double ZOOM_FACTOR = 1.05, UNZOOM_FACTOR = 0.95;
 
         public double beginRotation { get; set; }
+        public Image WordTop { get; set; }
+        public Image WordBottom { get; set; }
+
 
         private bool _hover { get; set; }
         public bool hover

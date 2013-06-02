@@ -2,7 +2,7 @@
 
 namespace TestKinect
 {
-    class GUIObject : Image
+    class GUIObject : Grid
     {
         public GUIObject()
         {
