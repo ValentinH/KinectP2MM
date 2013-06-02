@@ -3,7 +3,6 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
 
 namespace TestKinect
 {
@@ -20,27 +19,9 @@ namespace TestKinect
             this.attachedObjectName = "";
             this.path = "";
             this.lastEvent = "";
-
-            Loaded += HandLoaded;            
         }
 
-        // Execute startup tasks
-        private void HandLoaded(object sender, RoutedEventArgs e)
-        {
-            this.handCursor = (Image)this.Children[0];
-        } 
-
-        public Image handCursor { get; set; }
-        public ImageSource source
-        {
-            get { return handCursor.Source; }
-            set
-            {
-                handCursor.Source = value;
-                
-            }
-        }
-        public override double x
+       public override double x
         {
             get { return _x; }
             set
@@ -67,14 +48,12 @@ namespace TestKinect
             {
                 _grip = value;
                 if (_grip)
-                    this.handCursor.Source = new BitmapImage(new Uri(path + "_grip.png", UriKind.Relative));
+                    this.Source = new BitmapImage(new Uri(path+"_grip.png", UriKind.Relative));
                 else
-                    this.handCursor.Source = new BitmapImage(new Uri(path + ".png", UriKind.Relative));
+                    this.Source = new BitmapImage(new Uri(path+".png", UriKind.Relative));
 
             }
         }
-      
-
         public bool pressed { get; set; }
         public bool justGrip { get; set; }
         public bool justReleased { get; set; }
@@ -85,8 +64,8 @@ namespace TestKinect
 
         public override string ToString()
         {
-            String s = _grip ? "Grip" : "Open";
-            return "X: " + x + ", Y: " + y + " , " + s;
+            String s = _grip ? "Grip" : "Open"; 
+            return "X: "+x+", Y: "+y+" , "+s;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace TestKinect
         {
 
         }
-        public Image binImage { get; set; }
+
         private bool _hover { get; set; }
         public bool hover
         {
