@@ -38,8 +38,8 @@ namespace TestKinect
             words = new List<Word>();
             words.Add(this.window.tomateObject);
             words.Add(this.window.bananeObject);
-
-            bin = this.window.corbeille;*/
+*/
+            bin = this.window.corbeille;
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);

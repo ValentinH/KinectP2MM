@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows;
+
+
 
 namespace TestKinect
 {
@@ -12,9 +15,16 @@ namespace TestKinect
 
         public Bin()
         {
-
+            Loaded += BinLoaded;
         }
         public Image binImage { get; set; }
+
+        private void BinLoaded(object sender, RoutedEventArgs e)
+        {
+            this.binImage = (Image)this.Children[0];
+
+        }
+
         private bool _hover { get; set; }
         public bool hover
         {
