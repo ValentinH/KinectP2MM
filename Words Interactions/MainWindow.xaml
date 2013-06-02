@@ -14,10 +14,14 @@
             </local:Hand>
 
             <local:Word x:Name="tomateObject" Height="85" Canvas.Left="200" Canvas.Top="500" Width="344"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/tomate.png"/>
+                <Image Source="images/tomate.png" Height="42,5" Width="344" Margin="0,0,0,40" />
+                <Image Source="images/tomate.png" Height="42,5" Width="344" Margin="0,40, 0, 0"/>
+
             </local:Word>
             <local:Word x:Name="bananeObject" Height="85" Canvas.Left="600" Canvas.Top="503" Width="344"  RenderTransformOrigin="0.5,0.5">
-                    <Image Source="images/banane.png" />
+                <Image Source="images/banane.png" Height="42,5" Width="344" Margin="0,0,0,40"/>
+                <Image Source="images/banane.png" Height="42,5" Width="344" Margin="0,40,0, 0"/>
+
             </local:Word>
 
                 <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" >

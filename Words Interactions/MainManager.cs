@@ -34,11 +34,11 @@ namespace TestKinect
             this.hands = new Tuple<Hand, Hand>(this.window.leftCursor, this.window.rightCursor);
             this.hands.Item1.path = "images/left_cursor";
             this.hands.Item2.path = "images/right_cursor";
-            /*
+            
             words = new List<Word>();
             words.Add(this.window.tomateObject);
             words.Add(this.window.bananeObject);
-*/
+
             bin = this.window.corbeille;
 
             //has to be done at last
