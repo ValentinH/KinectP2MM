@@ -13,7 +13,7 @@
                 <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
             </local:Hand>
 
-            <local:Word x:Name="tomateObject" Height="117" Canvas.Left="201" Canvas.Top="468" Width="343"  RenderTransformOrigin="0.5,0.5">
+            <local:Word x:Name="utcObject" Height="117" Canvas.Left="201" Canvas.Top="468" Width="343"  RenderTransformOrigin="0.5,0.5">
                 <Image Source="images/utcHaut.png" Height="42,5" Width="344" Margin="0,-201,0,-139" RenderTransformOrigin="0.5,0.5" />
                 <Image Source="images/artBas.png" Height="42,5" Width="344" Margin="0,40, 0, 0"/>
 
