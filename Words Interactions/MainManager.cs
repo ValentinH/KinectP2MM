@@ -136,7 +136,6 @@ namespace TestKinect
                 {
                     zoomDetection(word, hands.Item2);
                     rotationDetection(word, hands.Item2);
-                    transformationDetection(word, hands.Item2);
                 }
                 else
                     //if the right hand is on the word
@@ -144,7 +143,6 @@ namespace TestKinect
                     {
                         zoomDetection(word, hands.Item1);
                         rotationDetection(word, hands.Item1);
-                        transformationDetection(word, hands.Item1);
                     }
 
             }
@@ -219,12 +217,13 @@ namespace TestKinect
                     
                     word.Width *= facteur;
                     word.Height *= facteur;
+                    Console.WriteLine(facteur);
                 }
                 else
                     if (difference < -5000 && word.Width * facteur >= Word.MIN_WIDTH)
                     {
                         word.Width *= facteur;
-                        word.Height *= facteur;
+                        word.Height *= facteur; Console.WriteLine(facteur);
                     }
                 Hand.distance = distance;
             }
@@ -241,15 +240,6 @@ namespace TestKinect
 
                 var newRotation = (wordRotation - ImageTools.getRotation(hands.Item1, hands.Item2)) % 360;
                 word.RenderTransform = new RotateTransform(newRotation);
-            }
-
-        }
-
-        private void transformationDetection(Word word, Hand secondHand)
-        {   // Detect if both hands are on the word
-            if (secondHand.grip && secondHand.attachedObjectName == word.Name)
-            {
-               Console.WriteLine("both hands are on the word");                
             }
 
         }
