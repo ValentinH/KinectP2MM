@@ -36,7 +36,7 @@ namespace TestKinect
             this.hands.Item2.path = "images/right_cursor";
             
             words = new List<Word>();
-            words.Add(this.window.tomateObject);
+            words.Add(this.window.utcObject);
             words.Add(this.window.bananeObject);
 
             bin = this.window.corbeille;
@@ -125,7 +125,7 @@ namespace TestKinect
         private void interactionOnText()
         {
             bin.hover = false;
-            foreach (var word in words)
+            foreach (var word in words.ToList())
             {
                 word.hover = false;
                 moveDetectionWord(word, 1);
@@ -136,6 +136,7 @@ namespace TestKinect
                 {
                     zoomDetection(word, hands.Item2);
                     rotationDetection(word, hands.Item2);
+                    transformationDetection(word, hands.Item2);
                 }
                 else
                     //if the right hand is on the word
@@ -143,6 +144,7 @@ namespace TestKinect
                     {
                         zoomDetection(word, hands.Item1);
                         rotationDetection(word, hands.Item1);
+                        transformationDetection(word, hands.Item1);
                     }
 
             }
@@ -240,6 +242,20 @@ namespace TestKinect
 
                 var newRotation = (wordRotation - ImageTools.getRotation(hands.Item1, hands.Item2)) % 360;
                 word.RenderTransform = new RotateTransform(newRotation);
+            }
+
+        }
+
+        private void transformationDetection(Word word, Hand secondHand)
+        {   // Detect if both hands are on the word
+            if (secondHand.grip && secondHand.attachedObjectName == word.Name)
+            {
+
+               Console.WriteLine("both hands are on the word");
+            Word nouveau = word.Duplicate();
+            words.Add(nouveau);
+            this.window.canvas.Children.Add(nouveau);
+
             }
 
         }

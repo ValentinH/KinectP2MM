@@ -12,6 +12,28 @@ namespace TestKinect
             this._hover = false;
             Loaded +=WordLoaded;
         }
+
+        public Word(Word source): base(source)
+
+        {
+            this.beginRotation = source.beginRotation;
+            this._hover = source._hover;
+
+            this.wordBottom = new Image();
+            this.wordBottom.Source = source.wordBottom.Source;
+            this.wordBottom.Margin = source.wordBottom.Margin;
+            this.wordBottom.Height = source.wordBottom.Height;
+            this.wordBottom.Width = source.wordBottom.Width;
+
+            this.wordTop = new Image();
+            this.wordTop.Source = source.wordTop.Source;
+            this.wordTop.Margin = source.wordTop.Margin;
+            this.wordTop.Height = source.wordTop.Height;
+            this.wordTop.Width = source.wordTop.Width;
+
+            
+
+        }
         public static int MIN_WIDTH = 100, MAX_WIDTH = 1000;
 
         public static double ZOOM_FACTOR = 1.05, UNZOOM_FACTOR = 0.95;
@@ -89,5 +111,13 @@ namespace TestKinect
             }
         }
 
+        public Word Duplicate() //Return a copy of the word with blank bottom image. Delete top bottom image from current word.
+        {
+            Word top = new Word(this);
+            this.wordTop = null;
+            top.wordBottom = null;
+
+            return top;
+        }
     }
 }
