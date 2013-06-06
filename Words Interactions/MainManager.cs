@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,10 +35,12 @@ namespace TestKinect
             this.hands = new Tuple<Hand, Hand>(this.window.leftCursor, this.window.rightCursor);
             this.hands.Item1.path = "images/left_cursor";
             this.hands.Item2.path = "images/right_cursor";
-            
+
             words = new List<Word>();
-            words.Add(this.window.utcObject);
-            words.Add(this.window.bananeObject);
+            foreach (var word in this.window.canvas.Children.OfType<Word>())
+            {
+                words.Add(word);
+            }            
 
             bin = this.window.corbeille;
 
@@ -214,18 +217,17 @@ namespace TestKinect
                 var distance = ImageTools.getDistance(hands.Item1, hands.Item2);
                 var difference = distance - Hand.distance;
                 var facteur = difference / 1000000 + 1;
-                if (difference>5000 && word.Width * facteur <= Word.MAX_WIDTH)
+                if (difference > 5000 && word.Width * facteur <= Word.MAX_WIDTH)
                 {
-                    
+
                     word.Width *= facteur;
                     word.Height *= facteur;
-                    Console.WriteLine(facteur);
                 }
                 else
                     if (difference < -5000 && word.Width * facteur >= Word.MIN_WIDTH)
                     {
                         word.Width *= facteur;
-                        word.Height *= facteur; Console.WriteLine(facteur);
+                        word.Height *= facteur;
                     }
                 Hand.distance = distance;
             }
@@ -250,12 +252,13 @@ namespace TestKinect
         {   // Detect if both hands are on the word
             if (secondHand.grip && secondHand.attachedObjectName == word.Name)
             {
-
-               Console.WriteLine("both hands are on the word");
-            Word nouveau = word.Duplicate();
-            words.Add(nouveau);
-            this.window.canvas.Children.Add(nouveau);
-
+                if (!word.separated)
+                {
+                    Word nouveau = word.Duplicate();
+                    words.Add(nouveau);
+                    this.window.canvas.Children.Add(nouveau);
+                    secondHand.attachedObjectName = nouveau.Name;
+                }
             }
 
         }

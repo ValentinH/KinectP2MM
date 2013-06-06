@@ -5,7 +5,7 @@
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Margin="406,0,405,0" />
         <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="790" Margin="10,0,10,10" VerticalAlignment="Bottom" Width="1172" Background="#FFE9FFF4">
-        
+
             <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="343" Canvas.Top="370" >
                 <Image x:Name="cursorImage" Height="50" Width="50" Margin="0,0" Source="images/left_cursor.png"/>
             </local:Hand>
@@ -13,18 +13,21 @@
                 <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
             </local:Hand>
 
-            <local:Word x:Name="utcObject" Height="117" Canvas.Left="201" Canvas.Top="468" Width="343"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/utcHaut.png" Height="42,5" Width="344" Margin="0,-201,0,-139" RenderTransformOrigin="0.5,0.5" />
-                <Image Source="images/artBas.png" Height="42,5" Width="344" Margin="0,40, 0, 0"/>
-
+            <local:Word x:Name="utcObject" Height="116" Canvas.Left="35" Canvas.Top="444" Width="343"  RenderTransformOrigin="0.5,0.5">
+                <Image Source="images/utcHaut.png" Width="344" Margin="-1,13,0,44" RenderTransformOrigin="0.5,0.5" />
+                <Image Source="images/artBas.png" Width="344" Margin="-1,67,0,0"/>
+            </local:Word>
+            <local:Word x:Name="utc2Object" Height="116" Canvas.Left="35" Canvas.Top="244" Width="343"  RenderTransformOrigin="0.5,0.5">
+                <Image Source="images/utcHaut.png" Width="344" Margin="-1,13,0,44" RenderTransformOrigin="0.5,0.5" />
+                <Image Source="images/artBas.png" Width="344" Margin="-1,67,0,0"/>
             </local:Word>
             <local:Word x:Name="bananeObject" Height="96" Canvas.Left="600" Canvas.Top="492" Width="344"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/artHaut.png" Height="42,5" Width="344" Margin="-10,-202,10,-102"/>
-                <Image Source="images/artBas.png" Height="42,5" Width="344" Margin="0,-153,0,-152"/>
+                <Image Source="images/artHaut.png" Width="344" Margin="-1,-6,1,42"/>
+                <Image Source="images/artBas.png" Width="344" Margin="10,46,-10,0"/>
 
             </local:Word>
 
-                <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" >
+            <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" >
                 <local:Bin.RowDefinitions>
                     <RowDefinition Height="33*"/>
                     <RowDefinition Height="17*"/>
@@ -32,7 +35,7 @@
                 <Image x:Name="binImage"  Margin="0,0" Source="images/corbeille.png" Grid.RowSpan="2" />
             </local:Bin>
         </Canvas>
-        
+
         <Label x:Name="userText" Content="No User Detected" HorizontalAlignment="Left" Margin="30,39,0,0" VerticalAlignment="Top" Width="108"/>
         <Label x:Name="rotationText" Content="" HorizontalAlignment="Left" Margin="661,15,0,0" VerticalAlignment="Top" FontSize="30" RenderTransformOrigin="0.525,0.48"/>
     </Grid>

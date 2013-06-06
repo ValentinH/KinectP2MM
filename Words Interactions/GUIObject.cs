@@ -18,9 +18,7 @@ namespace TestKinect
             this.Height = source.Height;
             this.Width = source.Width;
             this.SetCanvas(source);
-            
-
-
+            this.RenderTransformOrigin = source.RenderTransformOrigin;
         }
 
         public void SetCanvas(GUIObject source){

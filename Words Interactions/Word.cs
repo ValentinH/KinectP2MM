@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Media.Imaging;
 namespace TestKinect
 {
     class Word : GUIObject
@@ -10,7 +11,9 @@ namespace TestKinect
         {
             this.beginRotation = 0;
             this._hover = false;
+            this.separated = false;
             Loaded +=WordLoaded;
+
         }
 
         public Word(Word source): base(source)
@@ -20,18 +23,24 @@ namespace TestKinect
             this._hover = source._hover;
 
             this.wordBottom = new Image();
-            this.wordBottom.Source = source.wordBottom.Source;
             this.wordBottom.Margin = source.wordBottom.Margin;
             this.wordBottom.Height = source.wordBottom.Height;
             this.wordBottom.Width = source.wordBottom.Width;
 
             this.wordTop = new Image();
-            this.wordTop.Source = source.wordTop.Source;
             this.wordTop.Margin = source.wordTop.Margin;
             this.wordTop.Height = source.wordTop.Height;
             this.wordTop.Width = source.wordTop.Width;
 
-            
+            this.sourceTop = source.sourceTop;
+            this.sourceBottom = source.sourceBottom;
+            this.wordTop.Source = this.sourceTop;
+            this.wordBottom.Source = this.sourceBottom;
+            this.Children.Add(this.wordTop);
+            this.Children.Add(this.wordBottom);
+
+            long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            this.Name = source.Name + "_dup_" + milliseconds;
 
         }
         public static int MIN_WIDTH = 100, MAX_WIDTH = 1000;
@@ -67,6 +76,8 @@ namespace TestKinect
             }
         }
 
+        public bool separated { get; set; }
+        
         private bool _hover { get; set; }
         public bool hover
         {
@@ -114,9 +125,11 @@ namespace TestKinect
         public Word Duplicate() //Return a copy of the word with blank bottom image. Delete top bottom image from current word.
         {
             Word top = new Word(this);
-            this.wordTop = null;
-            top.wordBottom = null;
+            this.wordTop.Opacity = 0;
+            top.wordBottom.Opacity = 0;
 
+            this.separated = true;
+            top.separated = true;
             return top;
         }
     }
