@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Génération de code/Journal de transformation de texte">
+  <MessageClass Name="Message" Label="Message" Option="Afficher les messages d'information" />
+  <MessageClass Name="Warning" Label="Avertissement" Option="Afficher les avertissements" />
+  <MessageClass Name="Error" Label="Erreur" Option="Afficher les erreurs" />
+  <MessageClass Name="Property" Label="Propriété" Option="Afficher les métadonnées" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Afficher les messages de diagnostic" />
+  <Message Timestamp="2013-06-10T20:25:35" Importance="High" Text="Processus d'ingénierie à rebours démarré." />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'Boolean' -  (PrimitiveType)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::System' -  (Package)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::System::Double' -  (Class)   (ingénierie à rebours partielle : définition non mise à jour) " />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect' -  (Package)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::GUIObject' -  (Class)   (ingénierie à rebours partielle : définition non mise à jour) " />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Medium" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools' -  (Class)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getDistance' -  (Operation)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getDistance::o1' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getDistance::o2' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getRotation' -  (Operation)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getRotation::o1' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::getRotation::o2' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::ImageTools' -  (Operation)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::isOn' -  (Operation)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::isOn::o1' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="Élément ayant fait l'objet d'une ingénierie à rebours dans le modèle UML : 'ModelingP2MM::TestKinect::ImageTools::isOn::o2' -  (Parameter)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="La relation a fait l'objet d'une ingénierie à rebours dans le modèle UML : ModelingP2MM::TestKinect::Word en ModelingP2MM::TestKinect::GUIObject (Generalization)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="La relation a fait l'objet d'une ingénierie à rebours dans le modèle UML : ModelingP2MM::TestKinect::Bin en ModelingP2MM::TestKinect::GUIObject (Generalization)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="Diagnostic" Text="La relation a fait l'objet d'une ingénierie à rebours dans le modèle UML : ModelingP2MM::TestKinect::Hand en ModelingP2MM::TestKinect::GUIObject (Generalization)" />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="High" Text="(1) type(s) ayant fait l'objet d'une ingénierie à rebours complète." />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="High" Text="Ingénierie à rebours partielle effectuée sur (2) type(s). Ces types n'ont pas été inclus dans la sélection d'origine, par conséquent, leurs définitions n'ont pas fait l'objet d'une ingénierie à rebours complète. Cette opération superficielle ne fait que s'assurer de l'existence de ces types dans le modèle UML, puisqu'ils sont nécessaires à la description complète d'autres éléments." />
+  <Message Timestamp="2013-06-10T20:25:38" Importance="High" Text="L'opération d'ingénierie à rebours s'est terminée avec (0) erreur(s) et (0) avertissement(s)." />
+</Log>
