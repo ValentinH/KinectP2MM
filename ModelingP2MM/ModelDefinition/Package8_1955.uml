@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="b000553b-e404-4c5e-a2fe-ce7acd360f90"
+  name="Interaction"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="28fdc374-7eb4-4c91-973a-e279078fa6f6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Kinect.Toolkit.Interaction"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="232f0027-7695-4044-9b21-ec9074afadc9"
+        name="InteractionFrameReadyEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="bf7fa628-b39e-4f4b-a328-cb073095e91b"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DInteractionFrameReadyEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="23664b46-491e-4896-9041-b7d914cb5282"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b48faece-1e88-478f-90b2-1d93d7e59cfb">
+                <propertyInstance
+                  Id="ab4528a7-1d13-4a95-be3a-cfb5edf2da51"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c5f7094d-b649-4f35-a3ca-5f498426ac22">
+                <propertyInstance
+                  Id="24953bd4-66cf-44c1-99fb-99e6ad4ba7f9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0c25e971-58e6-4840-b450-16dffd162cd4">
+                <propertyInstance
+                  Id="9457bdde-3054-4e44-af1d-b5a45970eb83"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="12fb1826-670b-4682-bda9-9d3feaa217fc">
+                <propertyInstance
+                  Id="75687bac-ae17-492d-8c9f-d22253c4c5a9"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a170147d-55ef-4134-beba-62d579eb76ec">
+                <propertyInstance
+                  Id="0ce9fa87-d865-42b3-bddd-8c4fbf8a627e"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cbfa221a-9852-44bf-8a21-099b4793e68e"
+        name="InteractionStream"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="9c5b1e41-d149-416b-b64f-74b29c6c124a"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DInteractionStream"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="53701956-6abb-4b9d-af5d-56cdd20dedc6"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="282d87f5-199f-463d-b7a0-3aacce4405c9">
+                <propertyInstance
+                  Id="a634f133-660f-46bc-b110-0dda1f2e3e11"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c15d43c1-01f3-49db-8a97-42147e36b697">
+                <propertyInstance
+                  Id="8e76d1f4-422d-459c-98cf-31212f227f7d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e178227d-bfd1-471c-89ea-644bb671e59a">
+                <propertyInstance
+                  Id="243f0b6f-71f0-47a2-9b47-23a54ddcff12"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5a704968-225e-4cef-bd18-ae2975750902">
+                <propertyInstance
+                  Id="e832ac4b-5cf9-439b-b650-f70787fb6b02"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cb3cb817-dd4d-44a0-b462-3e3af1b924d2">
+                <propertyInstance
+                  Id="ea3b8ba9-1e76-4c05-afa6-6a0c3df6e658"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="72506568-bfc8-41a3-85c7-867ff91c8721"
+        name="UserInfo"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="c160e432-33c5-40d5-b53e-2e0dde4b3274"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DUserInfo"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="259b8ab0-d589-4bf9-88f5-cde7a71fef3e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="437e68e4-11a7-4b67-b3d5-ed7bab9c7da0">
+                <propertyInstance
+                  Id="2115daf2-ef5e-452d-9929-947717bb3e49"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="871c8690-e333-4344-8a3c-c88622b36a9f">
+                <propertyInstance
+                  Id="5db1c138-ef31-456e-91e3-0f3c18753414"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="22665472-e8d6-44c0-8bea-83e516584066">
+                <propertyInstance
+                  Id="e1331b41-4888-46d9-a0f1-c09cdfa23b2d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ee577bfb-0cc5-46d8-9007-19bd35a19c8e">
+                <propertyInstance
+                  Id="772eb471-d9a4-4ae1-97d4-8c48542a6e6c"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="29b10510-fcda-4fef-a4c8-b83a54f7d6ee">
+                <propertyInstance
+                  Id="f90510fd-33ea-49a1-938e-6a33fbd4d8c5"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fb6d602f-9771-4ecd-84e6-21a6a0feb748"
+        name="InteractionInfo"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="71a55047-1c1c-4a27-aeca-b2dee1e49c08"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DInteractionInfo"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5546783b-330c-4fba-8238-88bd880be2a9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fe860c69-6c74-4451-802b-2460209ec5ea">
+                <propertyInstance
+                  Id="50f5ce2c-7b7b-40f0-ad09-1ce5eb602aa1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d7cda9eb-0835-4ffe-9364-4c4750845d01">
+                <propertyInstance
+                  Id="7651f65a-92f0-4288-ac4d-e64ef3636e97"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="62d6eae7-9234-40ad-844f-2d78d6f643e0">
+                <propertyInstance
+                  Id="3038dd36-0afd-4f1d-a94e-730c11d663be"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1af37f1a-e1be-446c-b002-af10861e8079">
+                <propertyInstance
+                  Id="3f7ca6d5-c519-458d-a03b-0407fd9a3cc1"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="27ea288c-520a-4d96-9777-2051525b3672">
+                <propertyInstance
+                  Id="21cc34bb-f5f6-41a2-b50c-364e960d1c0d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="cdd635a8-d186-4af8-8fc5-e444b296bb4b"
+        name="InteractionHandType"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="0257b373-496e-41ce-93e6-444e2f8210d0"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DInteractionHandType"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="fd7e219d-0325-428d-9caa-ebffd39e641f"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5a201fcf-cec6-442f-9584-a18560620721">
+                <propertyInstance
+                  Id="d7269ec9-0505-45c1-9ed9-65410d4bed13"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fe68bf1a-3e42-4159-80e7-02e9be4269ba">
+                <propertyInstance
+                  Id="93182870-70f1-46f0-99f9-9fd97d635a8a"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="359d39e4-f320-4f99-abf9-4ef9dc12e7cc">
+                <propertyInstance
+                  Id="f5698569-66c1-47b9-acbd-533d7e99fadf"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="e3000f7d-7720-45a0-afec-e53cbf51f30c"
+        name="IInteractionClient"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="db35ef84-c6ca-4ad5-ab5c-a8db4e578f39"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DIInteractionClient"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="951cdc83-02ea-4e16-8d82-dd84db7d18c5"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c4f2210e-530c-404f-a345-67dc61ce3331">
+                <propertyInstance
+                  Id="7c256f11-3ce7-4018-8c60-9361505ba103"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b5ab1044-8fdd-4f07-afce-0e2d10eb4954">
+                <propertyInstance
+                  Id="c401a14a-3c97-472e-9cd3-c1e3db72518d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8554d228-5109-4d91-be7e-408b55212278">
+                <propertyInstance
+                  Id="05443513-8de0-46f9-b0f1-c8c1d7c79f96"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7d0b8647-098e-4595-aa26-b078a84569f2">
+                <propertyInstance
+                  Id="102340eb-de5d-4cd1-9613-67fbdf3e5349"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="337467ab-411a-4ab4-be99-397b02e3215d"
+        name="InteractionHandPointer"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="8ff7797e-6c73-457b-8d4d-06f4b9c370d5"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FMAEVA%2FDocuments%2FGitHub%2FWordsInteractions%2FMicrosoft.Kinect.Toolkit.Interaction.dll Namespace%3DMicrosoft.Kinect.Toolkit.Interaction Type%3DInteractionHandPointer"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="98d82973-5962-4ffa-b9d0-4c3ac919b6dc"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="85efa86d-d615-4c54-a48a-63b1bb0c1856">
+                <propertyInstance
+                  Id="4031cbe3-664e-45f0-afe4-4da5760cc6c3"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9c132772-ddbc-45e1-9735-35278afdf835">
+                <propertyInstance
+                  Id="c168ee95-73ee-4707-93ec-e9cc8262b3b1"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="095824b5-752e-45fc-a5ac-a3527f2297cc">
+                <propertyInstance
+                  Id="e28c3895-2a61-4701-99b8-1f0cd09dc059"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3e8926e9-c0b9-4d13-bb73-9877e96353c8">
+                <propertyInstance
+                  Id="ca85fae0-f16b-4e61-a7b1-7cfeefb11645"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="96b56c1b-1a52-4e8b-8e4f-840f62d69ceb">
+                <propertyInstance
+                  Id="51993125-3262-4630-9b59-af2b5904bd4a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
