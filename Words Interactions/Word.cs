@@ -11,7 +11,7 @@ namespace TestKinect
         {
             this.beginRotation = 0;
             this._hover = false;
-            this.typeWord = "complete";
+            this.separated = false;
             Loaded +=WordLoaded;
 
         }
@@ -62,7 +62,8 @@ namespace TestKinect
             get { return wordTop.Source; }
             set
             {
-                wordTop.Source = value;                
+                wordTop.Source = value;
+                
             }
         }
         public ImageSource sourceBottom
@@ -74,9 +75,8 @@ namespace TestKinect
                 
             }
         }
-        
-        public String typeWord { get; set; }
 
+        public bool separated { get; set; }
         
         private bool _hover { get; set; }
         public bool hover
@@ -126,30 +126,11 @@ namespace TestKinect
         {
             Word top = new Word(this);
             this.wordTop.Opacity = 0;
-            this.typeWord = "bottom";
             top.wordBottom.Opacity = 0;
-            top.typeWord = "top";
 
+            this.separated = true;
+            top.separated = true;
             return top;
-        }
-
-        public void Fusion(Word secondWord)
-        {
-            if(this.typeWord == "top")
-            {                
-                this.wordBottom.Opacity = 1;
-                this.sourceBottom = secondWord.sourceBottom;
-                this.typeWord = "complete";
-            }
-            else
-                if(this.typeWord == "bottom")
-                {                
-                    this.wordTop.Opacity = 1;
-                    this.sourceTop = secondWord.sourceTop;
-                    this.typeWord = "complete";
-                }
-
-           
         }
     }
 }

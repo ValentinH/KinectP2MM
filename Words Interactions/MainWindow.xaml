@@ -18,13 +18,12 @@
                 <Image Source="images/utcBas.png" Width="344" Margin="0,0,0,0"/>
             </local:Word>
             <local:Word x:Name="utc2Object" Height="116" Canvas.Left="35" Canvas.Top="244" Width="343"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/utcHaut.png" Width="344" Margin="0,-49,-1,49" RenderTransformOrigin="0.5,0.5" />
-                <Image Source="images/utcBas.png" Width="344" Margin="0,0,0,0"/>
+                <Image Source="images/utcHaut.png" Width="344" Margin="-1,13,0,44" RenderTransformOrigin="0.5,0.5" />
+                <Image Source="images/artBas.png" Width="344" Margin="-1,67,0,0"/>
             </local:Word>
-            <local:Word x:Name="artObject" Height="96" Canvas.Left="600" Canvas.Top="492" Width="344"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/artHaut.png" Width="344" Margin="-11,-49,11,49"/>
-                <Image Source="images/artBas.png" Width="344" Margin="0,0,0,0"/>
-
+            <local:Word x:Name="bananeObject" Height="96" Canvas.Left="600" Canvas.Top="492" Width="344"  RenderTransformOrigin="0.5,0.5">
+                <Image Source="images/artHaut.png" Width="344" Margin="-1,-6,1,42"/>
+                <Image Source="images/artBas.png" Width="344" Margin="10,46,-10,0"/>
             </local:Word>
 
             <local:Bin x:Name="corbeille" Height="100" Canvas.Left="1042" Canvas.Top="24" Width="102" >
