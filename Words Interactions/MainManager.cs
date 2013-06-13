@@ -137,17 +137,19 @@ namespace TestKinect
                 //if the left hand is on the word
                 if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
                 {
-                    zoomDetection(word, hands.Item2);
+                    //zoomDetection(word, hands.Item2);
                     rotationDetection(word, hands.Item2);
                     transformationDetection(word, hands.Item2);
+                    fusionDetection(word, hands.Item2);
                 }
                 else
                     //if the right hand is on the word
                     if (hands.Item2.grip && hands.Item2.attachedObjectName == word.Name)
                     {
-                        zoomDetection(word, hands.Item1);
+                        //zoomDetection(word, hands.Item1);
                         rotationDetection(word, hands.Item1);
                         transformationDetection(word, hands.Item1);
+                        fusionDetection(word, hands.Item1);
                     }
 
             }
@@ -165,6 +167,7 @@ namespace TestKinect
                 if (hand.justReleased)
                 {
                     this.window.canvas.Children.Remove(word);
+                    words.Remove(word);
                 }
                 bin.hover = true;
             }
@@ -252,7 +255,7 @@ namespace TestKinect
         {   // Detect if both hands are on the word
             if (secondHand.grip && secondHand.attachedObjectName == word.Name)
             {
-                if (!word.separated)
+                if (word.typeWord == "complete")
                 {
                     Word nouveau = word.Duplicate();
                     words.Add(nouveau);
@@ -261,6 +264,30 @@ namespace TestKinect
                 }
             }
 
+        }
+
+        private void fusionDetection(Word currentWord, Hand secondHand)
+        {
+            if (!secondHand.grip)
+            {
+                foreach (var word in words.ToList())
+                {
+                    if (word != currentWord)
+                    {
+                        if ((word.typeWord == "top" && currentWord.typeWord == "bottom") || (currentWord.typeWord == "top" && word.typeWord == "bottom"))
+                        {
+                            if (ImageTools.getDistance(word, currentWord) < 4000)
+                            {
+                                //do fusion
+                                currentWord.Fusion(word);
+                                this.window.canvas.Children.Remove(word);
+                                words.Remove(word);
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         //to set the text of the information label on the screen
