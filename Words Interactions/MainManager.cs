@@ -137,7 +137,7 @@ namespace TestKinect
                 //if the left hand is on the word
                 if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
                 {
-                    zoomDetection(word, hands.Item2);
+                    //zoomDetection(word, hands.Item2);
                     rotationDetection(word, hands.Item2);
                     transformationDetection(word, hands.Item2);
                     fusionDetection(word, hands.Item2);
@@ -146,8 +146,9 @@ namespace TestKinect
                     //if the right hand is on the word
                     if (hands.Item2.grip && hands.Item2.attachedObjectName == word.Name)
                     {
-                        zoomDetection(word, hands.Item1);
+                        //zoomDetection(word, hands.Item1);
                         rotationDetection(word, hands.Item1);
+                        transformationDetection(word, hands.Item1);
                         fusionDetection(word, hands.Item1);
                     }
 
