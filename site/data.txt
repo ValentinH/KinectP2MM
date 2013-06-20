@@ -1,0 +1,1 @@
+Le projet P2MM (Poesie a 2 Mi-Mots) consiste a evaluer les possibilites offertes par la Kinect pour creer des applications interactives.
