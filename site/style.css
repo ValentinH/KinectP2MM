@@ -399,6 +399,21 @@ transform: rotate(0deg) scale(1) skew(1deg) translate(30px);
     border-color: rgba(255,255,255,.09);
 }
 
+.post ul{
+	margin-top:50px;
+}
+.post li{
+	font-size: 16px;
+	margin-bottom:10px;
+}
+
+.post li a{
+	color:#2F6BCF;
+}
+.post li a:hover{
+	text-decoration: underline;
+}
+
 ul#rechercheDicoProcede li
 {	
 	text-align: center;
