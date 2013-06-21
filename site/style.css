@@ -124,11 +124,11 @@ ul, ol {
 }
 
 a {
-	text-decoration: none;
 	color: #383838;
 }
 
 a:hover {
+color: blue;
 }
 
 
@@ -249,6 +249,7 @@ transform: rotate(0deg) scale(1) skew(1deg) translate(30px);
 	padding: 8px;
     padding-bottom: 10px;
 	width: 800px;
+	margin: 10px;
 	
 }
 img
