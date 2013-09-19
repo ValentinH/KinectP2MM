@@ -1,6 +1,6 @@
-﻿<Window x:Class="TestKinect.MainWindow"
+﻿<Window x:Class="KinectP2MM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:k="http://schemas.microsoft.com/kinect/2013" xmlns:local="clr-namespace:TestKinect"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:k="http://schemas.microsoft.com/kinect/2013" xmlns:local="clr-namespace:KinectP2MM"
         Title="MainWindow" Height="700" Width="1100">
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Margin="406,0,405,0" />

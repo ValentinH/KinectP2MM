@@ -10,7 +10,7 @@ using Microsoft.Kinect.Toolkit.Controls;
 using Microsoft.Kinect.Toolkit.Interaction;
 
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class KinectManager
     {

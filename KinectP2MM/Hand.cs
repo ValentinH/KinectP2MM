@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class Hand : GUIObject
     {

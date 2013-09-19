@@ -13,7 +13,7 @@ using Microsoft.Kinect.Toolkit.Controls;
 using Microsoft.Kinect.Toolkit.Interaction;
 
 
-namespace TestKinect
+namespace KinectP2MM
 {
     // Logique d'interaction pour MainWindow.xaml
     public partial class MainWindow : Window

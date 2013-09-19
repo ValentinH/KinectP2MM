@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class ImageTools
     {

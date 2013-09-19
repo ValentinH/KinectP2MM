@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class MainManager
     {

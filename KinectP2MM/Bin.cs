@@ -8,7 +8,7 @@ using System.Windows;
 
 
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class Bin : GUIObject
     {

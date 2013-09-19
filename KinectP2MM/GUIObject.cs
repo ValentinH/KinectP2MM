@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TestKinect
+namespace KinectP2MM
 {
     class GUIObject : Grid
     {
