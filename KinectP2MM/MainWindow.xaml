@@ -13,15 +13,15 @@
                 <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
             </local:Hand>
 
-            <local:Word x:Name="utcObject" Height="116" Canvas.Left="50" Canvas.Top="-15" Width="343"  RenderTransformOrigin="0.5,0.5">
-                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
-                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
-            </local:Word>
-            <local:Word x:Name="utc2Object" Height="116" Canvas.Left="35" Canvas.Top="244" Width="343"  RenderTransformOrigin="0.5,0.5">
+            <local:Word x:Name="utcObject" Canvas.Left="321" Canvas.Top="158"  RenderTransformOrigin="0.5,0.5">
                 <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
                 <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
             </local:Word>
-            <local:Word x:Name="artObject" Height="96" Canvas.Left="720" Canvas.Top="225" Width="344"  RenderTransformOrigin="0.5,0.5">
+            <local:Word x:Name="utc2Object" Canvas.Left="35" Canvas.Top="244"  RenderTransformOrigin="0.5,0.5" Background="#19000000">
+                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>
+                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0" />
+            </local:Word>
+            <local:Word x:Name="artObject" Canvas.Left="720" Canvas.Top="225"  RenderTransformOrigin="0.5,0.5">
                 <Label Content="art" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0"/>
                 <Label Content="art" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
 

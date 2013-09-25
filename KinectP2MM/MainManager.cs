@@ -23,9 +23,11 @@ namespace KinectP2MM
         // our two hands
         private Tuple<Hand, Hand> hands;
 
-
         //list of words to manipulate
         private List<Word> words;
+
+        //list of words couple split
+        private List<Tuple<Word, Word>> splitWordsCouple;
 
         private Bin bin;
 
@@ -37,10 +39,17 @@ namespace KinectP2MM
             this.hands.Item2.path = "images/right_cursor";
 
             words = new List<Word>();
+
+            // pas sur, pour ajouter le mot dans l'affichage
+            Word newWord = new Word("clement");
+            this.window.canvas.Children.Add(newWord);
+
             foreach (var word in this.window.canvas.Children.OfType<Word>())
             {
                 words.Add(word);
-            }            
+            }
+                                    
+            splitWordsCouple = new List<Tuple<Word, Word>>();
 
             bin = this.window.corbeille;
 
@@ -129,21 +138,24 @@ namespace KinectP2MM
         private void interactionOnText()
         {
             bin.hover = false;
+            reinitialize(splitWordsCouple);
+
             foreach (var word in words.ToList())
             {
+                Console.WriteLine(word.wordTop.Content); // pour voir la liste des mots
                 word.hover = false;
                 moveDetectionWord(word, InteractionHandType.Left);
                 moveDetectionWord(word, InteractionHandType.Right);
-                reinitializeIdPartner(word, words);
-
+                
 
                 //if the left hand is on the word
                 if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
                 {
                     //zoomDetection(word, hands.Item2);
                     rotationDetection(word, hands.Item2);
-                    transformationDetection(word, hands.Item2);
                     fusionDetection(word, hands.Item2);
+                    separationDetection(word, hands.Item2);
+                    
                 }
                 else
                     //if the right hand is on the word
@@ -151,11 +163,23 @@ namespace KinectP2MM
                     {
                         //zoomDetection(word, hands.Item1);
                         rotationDetection(word, hands.Item1);
-                        transformationDetection(word, hands.Item1);
                         fusionDetection(word, hands.Item1);
+                        separationDetection(word, hands.Item1);
                     }
 
             }
+        }
+
+        private void reinitialize(List<Tuple<Word, Word>> couplesList)
+        {
+            foreach (var couple in couplesList.ToList())
+            {
+                if (ImageTools.getDistance(couple.Item1, couple.Item2) > 20000)
+                {
+                    couplesList.Remove(couple);
+                }
+            }
+
         }
 
         private void moveDetectionWord(Word word, InteractionHandType which)
@@ -201,41 +225,23 @@ namespace KinectP2MM
             {
                 //this is to keep the words inside the canvas
                 Point newPos = new Point(hand.x + hand.ActualWidth / 2 - word.ActualWidth / 2, hand.y + hand.ActualHeight / 2 - word.ActualHeight / 2);
-                if (newPos.X > 0 && newPos.X - word.Width / 2 < this.window.canvas.Width - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
+                if (newPos.X > 0 && newPos.X - word.ActualWidth / 2 < this.window.canvas.Width - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
                 {
                     word.x = newPos.X;
                     word.y = newPos.Y;
                     word.hover = true;
                 }
-                else if (newPos.X > 0 && newPos.X - word.Width / 2 < this.window.canvas.Width - word.ActualWidth)
+                else if (newPos.X > 0 && newPos.X - word.ActualWidth / 2 < this.window.canvas.Width - word.ActualWidth)
                 {
                     word.x = newPos.X;
                 }
                 else if (newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
                 {
                     word.y = newPos.Y;
-                }                
-            }
-        }
-
-        //method to reinitialize the oldIdPartner of each word when its far enough of each other
-        private void reinitializeIdPartner(Word word, List<Word> words)
-        {
-            foreach (var seconWord in words.ToList())
-            {
-                if (word != seconWord)
-                {
-                    if (ImageTools.getDistance(word, seconWord) > 4000)
-                    {
-                        //reinitialize the oldIdPartner to allow a new fusion
-                        seconWord.oldIdPartner = Guid.Empty;
-                        word.oldIdPartner = Guid.Empty;
-                    }
                 }
 
             }
         }
-
 
         // method to manage to zoom detection
         private void zoomDetection(Word word, Hand secondHand)
@@ -277,7 +283,7 @@ namespace KinectP2MM
 
         }
 
-        private void transformationDetection(Word word, Hand secondHand)
+        private void separationDetection(Word word, Hand secondHand)
         {   // Detect if both hands are on the word
             if (secondHand.grip && secondHand.attachedObjectName == word.Name)
             {
@@ -285,24 +291,33 @@ namespace KinectP2MM
                 {
                     Word nouveau = word.Duplicate();
                     words.Add(nouveau);
-                    this.window.canvas.Children.Add(nouveau);
-                    secondHand.attachedObjectName = nouveau.Name;
+                    Tuple<Word, Word> newCouple = new Tuple<Word, Word>(word, nouveau);
+                    splitWordsCouple.Add(newCouple);
+                    /*foreach (var c in splitWordsCouple) to test splitWordsCouple
+                    {
+                        Console.WriteLine(c.Item1.wordBottom.Content);
+                        Console.WriteLine(c.Item1.wordTop.Content);
+                        Console.WriteLine(c.Item2.wordBottom.Content);
+                        Console.WriteLine(c.Item2.wordTop.Content);
+                    }*/
 
                     
-                }
 
-                
+                    this.window.canvas.Children.Add(nouveau);
+                    secondHand.attachedObjectName = nouveau.Name;                    
+                }                
             }
 
         }
 
+        // method to test if the fusion between 2 words is allowed, then it do the fusion
         private void fusionDetection(Word currentWord, Hand secondHand)
         {
             foreach (var word in words.ToList())
             {
-                if (word != currentWord)
+                if (word != currentWord && !forbiddenCoupleDetection(word, currentWord))
                 {
-                    if ((word.typeWord == "top" && currentWord.typeWord == "bottom" && currentWord.oldIdPartner != word.id) || (currentWord.typeWord == "top" && word.typeWord == "bottom" && currentWord.oldIdPartner != word.id))
+                    if ((word.typeWord == "top" && currentWord.typeWord == "bottom") || (currentWord.typeWord == "top" && word.typeWord == "bottom"))
                     {
                         if (ImageTools.getDistance(word, currentWord) < 4000)
                         {
@@ -313,8 +328,26 @@ namespace KinectP2MM
                         }
                     }
                 }
-
             }
+        }
+        
+        //method to detect if the couple of 2 words is in splitWordsCouple or not
+        private bool forbiddenCoupleDetection(Word word1, Word word2)
+        {
+            Tuple<Word, Word> currentCouple = new Tuple<Word, Word>(word1, word2);
+
+            foreach (var couple in splitWordsCouple.ToList())
+            {
+                if (couple.Item1.wordTop.Content == currentCouple.Item1.wordTop.Content && 
+                    couple.Item1.wordBottom.Content == currentCouple.Item1.wordBottom.Content &&
+                    couple.Item2.wordTop.Content == currentCouple.Item2.wordTop.Content &&
+                    couple.Item2.wordBottom.Content == currentCouple.Item2.wordBottom.Content)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         //to set the text of the information label on the screen

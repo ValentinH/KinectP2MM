@@ -4,6 +4,11 @@ namespace KinectP2MM
 {
     class GUIObject : Grid
     {
+        protected double _x;
+        protected double _y;
+        public virtual double x { get; set; }
+        public virtual double y { get; set; }
+
         public GUIObject()
         {
             this._x = 0;
@@ -25,11 +30,6 @@ namespace KinectP2MM
             //get canvas position from GuiObject source
             Canvas.SetLeft(this, Canvas.GetLeft(source));
             Canvas.SetTop(this, Canvas.GetTop(source)); 
-        }
-
-        protected double _x;
-        protected double _y;
-        public virtual double x { get; set; }
-        public virtual double y { get; set; }
+        }        
     }
 }

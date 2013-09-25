@@ -9,26 +9,13 @@ namespace KinectP2MM
 {
     class Hand : GUIObject
     {
-        public Hand()
-        {
-            this._x = 0;
-            this._y = 0;
-            this._grip = false;
-            this.pressed = false;
-            this.justGrip = false;
-            this.justReleased = false;
-            this.attachedObjectName = "";
-            this.path = "";
-            this.lastEvent = "";
-
-            Loaded += HandLoaded;            
-        }
-
-        // Execute startup tasks
-        private void HandLoaded(object sender, RoutedEventArgs e)
-        {
-            this.handCursor = (Image)this.Children[0];
-        } 
+        public bool pressed { get; set; }
+        public bool justGrip { get; set; }
+        public bool justReleased { get; set; }
+        public String attachedObjectName { get; set; }
+        public String path { get; set; }
+        public String lastEvent { get; set; }
+        public static double distance = 0;
 
         public Image handCursor { get; set; }
         public ImageSource source
@@ -37,7 +24,7 @@ namespace KinectP2MM
             set
             {
                 handCursor.Source = value;
-                
+
             }
         }
         public override double x
@@ -73,16 +60,29 @@ namespace KinectP2MM
 
             }
         }
-      
+        
+        public Hand()
+        {
+            this._x = 0;
+            this._y = 0;
+            this._grip = false;
+            this.pressed = false;
+            this.justGrip = false;
+            this.justReleased = false;
+            this.attachedObjectName = "";
+            this.path = "";
+            this.lastEvent = "";
 
-        public bool pressed { get; set; }
-        public bool justGrip { get; set; }
-        public bool justReleased { get; set; }
-        public String attachedObjectName { get; set; }
-        public String path { get; set; }
-        public String lastEvent { get; set; }
-        public static double distance = 0;
+            Loaded += HandLoaded;            
+        }
 
+        // Execute startup tasks
+        private void HandLoaded(object sender, RoutedEventArgs e)
+        {
+            this.handCursor = (Image)this.Children[0];
+        } 
+
+        
         public override string ToString()
         {
             String s = _grip ? "Grip" : "Open";
