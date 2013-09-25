@@ -22,20 +22,24 @@ namespace KinectP2MM
             this.beginRotation = source.beginRotation;
             this._hover = source._hover;
 
-            this.wordBottom = new Image();
+            this.wordBottom = new Label();
             this.wordBottom.Margin = source.wordBottom.Margin;
             this.wordBottom.Height = source.wordBottom.Height;
             this.wordBottom.Width = source.wordBottom.Width;
+            this.wordBottom.FontFamily = source.wordBottom.FontFamily;
+            this.wordBottom.FontSize = source.wordBottom.FontSize;
 
-            this.wordTop = new Image();
+            this.wordTop = new Label();
             this.wordTop.Margin = source.wordTop.Margin;
             this.wordTop.Height = source.wordTop.Height;
             this.wordTop.Width = source.wordTop.Width;
+            this.wordTop.FontFamily = source.wordTop.FontFamily;
+            this.wordTop.FontSize = source.wordTop.FontSize;
 
             this.sourceTop = source.sourceTop;
             this.sourceBottom = source.sourceBottom;
-            this.wordTop.Source = this.sourceTop;
-            this.wordBottom.Source = this.sourceBottom;
+            this.wordTop.Content = this.sourceTop;
+            this.wordBottom.Content = this.sourceBottom;
             this.Children.Add(this.wordTop);
             this.Children.Add(this.wordBottom);
 
@@ -48,34 +52,38 @@ namespace KinectP2MM
         public static double ZOOM_FACTOR = 1.05, UNZOOM_FACTOR = 0.95;
 
         public double beginRotation { get; set; }
-        public Image wordTop { get; set; }
-        public Image wordBottom { get; set; }
+        public Label wordTop { get; set; }
+        public Label wordBottom { get; set; }
         
         private void WordLoaded(object sender, RoutedEventArgs e)
         {
-            this.wordTop = (Image)this.Children[0];
-            this.wordBottom = (Image)this.Children[1];
+            this.wordTop = (Label)this.Children[0];
+            this.wordBottom = (Label)this.Children[1];
         } 
 
-        public ImageSource sourceTop
+        public object sourceTop
         {
-            get { return wordTop.Source; }
+            get { return wordTop.Content; }
             set
             {
-                wordTop.Source = value;                
+                wordTop.Content = value;                
             }
         }
-        public ImageSource sourceBottom
+        public object sourceBottom
         {
-            get { return wordBottom.Source; }
+            get { return wordBottom.Content; }
             set
             {
-                wordBottom.Source = value;
+                wordBottom.Content = value;
                 
             }
         }
+       
         
         public String typeWord { get; set; }
+        public Guid id { get; set; }
+        public Guid oldIdPartner { get; set; }
+            
 
         
         private bool _hover { get; set; }
@@ -127,8 +135,14 @@ namespace KinectP2MM
             Word top = new Word(this);
             this.wordTop.Opacity = 0;
             this.typeWord = "bottom";
+            
             top.wordBottom.Opacity = 0;
             top.typeWord = "top";
+
+            top.id = Guid.NewGuid();
+            this.id = Guid.NewGuid();
+            top.oldIdPartner = this.id;
+            this.oldIdPartner = top.id;
 
             return top;
         }

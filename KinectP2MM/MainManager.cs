@@ -125,14 +125,17 @@ namespace KinectP2MM
             }
         }
 
+        
         private void interactionOnText()
         {
             bin.hover = false;
             foreach (var word in words.ToList())
             {
                 word.hover = false;
-                moveDetectionWord(word, 1);
-                moveDetectionWord(word, 2);
+                moveDetectionWord(word, InteractionHandType.Left);
+                moveDetectionWord(word, InteractionHandType.Right);
+                reinitializeIdPartner(word, words);
+
 
                 //if the left hand is on the word
                 if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
@@ -155,10 +158,10 @@ namespace KinectP2MM
             }
         }
 
-        private void moveDetectionWord(Word word, byte which)
+        private void moveDetectionWord(Word word, InteractionHandType which)
         {
-            var hand = which == 1 ? hands.Item1 : hands.Item2;
-            var secondHand = which == 2 ? hands.Item1 : hands.Item2;
+            var hand = which == InteractionHandType.Left ? hands.Item1 : hands.Item2;
+            var secondHand = which == InteractionHandType.Right ? hands.Item1 : hands.Item2;
 
             //if the word is on the bin
             if (ImageTools.isOn(word, bin))
@@ -198,18 +201,41 @@ namespace KinectP2MM
             {
                 //this is to keep the words inside the canvas
                 Point newPos = new Point(hand.x + hand.ActualWidth / 2 - word.ActualWidth / 2, hand.y + hand.ActualHeight / 2 - word.ActualHeight / 2);
-                if (newPos.X + word.Width / 2 > 0 && newPos.X - word.Width / 2 < this.window.canvas.Width - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
+                if (newPos.X > 0 && newPos.X - word.Width / 2 < this.window.canvas.Width - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
                 {
                     word.x = newPos.X;
                     word.y = newPos.Y;
                     word.hover = true;
                 }
-                else
+                else if (newPos.X > 0 && newPos.X - word.Width / 2 < this.window.canvas.Width - word.ActualWidth)
                 {
-                    hand.attachedObjectName = "";
+                    word.x = newPos.X;
                 }
+                else if (newPos.Y > 0 && newPos.Y < this.window.canvas.Height - word.ActualHeight)
+                {
+                    word.y = newPos.Y;
+                }                
             }
         }
+
+        //method to reinitialize the oldIdPartner of each word when its far enough of each other
+        private void reinitializeIdPartner(Word word, List<Word> words)
+        {
+            foreach (var seconWord in words.ToList())
+            {
+                if (word != seconWord)
+                {
+                    if (ImageTools.getDistance(word, seconWord) > 4000)
+                    {
+                        //reinitialize the oldIdPartner to allow a new fusion
+                        seconWord.oldIdPartner = Guid.Empty;
+                        word.oldIdPartner = Guid.Empty;
+                    }
+                }
+
+            }
+        }
+
 
         // method to manage to zoom detection
         private void zoomDetection(Word word, Hand secondHand)
@@ -261,32 +287,33 @@ namespace KinectP2MM
                     words.Add(nouveau);
                     this.window.canvas.Children.Add(nouveau);
                     secondHand.attachedObjectName = nouveau.Name;
+
+                    
                 }
+
+                
             }
 
         }
 
         private void fusionDetection(Word currentWord, Hand secondHand)
         {
-            if (!secondHand.grip)
+            foreach (var word in words.ToList())
             {
-                foreach (var word in words.ToList())
+                if (word != currentWord)
                 {
-                    if (word != currentWord)
+                    if ((word.typeWord == "top" && currentWord.typeWord == "bottom" && currentWord.oldIdPartner != word.id) || (currentWord.typeWord == "top" && word.typeWord == "bottom" && currentWord.oldIdPartner != word.id))
                     {
-                        if ((word.typeWord == "top" && currentWord.typeWord == "bottom") || (currentWord.typeWord == "top" && word.typeWord == "bottom"))
+                        if (ImageTools.getDistance(word, currentWord) < 4000)
                         {
-                            if (ImageTools.getDistance(word, currentWord) < 4000)
-                            {
-                                //do fusion
-                                currentWord.Fusion(word);
-                                this.window.canvas.Children.Remove(word);
-                                words.Remove(word);
-                            }
+                            //do fusion
+                            currentWord.Fusion(word);
+                            this.window.canvas.Children.Remove(word);
+                            words.Remove(word);
                         }
                     }
-
                 }
+
             }
         }
 

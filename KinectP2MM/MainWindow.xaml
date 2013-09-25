@@ -14,16 +14,16 @@
             </local:Hand>
 
             <local:Word x:Name="utcObject" Height="116" Canvas.Left="50" Canvas.Top="-15" Width="343"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/utcHaut.png" Width="344" Margin="-1,13,0,44" RenderTransformOrigin="0.5,0.5" />
-                <Image Source="images/artBas.png" Width="344" Margin="-1,67,0,0"/>
+                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
             </local:Word>
             <local:Word x:Name="utc2Object" Height="116" Canvas.Left="35" Canvas.Top="244" Width="343"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/utcHaut.png" Width="344" Margin="-1,13,0,44" RenderTransformOrigin="0.5,0.5" />
-                <Image Source="images/artBas.png" Width="344" Margin="-1,67,0,0"/>
+                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
+                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
             </local:Word>
             <local:Word x:Name="artObject" Height="96" Canvas.Left="720" Canvas.Top="225" Width="344"  RenderTransformOrigin="0.5,0.5">
-                <Image Source="images/artHaut.png" Width="344" Margin="-1,-6,1,42"/>
-                <Image Source="images/artBas.png" Width="344" Margin="10,46,-10,0"/>
+                <Label Content="art" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0"/>
+                <Label Content="art" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
 
             </local:Word>
 
