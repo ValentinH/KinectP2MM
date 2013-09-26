@@ -39,10 +39,9 @@ namespace KinectP2MM
             this.hands.Item2.path = "images/right_cursor";
 
             words = new List<Word>();
-
-            // pas sur, pour ajouter le mot dans l'affichage
-            Word newWord = new Word("clement");
-            this.window.canvas.Children.Add(newWord);
+            
+            JsonLoader jsonLoader = new JsonLoader(this.window.canvas);
+            jsonLoader.load();
 
             foreach (var word in this.window.canvas.Children.OfType<Word>())
             {

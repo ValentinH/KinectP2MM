@@ -3,6 +3,7 @@ using System;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
+
 namespace KinectP2MM
 {
     class Word : GUIObject
@@ -24,14 +25,14 @@ namespace KinectP2MM
             Loaded +=WordLoaded;
         }
 
-        public Word(String content)
+        public Word(String content, int x = 0, int y = 0)
         {
             this.beginRotation = 0;
             this._hover = false;
             this.typeWord = "complete";
                                 
-            this.x = 400;
-            this.y = 300;
+            this.x = x;
+            this.y = y;
             Point center = new Point(0.5,0.5);
             this.RenderTransformOrigin = center;
 
@@ -45,8 +46,7 @@ namespace KinectP2MM
             this.wordBottom.Content = content;
             this.wordBottom.Margin = MarginBas;
             this.wordBottom.FontFamily = FontBas;
-            this.wordBottom.FontSize = 50;
-            
+            this.wordBottom.FontSize = 50;            
 
             this.wordTop = new Label();
             this.Children.Add(this.wordTop);
@@ -80,9 +80,6 @@ namespace KinectP2MM
             
             this.Children.Add(this.wordTop);
             this.Children.Add(this.wordBottom);
-
-           // this.Width = this.wordTop.Width > this.wordBottom.Width ? this.wordTop.Width : this.wordBottom.Width;
-            //this.Height = this.wordTop.Height > this.wordBottom.Height ? this.wordTop.Height : this.wordBottom.Height;
             
             long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             this.Name = source.Name + "_dup_" + milliseconds;
@@ -93,10 +90,6 @@ namespace KinectP2MM
         {
             this.wordTop = (Label)this.Children[0];
             this.wordBottom = (Label)this.Children[1];
-           // this.Width = this.wordTop.Width > this.wordBottom.Width ? this.wordTop.Width : this.wordBottom.Width;
-            //this.Height = this.wordTop.Height > this.wordBottom.Height ? this.wordTop.Height : this.wordBottom.Height;
-
-            //Console.WriteLine(this.Width + " " + this.ActualWidth);
         } 
                
         private bool _hover { get; set; }
