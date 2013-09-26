@@ -29,10 +29,11 @@ namespace KinectP2MM
             this.beginRotation = 0;
             this._hover = false;
             this.typeWord = "complete";
-            Loaded += WordLoaded;
-
+                                
             this.x = 400;
             this.y = 300;
+            Point center = new Point(0.5,0.5);
+            this.RenderTransformOrigin = center;
 
             FontFamily FontHaut = new FontFamily("Demibas (partiehaut)");
             FontFamily FontBas = new FontFamily("Demibas (partiebasse)");
@@ -40,6 +41,7 @@ namespace KinectP2MM
             Thickness MarginBas = new Thickness(0, 41, 0, 0);
 
             this.wordBottom = new Label();
+            this.Children.Add(this.wordBottom);
             this.wordBottom.Content = content;
             this.wordBottom.Margin = MarginBas;
             this.wordBottom.FontFamily = FontBas;
@@ -47,6 +49,7 @@ namespace KinectP2MM
             
 
             this.wordTop = new Label();
+            this.Children.Add(this.wordTop);
             this.wordTop.Content = content;
             this.wordTop.Margin = MarginHaut;
             this.wordTop.FontFamily = FontHaut;
