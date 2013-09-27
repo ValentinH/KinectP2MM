@@ -8,14 +8,16 @@ namespace KinectP2MM
 {
     class Word : GUIObject
     {
-        public static int MIN_WIDTH = 100, MAX_WIDTH = 1000;
+        public static int MIN_FONTSIZE = 20, MAX_FONTSIZE = 200;
+        public static int FONTSIZE = 50, MARGIN_BOTTOM = 41;
         public static double ZOOM_FACTOR = 1.05, UNZOOM_FACTOR = 0.95;
 
         public double beginRotation { get; set; }
         public Label wordTop { get; set; }
         public Label wordBottom { get; set; }
-
         public String typeWord { get; set; }
+        public double fontSize { get; set; }
+        public double marginBas { get; set; }
 
         public Word()
         {
@@ -33,27 +35,32 @@ namespace KinectP2MM
                                 
             this.x = x;
             this.y = y;
+            this.fontSize = FONTSIZE;
+            this.marginBas = MARGIN_BOTTOM;
             Point center = new Point(0.5,0.5);
             this.RenderTransformOrigin = center;
 
             FontFamily FontHaut = new FontFamily("Demibas (partiehaut)");
             FontFamily FontBas = new FontFamily("Demibas (partiebasse)");
             Thickness MarginHaut = new Thickness(0, 0, 0, 0);
-            Thickness MarginBas = new Thickness(0, 41, 0, 0);
+            Thickness MarginBas = new Thickness(0, MARGIN_BOTTOM, 0, 0);
 
             this.wordBottom = new Label();
+            this.wordBottom.Foreground = Brushes.White;
             this.Children.Add(this.wordBottom);
             this.wordBottom.Content = content;
             this.wordBottom.Margin = MarginBas;
             this.wordBottom.FontFamily = FontBas;
-            this.wordBottom.FontSize = 50;            
+            this.wordBottom.FontSize = FONTSIZE;
 
             this.wordTop = new Label();
+            this.wordTop.Foreground = Brushes.White;
             this.Children.Add(this.wordTop);
             this.wordTop.Content = content;
             this.wordTop.Margin = MarginHaut;
             this.wordTop.FontFamily = FontHaut;
-            this.wordTop.FontSize = 50;
+            this.wordTop.FontSize = FONTSIZE;
+
         }
 
         public Word(Word source): base(source)
@@ -63,6 +70,7 @@ namespace KinectP2MM
             this._hover = source._hover;
 
             this.wordBottom = new Label();
+            this.wordBottom.Foreground = source.wordBottom.Foreground;
             this.wordBottom.Margin = source.wordBottom.Margin;
             this.wordBottom.Height = source.wordBottom.Height;
             this.wordBottom.Width = source.wordBottom.Width;
@@ -71,6 +79,7 @@ namespace KinectP2MM
             this.wordBottom.Content = source.wordBottom.Content;
 
             this.wordTop = new Label();
+            this.wordTop.Foreground = source.wordTop.Foreground;
             this.wordTop.Margin = source.wordTop.Margin;
             this.wordTop.Height = source.wordTop.Height;
             this.wordTop.Width = source.wordTop.Width;
@@ -79,10 +88,7 @@ namespace KinectP2MM
             this.wordTop.Content = source.wordTop.Content;                   
             
             this.Children.Add(this.wordTop);
-            this.Children.Add(this.wordBottom);
-            
-            long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-            this.Name = source.Name + "_dup_" + milliseconds;
+            this.Children.Add(this.wordBottom);           
 
         }
                 
@@ -144,9 +150,6 @@ namespace KinectP2MM
             
             top.wordBottom.Opacity = 0;
             top.typeWord = "top";
-
-            
-
             return top;
         }
 
@@ -156,19 +159,29 @@ namespace KinectP2MM
             {                
                 this.wordBottom.Opacity = 1;
                 this.wordBottom.Content = secondWord.wordBottom.Content;
-                //this.sourceBottom = secondWord.sourceBottom;
                 this.typeWord = "complete";
             }
             else
                 if(this.typeWord == "bottom")
                 {                
                     this.wordTop.Opacity = 1;
-                    //this.sourceTop = secondWord.sourceTop;
                     this.wordTop.Content = secondWord.wordTop.Content;
                     this.typeWord = "complete";
-                }
+                }          
+        }
 
-           
+        public void applyZoom(double zoom)
+        {
+            if (this.fontSize * zoom > MAX_FONTSIZE || this.fontSize * zoom < MIN_FONTSIZE)
+                return;
+            this.fontSize = this.fontSize *  zoom;
+            this.marginBas = this.marginBas * zoom;
+
+            this.wordTop.FontSize = this.fontSize;
+            this.wordBottom.FontSize = this.fontSize;
+            this.wordTop.Margin = new Thickness(0, 0, 0, 0);
+            this.wordBottom.Margin = new Thickness(0, this.marginBas, 0, 0);
         }
     }
+
 }

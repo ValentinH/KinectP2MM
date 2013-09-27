@@ -38,11 +38,11 @@ namespace KinectP2MM
             this.hands.Item1.path = "images/left_cursor";
             this.hands.Item2.path = "images/right_cursor";
 
-            words = new List<Word>();
-            
             JsonLoader jsonLoader = new JsonLoader(this.window.canvas);
-            jsonLoader.load();
-
+            //create list from JSON
+            words = jsonLoader.load();
+           
+            //add words which are already in the xaml
             foreach (var word in this.window.canvas.Children.OfType<Word>())
             {
                 words.Add(word);
@@ -50,7 +50,7 @@ namespace KinectP2MM
                                     
             splitWordsCouple = new List<Tuple<Word, Word>>();
 
-            bin = this.window.corbeille;
+            //bin = this.window.corbeille;
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);
@@ -86,7 +86,7 @@ namespace KinectP2MM
                 if (hand.grip && h.HandEventType == InteractionHandEventType.GripRelease)
                 {
                     hand.grip = false;
-                    hand.attachedObjectName = "";
+                    hand.attachedObjectHash = 0;
                 }
 
             //check if the hand is pressed
@@ -136,41 +136,46 @@ namespace KinectP2MM
         
         private void interactionOnText()
         {
-            bin.hover = false;
+            //bin.hover = false;
             reinitialize(splitWordsCouple);
 
             foreach (var word in words.ToList())
             {
-                Console.WriteLine(word.wordTop.Content); // pour voir la liste des mots
                 word.hover = false;
                 moveDetectionWord(word, InteractionHandType.Left);
-                moveDetectionWord(word, InteractionHandType.Right);
-                
+                moveDetectionWord(word, InteractionHandType.Right);                
 
                 //if the left hand is on the word
-                if (hands.Item1.grip && hands.Item1.attachedObjectName == word.Name)
+                if (hands.Item1.grip && hands.Item1.attachedObjectHash == word.GetHashCode())
                 {
-                    //zoomDetection(word, hands.Item2);
-                    rotationDetection(word, hands.Item2);
-                    fusionDetection(word, hands.Item2);
-                    separationDetection(word, hands.Item2);
-                    
+                    if (!fusionDetection(word, hands.Item2))
+                    {
+                        if (!separationDetection(word, hands.Item1, hands.Item2))
+                        {
+                            zoomDetection(word, hands.Item2);
+                            rotationDetection(word, hands.Item2);
+                        }                        
+                    }
                 }
                 else
                     //if the right hand is on the word
-                    if (hands.Item2.grip && hands.Item2.attachedObjectName == word.Name)
+                    if (hands.Item2.grip && hands.Item2.attachedObjectHash == word.GetHashCode())
                     {
-                        //zoomDetection(word, hands.Item1);
-                        rotationDetection(word, hands.Item1);
-                        fusionDetection(word, hands.Item1);
-                        separationDetection(word, hands.Item1);
+                        if (!fusionDetection(word, hands.Item1))
+                        {
+                            if (!separationDetection(word, hands.Item2, hands.Item1))
+                            {
+                                zoomDetection(word, hands.Item1);
+                                rotationDetection(word, hands.Item1);
+                            }
+                        }
                     }
-
             }
         }
 
         private void reinitialize(List<Tuple<Word, Word>> couplesList)
         {
+
             foreach (var couple in couplesList.ToList())
             {
                 if (ImageTools.getDistance(couple.Item1, couple.Item2) > 20000)
@@ -178,7 +183,6 @@ namespace KinectP2MM
                     couplesList.Remove(couple);
                 }
             }
-
         }
 
         private void moveDetectionWord(Word word, InteractionHandType which)
@@ -187,7 +191,7 @@ namespace KinectP2MM
             var secondHand = which == InteractionHandType.Right ? hands.Item1 : hands.Item2;
 
             //if the word is on the bin
-            if (ImageTools.isOn(word, bin))
+           /* if (ImageTools.isOn(word, bin))
             {
                 //if we release the hand on the bin, we delete the word
                 if (hand.justReleased)
@@ -196,7 +200,7 @@ namespace KinectP2MM
                     words.Remove(word);
                 }
                 bin.hover = true;
-            }
+            }*/
 
             //if the hand is on the text
             if (ImageTools.isOn(hand, word))
@@ -205,7 +209,7 @@ namespace KinectP2MM
                 if (hand.justGrip)
                 {
                     //we attach the label to the hand until the grip is released
-                    hand.attachedObjectName = word.Name;
+                    hand.attachedObjectHash = word.GetHashCode();
 
                     //we savethe current rotation of the word
                     double rotationInDegrees = 0;
@@ -220,7 +224,7 @@ namespace KinectP2MM
             }
 
             //moving of the attached text
-            if (hand.grip && !hand.pressed && hand.attachedObjectName == word.Name)
+            if (hand.grip && !hand.pressed && hand.attachedObjectHash == word.GetHashCode())
             {
                 //this is to keep the words inside the canvas
                 Point newPos = new Point(hand.x + hand.ActualWidth / 2 - word.ActualWidth / 2, hand.y + hand.ActualHeight / 2 - word.ActualHeight / 2);
@@ -238,7 +242,6 @@ namespace KinectP2MM
                 {
                     word.y = newPos.Y;
                 }
-
             }
         }
 
@@ -246,33 +249,30 @@ namespace KinectP2MM
         private void zoomDetection(Word word, Hand secondHand)
         {
             //zoom if second hand gripping and without a text attached
-            if (secondHand.grip && secondHand.attachedObjectName == "")
+            if (secondHand.grip && secondHand.attachedObjectHash == 0)
             {
                 var distance = ImageTools.getDistance(hands.Item1, hands.Item2);
                 var difference = distance - Hand.distance;
                 var facteur = difference / 1000000 + 1;
-                if (difference > 5000 && word.Width * facteur <= Word.MAX_WIDTH)
+                
+                if (difference > 5000)
                 {
-
-                    word.Width *= facteur;
-                    word.Height *= facteur;
+                    word.applyZoom(facteur);                   
                 }
                 else
-                    if (difference < -5000 && word.Width * facteur >= Word.MIN_WIDTH)
+                    if (difference < -5000)
                     {
-                        word.Width *= facteur;
-                        word.Height *= facteur;
+                        word.applyZoom(facteur);
                     }
                 Hand.distance = distance;
             }
-
         }
 
         // method to manage to rotate detection
         private void rotationDetection(Word word, Hand secondHand)
         {
-            //mzoom if second hand open and without a text attached
-            if (secondHand.grip && secondHand.attachedObjectName == "")
+            //zoom if second hand open and without a text attached
+            if (secondHand.grip && secondHand.attachedObjectHash == 0)
             {
                 double wordRotation = word.beginRotation;
 
@@ -282,9 +282,9 @@ namespace KinectP2MM
 
         }
 
-        private void separationDetection(Word word, Hand secondHand)
+        private bool separationDetection(Word word, Hand firstHand, Hand secondHand)
         {   // Detect if both hands are on the word
-            if (secondHand.grip && secondHand.attachedObjectName == word.Name)
+            if (secondHand.grip && secondHand.attachedObjectHash == word.GetHashCode())
             {
                 if (word.typeWord == "complete")
                 {
@@ -292,25 +292,17 @@ namespace KinectP2MM
                     words.Add(nouveau);
                     Tuple<Word, Word> newCouple = new Tuple<Word, Word>(word, nouveau);
                     splitWordsCouple.Add(newCouple);
-                    /*foreach (var c in splitWordsCouple) to test splitWordsCouple
-                    {
-                        Console.WriteLine(c.Item1.wordBottom.Content);
-                        Console.WriteLine(c.Item1.wordTop.Content);
-                        Console.WriteLine(c.Item2.wordBottom.Content);
-                        Console.WriteLine(c.Item2.wordTop.Content);
-                    }*/
-
-                    
-
                     this.window.canvas.Children.Add(nouveau);
-                    secondHand.attachedObjectName = nouveau.Name;                    
+                    firstHand.attachedObjectHash = word.GetHashCode();
+                    secondHand.attachedObjectHash = nouveau.GetHashCode();
+                    return true;
                 }                
             }
-
+            return false;
         }
 
         // method to test if the fusion between 2 words is allowed, then it do the fusion
-        private void fusionDetection(Word currentWord, Hand secondHand)
+        private bool fusionDetection(Word currentWord, Hand secondHand)
         {
             foreach (var word in words.ToList())
             {
@@ -324,10 +316,12 @@ namespace KinectP2MM
                             currentWord.Fusion(word);
                             this.window.canvas.Children.Remove(word);
                             words.Remove(word);
+                            return true;
                         }
                     }
                 }
             }
+            return false;
         }
         
         //method to detect if the couple of 2 words is in splitWordsCouple or not
@@ -345,7 +339,6 @@ namespace KinectP2MM
                     return true;
                 }
             }
-
             return false;
         }
 

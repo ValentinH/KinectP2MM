@@ -12,7 +12,7 @@ namespace KinectP2MM
         public bool pressed { get; set; }
         public bool justGrip { get; set; }
         public bool justReleased { get; set; }
-        public String attachedObjectName { get; set; }
+        public int attachedObjectHash { get; set; }
         public String path { get; set; }
         public String lastEvent { get; set; }
         public static double distance = 0;
@@ -69,7 +69,7 @@ namespace KinectP2MM
             this.pressed = false;
             this.justGrip = false;
             this.justReleased = false;
-            this.attachedObjectName = "";
+            this.attachedObjectHash = 0;
             this.path = "";
             this.lastEvent = "";
 

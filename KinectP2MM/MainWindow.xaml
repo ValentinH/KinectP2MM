@@ -1,10 +1,10 @@
 ﻿<Window x:Class="KinectP2MM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:k="http://schemas.microsoft.com/kinect/2013" xmlns:local="clr-namespace:KinectP2MM"
-        Title="MainWindow" Height="700" Width="1100">
+        Title="MainWindow" Height="700" Width="1100" Background="Black">
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Margin="406,0,405,0" />
-        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="590" Margin="10,0,10,10" VerticalAlignment="Bottom" Width="1080" Background="#FFE9FFF4">
+        <Canvas x:Name="canvas" HorizontalAlignment="Center" Height="590" Margin="10,0,10,10" VerticalAlignment="Bottom" Width="1080" Background="#FF171717">
 
             <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="343" Canvas.Top="370" >
                 <Image x:Name="cursorImage" Height="50" Width="50" Margin="0,0" Source="images/left_cursor.png"/>
@@ -13,30 +13,20 @@
                 <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
             </local:Hand>
 
-            <local:Word x:Name="utcObject" Canvas.Left="321" Canvas.Top="158"  RenderTransformOrigin="0.5,0.5">
-                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" />
-                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
-            </local:Word>
-            <local:Word x:Name="utc2Object" Canvas.Left="35" Canvas.Top="244"  RenderTransformOrigin="0.5,0.5" Background="#19000000">
-                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>
-                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0" />
-            </local:Word>
-            <local:Word x:Name="artObject" Canvas.Left="720" Canvas.Top="225"  RenderTransformOrigin="0.5,0.5">
-                <Label Content="art" FontFamily="Demibas (partiehaut)" FontSize="50" Margin="0,0,0,0"/>
-                <Label Content="art" FontFamily="Demibas (partiebasse)" FontSize="50" Margin="0,41,0,0"/>
+            <!--<local:Word x:Name="utcObject" Canvas.Left="321" Canvas.Top="158"  RenderTransformOrigin="0.5,0.5">
+                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="150" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" />
+                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="150" Margin="0,123,0,0" Background="#00000000" Foreground="White"/>
+            </local:Word>-->
 
-            </local:Word>
-
-            <local:Bin x:Name="corbeille" Height="100" Canvas.Left="978" Canvas.Top="10" Width="102" >
+            <!--<local:Bin x:Name="corbeille" Height="100" Canvas.Left="978" Canvas.Top="10" Width="102" >
                 <local:Bin.RowDefinitions>
                     <RowDefinition Height="33*"/>
                     <RowDefinition Height="17*"/>
                 </local:Bin.RowDefinitions>
                 <Image x:Name="binImage"  Margin="0,0" Source="images/corbeille.png" Grid.RowSpan="2" />
-            </local:Bin>
+            </local:Bin>-->
         </Canvas>
 
-        <Label x:Name="userText" Content="No User Detected" HorizontalAlignment="Left" Margin="30,39,0,0" VerticalAlignment="Top" Width="108"/>
-        <Label x:Name="rotationText" Content="" HorizontalAlignment="Left" Margin="661,15,0,0" VerticalAlignment="Top" FontSize="30" RenderTransformOrigin="0.525,0.48"/>
+        <Label x:Name="userText" Content="No User Detected" HorizontalAlignment="Left" Margin="30,39,0,0" VerticalAlignment="Top" Width="108" Foreground="#FF7A7A7A"/>
     </Grid>
 </Window>
