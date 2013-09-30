@@ -18,12 +18,14 @@ namespace KinectP2MM
         public String typeWord { get; set; }
         public double fontSize { get; set; }
         public double marginBas { get; set; }
+        public Guid id { get; set; }
 
         public Word()
         {
             this.beginRotation = 0;
             this._hover = false;
             this.typeWord = "complete";
+            this.id = Guid.NewGuid();
             Loaded +=WordLoaded;
         }
 
@@ -32,6 +34,8 @@ namespace KinectP2MM
             this.beginRotation = 0;
             this._hover = false;
             this.typeWord = "complete";
+            this.id = Guid.NewGuid();
+
                                 
             this.x = x;
             this.y = y;
@@ -68,6 +72,9 @@ namespace KinectP2MM
         {
             this.beginRotation = source.beginRotation;
             this._hover = source._hover;
+            this.id = Guid.NewGuid();
+            this.fontSize = source.fontSize;
+            this.marginBas = source.marginBas;
 
             this.wordBottom = new Label();
             this.wordBottom.Foreground = source.wordBottom.Foreground;
@@ -160,6 +167,7 @@ namespace KinectP2MM
                 this.wordBottom.Opacity = 1;
                 this.wordBottom.Content = secondWord.wordBottom.Content;
                 this.typeWord = "complete";
+                this.id = Guid.NewGuid();
             }
             else
                 if(this.typeWord == "bottom")
@@ -167,6 +175,7 @@ namespace KinectP2MM
                     this.wordTop.Opacity = 1;
                     this.wordTop.Content = secondWord.wordTop.Content;
                     this.typeWord = "complete";
+                    this.id = Guid.NewGuid();
                 }          
         }
 
