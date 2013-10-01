@@ -21,12 +21,12 @@ namespace KinectP2MM
         public List<Word> load()
         {
             // Exemple de creation de json et d'ecriture sur fichier
-            List<JsonWord> list = new List<JsonWord>();
+           /* List<JsonWord> list = new List<JsonWord>();
             list.Add(new JsonWord("valentino", 300, 100));
             list.Add(new JsonWord("clement", 50, 50));
             list.Add(new JsonWord("simon", 120, 460));
             string json = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(@"p2mm.json", json);
+            File.WriteAllText(@"p2mm.json", json);*/
 
             List<Word> listWords = new List<Word>();
             //lecture du fichier json et creation des mots
