@@ -143,34 +143,52 @@ namespace KinectP2MM
             {
                 word.hover = false;
                 moveDetectionWord(word, InteractionHandType.Left);
-                moveDetectionWord(word, InteractionHandType.Right);                
+                moveDetectionWord(word, InteractionHandType.Right);
+            }
+            
+            foreach (var word in words.ToList())
+            {                //if the left hand is on the word
+                if (hands.Item1.grip && hands.Item1.attachedObjectId == word.id)
+                {
+                    fusionDetection(word, hands.Item1);
+                }
+                //if the right hand is on the word
+                else if (hands.Item2.grip && hands.Item2.attachedObjectId == word.id)
+                {
+                    fusionDetection(word, hands.Item2);
+                }   
+            }
 
+            foreach (var word in words.ToList())
+            {                
                 //if the left hand is on the word
                 if (hands.Item1.grip && hands.Item1.attachedObjectId == word.id)
                 {
-                    if (!fusionDetection(word, hands.Item1))
-                    {
-                        if (!separationDetection(word, hands.Item1, hands.Item2))
-                        {
-                            zoomDetection(word, hands.Item2);
-                            rotationDetection(word, hands.Item2);
-                        }                        
-                    }
+                    separationDetection(word, hands.Item1, hands.Item2);
                 }
-                else
-                    //if the right hand is on the word
-                    if (hands.Item2.grip && hands.Item2.attachedObjectId == word.id)
-                    {
-                        if (!fusionDetection(word, hands.Item2))
-                        {
-                            if (!separationDetection(word, hands.Item2, hands.Item1))
-                            {
-                                zoomDetection(word, hands.Item1);
-                                rotationDetection(word, hands.Item1);
-                            }
-                        }
-                    }
+                //if the right hand is on the word
+                else if (hands.Item2.grip && hands.Item2.attachedObjectId == word.id)
+                {
+                    separationDetection(word, hands.Item2, hands.Item1);
+                }   
             }
+
+            foreach (var word in words.ToList())
+            {               
+                //if the left hand is on the word
+                if (hands.Item1.grip && hands.Item1.attachedObjectId == word.id)
+                {
+                    zoomDetection(word, hands.Item2);
+                    rotationDetection(word, hands.Item2);
+                }
+                //if the right hand is on the word
+                else if (hands.Item2.grip && hands.Item2.attachedObjectId == word.id)
+                {
+                    zoomDetection(word, hands.Item1);
+                    rotationDetection(word, hands.Item1);
+                }  
+            }
+            
         }
 
         private void reinitialize(List<Tuple<Word, Word>> couplesList)
@@ -271,7 +289,7 @@ namespace KinectP2MM
         // method to manage to rotate detection
         private void rotationDetection(Word word, Hand secondHand)
         {
-            //zoom if second hand open and without a text attached
+            //rotate if second hand gripping and without a text attached
             if (secondHand.grip && secondHand.attachedObjectId == Guid.Empty)
             {
                 double wordRotation = word.beginRotation;
