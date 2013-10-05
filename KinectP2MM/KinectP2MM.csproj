@@ -106,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Bin.cs" />
     <Compile Include="JsonLoader.cs" />
+    <Compile Include="Sequence.cs" />
     <Compile Include="Word.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -159,22 +160,8 @@
     <Resource Include="images\corbeille.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\banane.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\tomate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\left_cursor.png" />
-    <Resource Include="images\left_cursor_grip.png" />
     <Resource Include="images\right_cursor.png" />
     <Resource Include="images\right_cursor_grip.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\artBas.png" />
-    <Resource Include="images\artHaut.png" />
-    <Resource Include="images\utcBas.png" />
-    <Resource Include="images\utcHaut.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -197,6 +184,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\left_cursor.png" />
+    <Resource Include="images\left_cursor_grip.png" />
     <Content Include="KinectInteraction170_32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

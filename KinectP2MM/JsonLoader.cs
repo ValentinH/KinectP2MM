@@ -11,32 +11,25 @@ namespace KinectP2MM
 {
     class JsonLoader
     {
-        private Canvas canvas { get; set; }
 
-        public JsonLoader(Canvas c)
+        public JsonLoader()
         {
-            this.canvas = c;
         }
 
-        public List<Word> load()
+        public List<Sequence> load()
         {
-            // Exemple de creation de json et d'ecriture sur fichier
-           /* List<JsonWord> list = new List<JsonWord>();
-            list.Add(new JsonWord("valentino", 300, 100));
-            list.Add(new JsonWord("clement", 50, 50));
-            list.Add(new JsonWord("simon", 120, 460));
-            string json = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(@"p2mm.json", json);*/
-
-            List<Word> listWords = new List<Word>();
+            List<Sequence> listSequences = new List<Sequence>();
             //lecture du fichier json et creation des mots
-            foreach (JsonWord jWord in JsonConvert.DeserializeObject<List<JsonWord>>(File.ReadAllText(@"p2mm.json")))
+            foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(@"p2mm.json")))
             {
-                Word word = new Word(jWord.content, jWord.x, jWord.y);
-                listWords.Add(word);
-                this.canvas.Children.Add(word);
+                List<Word> words = new List<Word>();
+                foreach (var jWord in jSeq.words)
+                {
+                    words.Add(new Word(jWord.content, jWord.x, jWord.y));
+                }
+                listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
             }
-            return listWords;
+            return listSequences;
         }        
      }
 
@@ -51,6 +44,20 @@ namespace KinectP2MM
         public int x { get; set; }
         public int y { get; set; }
         public String content { get; set; }
+    }
+
+
+    class JsonSequence
+    {
+        public JsonSequence(List<JsonWord> words, bool canZoom, bool canRotate)
+        {
+            this.words = words;
+            this.canZoom = canZoom;
+            this.canRotate = canRotate;
+        }
+        public List<JsonWord> words { get; set; }
+        public bool canZoom { get; set; }
+        public bool canRotate { get; set; }
     }
 
 }

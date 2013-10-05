@@ -1,17 +1,96 @@
 [
-  {
-    "x": 300,
-    "y": 100,
-    "content": "valentino"
-  },
-  {
-    "x": 50,
-    "y": 50,
-    "content": "clement"
-  },
-  {
-    "x": 120,
-    "y": 460,
-    "content": "simon"
-  }
+	{
+		"words" : [
+			{
+				"x": 300,
+				"y": 100,
+				"content": "valentin"
+			},
+			{
+				"x": 50,
+				"y": 50,
+				"content": "clement"
+			},
+			{
+				"x": 120,
+				"y": 460,
+				"content": "simon"
+			}
+		],
+		"canZoom" : true,
+		"canRotate" : true
+	},
+	{
+		"words" : [
+			{
+				"x": 300,
+				"y": 300,
+				"content": "mathilde"
+			},
+			{
+				"x": 650,
+				"y": 50,
+				"content": "megane"
+			},
+			{
+				"x": 120,
+				"y": 60,
+				"content": "simone"
+			}
+		],
+		"canZoom" : false,
+		"canRotate" : true
+	},
+	{
+		"words" : [
+			{
+				"x": 0,
+				"y": 0,
+				"content": "touc"
+			},
+			{
+				"x": 750,
+				"y": 450,
+				"content": "frites"
+			},
+			{
+				"x": 420,
+				"y": 260,
+				"content": "crabes"
+			}
+		],
+		"canZoom" : true,
+		"canRotate" : false
+	},
+	{
+		"words" : [
+			{
+				"x": 0,
+				"y": 0,
+				"content": "art"
+			},
+			{
+				"x": 0,
+				"y": 100,
+				"content": "utc"
+			},
+			{
+				"x": 0,
+				"y": 200,
+				"content": "noire"
+			},
+			{
+				"x": 0,
+				"y": 300,
+				"content": "blanc"
+			},
+			{
+				"x": 0,
+				"y": 400,
+				"content": "jaune"
+			}
+		],
+		"canZoom" : false,
+		"canRotate" : false
+	}
 ]
