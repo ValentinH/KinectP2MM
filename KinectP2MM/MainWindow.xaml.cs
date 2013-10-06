@@ -83,6 +83,9 @@ namespace KinectP2MM
                 if (e.Key == Key.N)
                     showAddWord();
 
+                if (e.Key == Key.E)
+                    openEditor();
+
                 if (e.Key == Key.O)
                 {
                     openFileChooser();
@@ -97,6 +100,12 @@ namespace KinectP2MM
                 if (e.Key == Key.Escape)
                     cancelInput();
             }
+        }
+
+        private void openEditor()
+        {
+            Editor editeur = new Editor();
+            editeur.Show();
         }
 
         private void openFileChooser()
