@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Editor" Height="300" Width="300">
     <Grid>
-        <Label Content="Editeur" HorizontalAlignment="Left" Margin="127,46,0,0" VerticalAlignment="Top"/>
-
+        <Label x:Name="sequenceNumber" Content="Sequence 1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.002"/>
+        <CheckBox x:Name="canRotateBox" Content="Rotation" HorizontalAlignment="Left" Margin="118,15,0,0" VerticalAlignment="Top" Checked="canRotate_Checked" Unchecked="canRotate_Unchecked"/>
+        <CheckBox x:Name="canZoomBox" Content="Zoom" HorizontalAlignment="Left" Margin="207,15,0,0" VerticalAlignment="Top" Unchecked="canZoom_Unchecked" Checked="canZoom_Checked"/>
+        <TextBox x:Name="listWordsTextBox" HorizontalAlignment="Left" Height="73" Margin="10,53,0,0" Text="Clement&#xD;&#xA;Valentin&#xD;&#xA;Simon" VerticalAlignment="Top" Width="272" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <Button x:Name="saveButton" Content="Sauvegarder la séquence" HorizontalAlignment="Left" Margin="67,220,0,0" VerticalAlignment="Top" Width="169" Click="saveButton_Click"/>
+        <Button x:Name="addButton" Content="Ajouter la séquence" HorizontalAlignment="Left" Margin="88,142,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click"/>
     </Grid>
 </Window>

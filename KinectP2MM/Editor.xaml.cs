@@ -14,17 +14,26 @@ using System.Windows.Shapes;
 
 namespace KinectP2MM
 {
-    /// <summary>
-    /// Logique d'interaction pour Editor.xaml
-    /// </summary>
+    // Logique d'interaction pour Editor.xaml
     public partial class Editor : Window
     {
+        private JsonLoader jsonLoader;
+        private List<Sequence> listSequences;
+        private bool canRotate;
+        private bool canZoom;
+        private int sequenceCount;
+
         public Editor()
         {
             InitializeComponent();
 
             Loaded += WindowLoaded;
             KeyUp += KeyManager;
+
+            listSequences = new List<Sequence>();
+            jsonLoader = new JsonLoader();
+
+            sequenceCount = 1;
         }
 
         private void KeyManager(object sender, KeyEventArgs e)
@@ -35,6 +44,53 @@ namespace KinectP2MM
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             ;
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            jsonLoader.save(listSequences);
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Word> words = new List<Word>();
+            String[] splitString = {"\r\n"};
+            String wordsUntreated = listWordsTextBox.Text;
+            String[] wordsTreated = wordsUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (String word in wordsTreated)
+            {
+                words.Add(new Word(word, 0, 0));
+            }
+
+            listSequences.Add(new Sequence(words, canZoom, canRotate));
+
+            listWordsTextBox.Clear();
+            canZoomBox.IsChecked = false;
+            canRotateBox.IsChecked = false;
+            sequenceCount++;
+            sequenceNumber.Content = "Sequence " + sequenceCount;
+
+        }
+
+        private void canRotate_Checked(object sender, RoutedEventArgs e)
+        {
+            canRotate = true;
+        }
+
+        private void canRotate_Unchecked(object sender, RoutedEventArgs e)
+        {
+            canRotate = false;
+        }        
+
+        private void canZoom_Checked(object sender, RoutedEventArgs e)
+        {
+            canZoom = true;
+        }
+
+        private void canZoom_Unchecked(object sender, RoutedEventArgs e)
+        {
+            canZoom = false;
         }
     }
 }

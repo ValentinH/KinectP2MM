@@ -33,7 +33,26 @@ namespace KinectP2MM
                 listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
             }
             return listSequences;
-        }        
+        }
+
+        public void save(List<Sequence> listSequences)
+        {
+            // Exemple de creation de json et d'ecriture sur fichier
+            List<JsonSequence> listJsonSeq = new List<JsonSequence>();
+
+            foreach (Sequence sequence in listSequences)
+            {
+                List<JsonWord> list = new List<JsonWord>();
+                foreach (Word word in sequence.words)
+                {
+                    list.Add(new JsonWord((String)word.wordTop.Content, (int)word.x, (int)word.y));
+                }
+                listJsonSeq.Add(new JsonSequence(list, sequence.canZoom, sequence.canRotate));
+            }
+
+            string json = JsonConvert.SerializeObject(listJsonSeq, Formatting.Indented);
+            File.WriteAllText(@"test.p2mm", json);   
+        }
      }
 
     class JsonWord
