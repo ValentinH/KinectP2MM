@@ -5,26 +5,15 @@
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Panel.ZIndex="1" />
         <Canvas x:Name="canvas" Margin="10" Background="#FF171717">
-
             <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="300" Canvas.Top="370" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <Image x:Name="cursorImage" Height="50" Width="50" Margin="0,0" Source="images/left_cursor.png"/>
             </local:Hand>
             <local:Hand x:Name="rightCursor" Height="50" Width="50" Canvas.Right="300" Canvas.Top="370" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <Image x:Name="cursorImage2" Height="50" Width="50" Margin="0,0" Source="images/right_cursor.png"/>
             </local:Hand>
-
-            <!--<local:Word x:Name="utcObject" Canvas.Left="321" Canvas.Top="158"  RenderTransformOrigin="0.5,0.5">
-                <Label Content="utc" FontFamily="Demibas (partiehaut)" FontSize="150" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" />
-                <Label Content="utc" FontFamily="Demibas (partiebasse)" FontSize="150" Margin="0,123,0,0" Background="#00000000" Foreground="White"/>
-            </local:Word>-->
-
-            <!--<local:Bin x:Name="corbeille" Height="100" Canvas.Left="978" Canvas.Top="10" Width="102" >
-                <local:Bin.RowDefinitions>
-                    <RowDefinition Height="33*"/>
-                    <RowDefinition Height="17*"/>
-                </local:Bin.RowDefinitions>
-                <Image x:Name="binImage"  Margin="0,0" Source="images/corbeille.png" Grid.RowSpan="2" />
-            </local:Bin>-->
         </Canvas>
+        <Grid x:Name="InputBox" Visibility="Collapsed">
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" Height="48" FontSize="30" Width="400" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </Window>

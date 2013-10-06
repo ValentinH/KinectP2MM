@@ -38,7 +38,8 @@ namespace KinectP2MM
             this.hands.Item1.path = "images/left_cursor";
             this.hands.Item2.path = "images/right_cursor";
 
-            sequence = new Sequence();                                    
+            sequence = new Sequence();
+            splitWordsCouple = new List<Tuple<Word, Word>>();                               
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);
@@ -371,6 +372,15 @@ namespace KinectP2MM
         public void setInformationText(String s)
         {
             //window.userText.Content = s;
+        }
+
+        internal void addWord(string p)
+        {
+            if(p.Equals(String.Empty)) return;
+            //center the word on the screen
+            Word w = new Word(p, ((int) window.canvas.ActualWidth/2 - (p.Length*50)/2) , (int) (window.canvas.ActualHeight/2-50));
+            sequence.words.Add(w);
+            this.window.canvas.Children.Add(w);
         }
     }
 }
