@@ -56,7 +56,7 @@ namespace KinectP2MM
                 this.window.canvas.Children.Add(word);
             }
 
-            splitWordsCouple = new List<Tuple<Word, Word>>();
+            splitWordsCouple.Clear();
         }
 
         private void resetWordsOnCanvas()
