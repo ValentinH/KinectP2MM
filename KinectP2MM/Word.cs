@@ -68,13 +68,13 @@ namespace KinectP2MM
         }
 
         public Word(Word source): base(source)
-
         {
             this.beginRotation = source.beginRotation;
             this._hover = source._hover;
             this.id = Guid.NewGuid();
             this.fontSize = source.fontSize;
             this.marginBas = source.marginBas;
+            this.RenderTransform = source.RenderTransform;
 
             this.wordBottom = new Label();
             this.wordBottom.Foreground = source.wordBottom.Foreground;

@@ -22,6 +22,7 @@ namespace KinectP2MM
         private MainManager mainManager;
         private bool fullScreen;
         private bool inputOpen;
+        private JsonLoader jsonLoader;
 
         public MainWindow()
         {
@@ -38,6 +39,7 @@ namespace KinectP2MM
             inputOpen = false;
             this.mainManager = new MainManager(this);
             this.Activate();
+            jsonLoader = new JsonLoader();
         }
 
         // Manage Key Events
@@ -47,7 +49,6 @@ namespace KinectP2MM
             {
                 if ((e.Key >= Key.D1 && e.Key <= Key.D9) || (e.Key >= Key.NumPad1 && e.Key <= Key.NumPad9))
                 {
-                    JsonLoader jsonLoader = new JsonLoader();
                     //create list from JSON
                     List<Sequence> sequences = jsonLoader.load();
 
@@ -81,6 +82,11 @@ namespace KinectP2MM
 
                 if (e.Key == Key.N)
                     showAddWord();
+
+                if (e.Key == Key.O)
+                {
+                    openFileChooser();
+                }
             }
             else
             {
@@ -90,6 +96,30 @@ namespace KinectP2MM
                 }
                 if (e.Key == Key.Escape)
                     cancelInput();
+            }
+        }
+
+        private void openFileChooser()
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".p2mm";
+            dlg.Filter = "Fichiers P2MM (*.p2mm)|*.p2mm";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                jsonLoader = new JsonLoader(filename);
+                this.mainManager.loadSequence(new Sequence());
             }
         }
 

@@ -12,15 +12,18 @@ namespace KinectP2MM
     class JsonLoader
     {
 
-        public JsonLoader()
+        private String file;
+
+        public JsonLoader(String file = "sequences.p2mm")
         {
+            this.file = file;
         }
 
         public List<Sequence> load()
         {
             List<Sequence> listSequences = new List<Sequence>();
             //lecture du fichier json et creation des mots
-            foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(@"p2mm.json")))
+            foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
             {
                 List<Word> words = new List<Word>();
                 foreach (var jWord in jSeq.words)
