@@ -1,13 +1,30 @@
-﻿<Window x:Class="KinectP2MM.Editor"
+﻿<Window x:Name="Editeur_de_séquence" x:Class="KinectP2MM.Editor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Editor" Height="300" Width="300">
+        Title="Editeur de séquence" Height="350" Width="482">
     <Grid>
-        <Label x:Name="sequenceNumber" Content="Sequence 1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.002"/>
-        <CheckBox x:Name="canRotateBox" Content="Rotation" HorizontalAlignment="Left" Margin="118,15,0,0" VerticalAlignment="Top" Checked="canRotate_Checked" Unchecked="canRotate_Unchecked"/>
-        <CheckBox x:Name="canZoomBox" Content="Zoom" HorizontalAlignment="Left" Margin="207,15,0,0" VerticalAlignment="Top" Unchecked="canZoom_Unchecked" Checked="canZoom_Checked"/>
-        <TextBox x:Name="listWordsTextBox" HorizontalAlignment="Left" Height="73" Margin="10,53,0,0" Text="Clement&#xD;&#xA;Valentin&#xD;&#xA;Simon" VerticalAlignment="Top" Width="272" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
-        <Button x:Name="saveButton" Content="Sauvegarder la séquence" HorizontalAlignment="Left" Margin="67,220,0,0" VerticalAlignment="Top" Width="169" Click="saveButton_Click"/>
-        <Button x:Name="addButton" Content="Ajouter la séquence" HorizontalAlignment="Left" Margin="88,142,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click"/>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_Fichier">
+                <MenuItem Header="_Nouveau fichier" Command="New" />
+                <Separator />
+                <MenuItem Header="_Ouvrir un fichier" Command="Open"/>
+                <Separator />
+                <MenuItem Header="_Enregistrer" Command="Save"/>
+                <MenuItem Header="_Enregistrer sous" Command="SaveAs"/>
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Label x:Name="sequenceNumber" Content="Sequence 1" HorizontalAlignment="Left" Margin="11,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.002"/>
+        <CheckBox x:Name="canRotateBox" Content="Rotation" HorizontalAlignment="Left" Margin="119,29,0,0" VerticalAlignment="Top" Checked="canRotate_Checked" Unchecked="canRotate_Unchecked"/>
+        <CheckBox x:Name="canZoomBox" Content="Zoom" HorizontalAlignment="Left" Margin="208,29,0,0" VerticalAlignment="Top" Unchecked="canZoom_Unchecked" Checked="canZoom_Checked"/>
+        <TextBox x:Name="listWordsTextBox" HorizontalAlignment="Left" Height="73" Margin="11,80,0,0" Text="Clement&#xD;&#xA;Valentin&#xD;&#xA;Simon" VerticalAlignment="Top" Width="245" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+        <Button x:Name="saveButton" Content="Sauvegarder les séquences" HorizontalAlignment="Left" Margin="156,247,0,0" VerticalAlignment="Top" Width="169" Click="saveButton_Click"/>
+        <Button x:Name="addButton" Content="Ajouter la séquence" HorizontalAlignment="Left" Margin="179,168,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click"/>
+        <TextBox x:Name="listXTextBox" HorizontalAlignment="Left" Height="73" Margin="273,80,0,0" TextWrapping="Wrap" Text="0&#xD;&#xA;100&#xD;&#xA;200" VerticalAlignment="Top" Width="88" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="listYTextBox" HorizontalAlignment="Left" Height="73" Margin="377,80,0,0" TextWrapping="Wrap" Text="0&#xD;&#xA;100&#xD;&#xA;200" VerticalAlignment="Top" Width="88" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <TextBlock HorizontalAlignment="Left" Margin="118,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="Mots"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="303,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="X"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="411,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="Y"/></TextBlock>
     </Grid>
 </Window>

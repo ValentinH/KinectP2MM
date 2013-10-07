@@ -19,10 +19,10 @@ namespace KinectP2MM
     // Logique d'interaction pour MainWindow.xaml
     public partial class MainWindow : Window
     {
-        private MainManager mainManager;
+        private SequenceManager sequenceManager;
         private bool fullScreen;
         private bool inputOpen;
-        private JsonLoader jsonLoader;
+        private JsonManager jsonManager;
 
         public MainWindow()
         {
@@ -37,9 +37,9 @@ namespace KinectP2MM
         {
             fullScreen = false;
             inputOpen = false;
-            this.mainManager = new MainManager(this);
+            this.sequenceManager = new SequenceManager(this);
             this.Activate();
-            jsonLoader = new JsonLoader();
+            jsonManager = new JsonManager();
         }
 
         // Manage Key Events
@@ -50,30 +50,30 @@ namespace KinectP2MM
                 if ((e.Key >= Key.D1 && e.Key <= Key.D9) || (e.Key >= Key.NumPad1 && e.Key <= Key.NumPad9))
                 {
                     //create list from JSON
-                    List<Sequence> sequences = jsonLoader.load();
+                    List<Sequence> sequences = jsonManager.load();
 
                     if ((e.Key == Key.D1 || e.Key == Key.NumPad1) && sequences.Count >= 1)
-                        this.mainManager.loadSequence(sequences[0]);
+                        this.sequenceManager.loadSequence(sequences[0]);
                     else if ((e.Key == Key.D2 || e.Key == Key.NumPad2) && sequences.Count >= 2)
-                        this.mainManager.loadSequence(sequences[1]);
+                        this.sequenceManager.loadSequence(sequences[1]);
                     else if ((e.Key == Key.D3 || e.Key == Key.NumPad3) && sequences.Count >= 3)
-                        this.mainManager.loadSequence(sequences[2]);
+                        this.sequenceManager.loadSequence(sequences[2]);
                     else if ((e.Key == Key.D4 || e.Key == Key.NumPad4) && sequences.Count >= 4)
-                        this.mainManager.loadSequence(sequences[3]);
+                        this.sequenceManager.loadSequence(sequences[3]);
                     else if ((e.Key == Key.D5 || e.Key == Key.NumPad5) && sequences.Count >= 5)
-                        this.mainManager.loadSequence(sequences[4]);
+                        this.sequenceManager.loadSequence(sequences[4]);
                     else if ((e.Key == Key.D6 || e.Key == Key.NumPad6) && sequences.Count >= 6)
-                        this.mainManager.loadSequence(sequences[5]);
+                        this.sequenceManager.loadSequence(sequences[5]);
                     else if ((e.Key == Key.D7 || e.Key == Key.NumPad7) && sequences.Count >= 7)
-                        this.mainManager.loadSequence(sequences[6]);
+                        this.sequenceManager.loadSequence(sequences[6]);
                     else if ((e.Key == Key.D8 || e.Key == Key.NumPad8) && sequences.Count >= 8)
-                        this.mainManager.loadSequence(sequences[7]);
+                        this.sequenceManager.loadSequence(sequences[7]);
                     else if ((e.Key == Key.D9 || e.Key == Key.NumPad9) && sequences.Count >= 9)
-                        this.mainManager.loadSequence(sequences[8]);
+                        this.sequenceManager.loadSequence(sequences[8]);
                 }
 
                 if (e.Key == Key.Back)
-                    this.mainManager.loadSequence(new Sequence());
+                    this.sequenceManager.loadSequence(new Sequence());
 
                 if (e.Key == Key.Escape)
                     toggleFullscreen(false);
@@ -104,7 +104,7 @@ namespace KinectP2MM
 
         private void openEditor()
         {
-            Editor editeur = new Editor();
+            Editor editeur = new Editor(this);
             editeur.Show();
         }
 
@@ -127,11 +127,17 @@ namespace KinectP2MM
             {
                 // Open document 
                 string filename = dlg.FileName;
-                jsonLoader = new JsonLoader(filename);
-                this.mainManager.loadSequence(new Sequence());
+                loadJson(filename);
             }
         }
 
+        public void loadJson(string filename)
+        {
+            jsonManager = new JsonManager(filename);
+            this.sequenceManager.loadSequence(new Sequence());
+        }  
+      
+       
 
         private void showAddWord()
         {
@@ -145,7 +151,7 @@ namespace KinectP2MM
         private void validateInput()
         {
             inputOpen = false;
-            this.mainManager.addWord(InputTextBox.Text);
+            this.sequenceManager.addWord(InputTextBox.Text);
             InputBox.Visibility = System.Windows.Visibility.Collapsed;
             InputTextBox.Text = String.Empty;
         }

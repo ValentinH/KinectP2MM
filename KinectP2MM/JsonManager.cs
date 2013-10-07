@@ -9,12 +9,12 @@ using System.IO;
 
 namespace KinectP2MM
 {
-    class JsonLoader
+    class JsonManager
     {
 
         private String file;
 
-        public JsonLoader(String file = "sequences.p2mm")
+        public JsonManager(String file = "sequences.p2mm")
         {
             this.file = file;
         }
@@ -35,7 +35,7 @@ namespace KinectP2MM
             return listSequences;
         }
 
-        public void save(List<Sequence> listSequences)
+        public void save(List<Sequence> listSequences, String file)
         {
             // Exemple de creation de json et d'ecriture sur fichier
             List<JsonSequence> listJsonSeq = new List<JsonSequence>();
@@ -51,7 +51,7 @@ namespace KinectP2MM
             }
 
             string json = JsonConvert.SerializeObject(listJsonSeq, Formatting.Indented);
-            File.WriteAllText(@"test.p2mm", json);   
+            File.WriteAllText(file, json);
         }
      }
 

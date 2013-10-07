@@ -18,11 +18,11 @@ namespace KinectP2MM
         private InteractionStream _interactionStream;
         private KinectSensorChooser sensorChooser;
         private UserInfo[] _userInfos;
-        private MainManager mainManager;
+        private SequenceManager sequenceManager;
 
-        public KinectManager(MainManager manager, KinectSensorChooserUI sensorUi)
+        public KinectManager(SequenceManager manager, KinectSensorChooserUI sensorUi)
         {
-            this.mainManager = manager;
+            this.sequenceManager = manager;
             //initialize the sensor chooser UI
             this.sensorChooser = new KinectSensorChooser();
             this.sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
@@ -96,15 +96,15 @@ namespace KinectP2MM
                 if (userID == 0)
                     continue;
 
-                mainManager.newImageReceived(userInfo);
+                sequenceManager.newImageReceived(userInfo);
                 hasUser = true;
                 //we manage only the first user
                 break;
             }
             if (!hasUser)
-                mainManager.setInformationText("No User Detected");
+                sequenceManager.setInformationText("No User Detected");
             else
-                mainManager.setInformationText("User Tracked");
+                sequenceManager.setInformationText("User Tracked");
         }
 
         #region necessary code for the interaction stream

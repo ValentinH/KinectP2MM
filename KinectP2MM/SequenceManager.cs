@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace KinectP2MM
 {
-    class MainManager
+    class SequenceManager
     {
         //main window
         private MainWindow window;
@@ -31,7 +31,7 @@ namespace KinectP2MM
 
         //private Bin bin;
 
-        public MainManager(MainWindow window)
+        public SequenceManager(MainWindow window)
         {
             this.window = window;
             this.hands = new Tuple<Hand, Hand>(this.window.leftCursor, this.window.rightCursor);
