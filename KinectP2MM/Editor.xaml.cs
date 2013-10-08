@@ -23,6 +23,7 @@ namespace KinectP2MM
         private bool canZoom;
         private int sequenceCount;
         private MainWindow parentWindow;
+        private String filename;
 
         public Editor(MainWindow parentWindow)
         {
@@ -36,9 +37,9 @@ namespace KinectP2MM
 
             sequenceCount = 1;
 
-            sequenceComboBox.Visibility = Visibility.Hidden;
-
             this.parentWindow = parentWindow;
+
+            newFile();
 
             // Create the CommandBinding.
             CommandBinding NewCommandBinding = new CommandBinding(
@@ -76,7 +77,10 @@ namespace KinectP2MM
 
         private void SaveCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Console.WriteLine("Un fichier est enregistré");
+            if (filename != String.Empty)
+                jsonManager.save(listSequences, filename);
+            else
+                saveFileChooser();
         }
 
         private void SaveCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
@@ -113,12 +117,7 @@ namespace KinectP2MM
         {
             ;
         }
-
-        private void saveButton_Click(object sender, RoutedEventArgs e)
-        {
-            saveFileChooser();            
-        }
-
+                
         private void openFile()
         {
             // Create OpenFileDialog 
@@ -137,14 +136,12 @@ namespace KinectP2MM
             if (result == true)
             {
                 // Open document 
-                string filename = dlg.FileName;
+                filename = dlg.FileName;
                 jsonManager = new JsonManager(filename);
                 listSequences.Clear();
                 listSequences = this.jsonManager.load();
 
                 sequenceComboBox.Items.Clear();
-                sequenceNumber.Visibility = Visibility.Hidden;
-                sequenceComboBox.Visibility = Visibility.Visible;
 
                 this.sequenceCount = 1;
                 foreach (Sequence sequence in listSequences)
@@ -160,12 +157,12 @@ namespace KinectP2MM
 
         private void newFile()
         {
+            filename = String.Empty;
+            sequenceComboBox.Items.Clear();
             listSequences.Clear();
             clearSequence();
             sequenceCount = 1;
-            sequenceNumber.Content = "Sequence " + sequenceCount;
-            sequenceNumber.Visibility = Visibility.Visible;
-            sequenceComboBox.Visibility = Visibility.Hidden;
+            addSequence();
         }
 
         private void saveFileChooser()
@@ -186,48 +183,29 @@ namespace KinectP2MM
             if (result == true)
             {
 
-                if (!listWordsTextBox.Text.Equals(String.Empty))
-                    addSequence();
+                if (listWordsTextBox.Text != String.Empty)
+                    saveSequence();
 
-                string filename = dlg.FileName;
+                filename = dlg.FileName;
                 jsonManager.save(listSequences, filename);
-                this.parentWindow.loadJson(filename);
-                this.Close();
             }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            saveSequence();
+            sequenceComboBox.SelectedItem = null;
             addSequence();
         }
 
         private void addSequence()
         {
-            List<Word> words = new List<Word>();
-            String[] splitString = { "\r\n" };
-            String wordsUntreated = listWordsTextBox.Text;
-            String[] wordsTreated = wordsUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
-
-            String xUntreated = listXTextBox.Text;
-            String[] xTreated = xUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
-
-            String yUntreated = listYTextBox.Text;
-            String[] yTreated = yUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
-
-            for (int i = 0; i < wordsTreated.Count(); i++)
-            {
-                if (i < xTreated.Count() && i < yTreated.Count())
-                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i])));
-                else
-                    words.Add(new Word(wordsTreated[i], 0, 0));
-
-            }
-
-            listSequences.Add(new Sequence(words, canZoom, canRotate));
+            listSequences.Add(new Sequence());
 
             clearSequence();
+            this.sequenceComboBox.Items.Add("Sequence " + sequenceCount);
+            sequenceComboBox.SelectedItem = "Sequence " + sequenceCount;
             sequenceCount++;
-            sequenceNumber.Content = "Sequence " + sequenceCount;
         }
 
         private void clearSequence()
@@ -268,9 +246,7 @@ namespace KinectP2MM
                 return;
 
             String sequence = (String)sequenceComboBox.SelectedItem;
-            Console.WriteLine(sequence);
             sequence = sequence.Replace("Sequence ", String.Empty);
-            Console.WriteLine(sequence);
 
             int sequenceNumber = Convert.ToInt32(sequence);
 
@@ -286,6 +262,46 @@ namespace KinectP2MM
                 listYTextBox.Text += word.y + "\r\n";
             }
 
+        }
+
+        private void sequenceComboBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            saveSequence();
+        }
+
+        private void saveSequence()
+        {
+            if (sequenceComboBox.SelectedItem == null)
+                return;
+
+            List<Word> words = new List<Word>();
+            String[] splitString = { "\r\n" };
+            String wordsUntreated = listWordsTextBox.Text;
+            String[] wordsTreated = wordsUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String xUntreated = listXTextBox.Text;
+            String[] xTreated = xUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String yUntreated = listYTextBox.Text;
+            String[] yTreated = yUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < wordsTreated.Count(); i++)
+            {
+                if (i < xTreated.Count() && i < yTreated.Count())
+                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i])));
+                else
+                    words.Add(new Word(wordsTreated[i], 0, 0));
+
+            }
+
+            String sequence = (String)sequenceComboBox.SelectedItem;
+            sequence = sequence.Replace("Sequence ", String.Empty);
+
+            int sequenceNumber = Convert.ToInt32(sequence);
+
+            listSequences[sequenceNumber - 1].canRotate = canRotate;
+            listSequences[sequenceNumber - 1].canZoom = canZoom;
+            listSequences[sequenceNumber - 1].words = words;
         }
     }
 }

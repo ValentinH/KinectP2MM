@@ -15,14 +15,11 @@
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="10,27,0,0" x:Name="sequenceComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="sequenceComboBox_SelectionChanged">
-        </ComboBox>
-        <Label x:Name="sequenceNumber" Content="Sequence 1" HorizontalAlignment="Left" Margin="11,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.002"/>
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="10,27,0,0" x:Name="sequenceComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="sequenceComboBox_SelectionChanged" MouseEnter="sequenceComboBox_MouseEnter"/>
         <CheckBox x:Name="canRotateBox" Content="Rotation" HorizontalAlignment="Left" Margin="224,29,0,0" VerticalAlignment="Top" Checked="canRotate_Checked" Unchecked="canRotate_Unchecked"/>
         <CheckBox x:Name="canZoomBox" Content="Zoom" HorizontalAlignment="Left" Margin="313,29,0,0" VerticalAlignment="Top" Unchecked="canZoom_Unchecked" Checked="canZoom_Checked"/>
         <TextBox x:Name="listWordsTextBox" HorizontalAlignment="Left" Height="73" Margin="11,80,0,0" Text="Clement&#xD;&#xA;Valentin&#xD;&#xA;Simon" VerticalAlignment="Top" Width="245" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
-        <Button x:Name="saveButton" Content="Sauvegarder les séquences" HorizontalAlignment="Left" Margin="156,247,0,0" VerticalAlignment="Top" Width="169" Click="saveButton_Click"/>
-        <Button x:Name="addButton" Content="Ajouter la séquence" HorizontalAlignment="Left" Margin="179,168,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click"/>
+        <Button x:Name="addButton" Content="Ajouter une séquence" HorizontalAlignment="Left" Margin="179,203,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click" RenderTransformOrigin="1.45,0.682"/>
         <TextBox x:Name="listXTextBox" HorizontalAlignment="Left" Height="73" Margin="273,80,0,0" TextWrapping="Wrap" Text="0&#xD;&#xA;100&#xD;&#xA;200" VerticalAlignment="Top" Width="88" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="listYTextBox" HorizontalAlignment="Left" Height="73" Margin="377,80,0,0" TextWrapping="Wrap" Text="0&#xD;&#xA;100&#xD;&#xA;200" VerticalAlignment="Top" Width="88" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
         <TextBlock HorizontalAlignment="Left" Margin="118,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="Mots"/></TextBlock>
