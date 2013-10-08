@@ -29,9 +29,6 @@ namespace KinectP2MM
         {
             InitializeComponent();
 
-            Loaded += WindowLoaded;
-            KeyUp += KeyManager;
-
             listSequences = new List<Sequence>();
             jsonManager = new JsonManager();
 
@@ -58,8 +55,7 @@ namespace KinectP2MM
             this.CommandBindings.Add(SaveAsCommandBinding);
 
             // KeyGesture for SaveAs
-            KeyGesture saveAsCmdKeyGesture = new KeyGesture(Key.S,
-            ModifierKeys.Control | ModifierKeys.Shift);            
+            KeyGesture saveAsCmdKeyGesture = new KeyGesture(Key.S, ModifierKeys.Control | ModifierKeys.Shift);            
 
             ApplicationCommands.SaveAs.InputGestures.Add(saveAsCmdKeyGesture);
 
@@ -107,16 +103,6 @@ namespace KinectP2MM
         {
             e.CanExecute = true;
         }
-
-        private void KeyManager(object sender, KeyEventArgs e)
-        {
-            ;
-        }
-
-        private void WindowLoaded(object sender, RoutedEventArgs e)
-        {
-            ;
-        }
                 
         private void openFile()
         {
@@ -143,14 +129,14 @@ namespace KinectP2MM
 
                 sequenceComboBox.Items.Clear();
 
-                this.sequenceCount = 1;
+                this.sequenceCount = 0;
                 foreach (Sequence sequence in listSequences)
                 {
-                    this.sequenceComboBox.Items.Add("Sequence " + sequenceCount);
+                    this.sequenceComboBox.Items.Add("Séquence " + (sequenceCount+1));
                     sequenceCount++;
                 }
-
-                this.sequenceComboBox.SelectedItem = "Sequence 1";
+                
+                this.sequenceComboBox.SelectedItem = this.sequenceComboBox.Items[0];
 
             }
         }
@@ -161,7 +147,7 @@ namespace KinectP2MM
             sequenceComboBox.Items.Clear();
             listSequences.Clear();
             clearSequence();
-            sequenceCount = 1;
+            sequenceCount = 0;
             addSequence();
         }
 
@@ -203,9 +189,8 @@ namespace KinectP2MM
             listSequences.Add(new Sequence());
 
             clearSequence();
-            this.sequenceComboBox.Items.Add("Sequence " + sequenceCount);
-            sequenceComboBox.SelectedItem = "Sequence " + sequenceCount;
-            sequenceCount++;
+            this.sequenceComboBox.Items.Add("Séquence " + (sequenceCount+1));
+            sequenceComboBox.SelectedIndex = sequenceCount++;
         }
 
         private void clearSequence()
@@ -244,18 +229,15 @@ namespace KinectP2MM
             // permet d'éviter de faire l'action quand on réinitialise la ComboBox
             if (sequenceComboBox.SelectedItem == null)
                 return;
+            
+            int sequenceNumber = sequenceComboBox.SelectedIndex;
 
-            String sequence = (String)sequenceComboBox.SelectedItem;
-            sequence = sequence.Replace("Sequence ", String.Empty);
-
-            int sequenceNumber = Convert.ToInt32(sequence);
-
-            if (listSequences[sequenceNumber - 1].canRotate)
+            if (listSequences[sequenceNumber].canRotate)
                 canRotateBox.IsChecked = true;
-            if (listSequences[sequenceNumber - 1].canZoom)
+            if (listSequences[sequenceNumber].canZoom)
                 canZoomBox.IsChecked = true;
 
-            foreach(Word word in listSequences[sequenceNumber - 1].words)
+            foreach(Word word in listSequences[sequenceNumber].words)
             {
                 listWordsTextBox.Text += word.wordTop.Content + "\r\n";
                 listXTextBox.Text += word.x + "\r\n";
@@ -294,14 +276,39 @@ namespace KinectP2MM
 
             }
 
-            String sequence = (String)sequenceComboBox.SelectedItem;
-            sequence = sequence.Replace("Sequence ", String.Empty);
+            int sequenceNumber = sequenceComboBox.SelectedIndex;
 
-            int sequenceNumber = Convert.ToInt32(sequence);
+            listSequences[sequenceNumber].canRotate = canRotate;
+            listSequences[sequenceNumber].canZoom = canZoom;
+            listSequences[sequenceNumber].words = words;
+        }
 
-            listSequences[sequenceNumber - 1].canRotate = canRotate;
-            listSequences[sequenceNumber - 1].canZoom = canZoom;
-            listSequences[sequenceNumber - 1].words = words;
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sequenceCount > 1)
+            {
+                int sequenceNumber = sequenceComboBox.SelectedIndex;
+                if (sequenceNumber == -1) return;
+                sequenceCount--;
+
+                listSequences.RemoveAt(sequenceNumber);
+                int newIndex = sequenceNumber - 1;
+
+                this.sequenceComboBox.Items.RemoveAt(sequenceNumber);
+
+                for (int i = sequenceNumber; i < this.sequenceComboBox.Items.Count; i++)
+                {
+                    this.sequenceComboBox.Items[i] = "Séquence "+ (i+1);
+                }
+
+                if (newIndex < 0)
+                    newIndex = -1;
+                this.sequenceComboBox.SelectedIndex = newIndex;
+            }
+            else
+            {
+                newFile();
+            }
         }
     }
 }
