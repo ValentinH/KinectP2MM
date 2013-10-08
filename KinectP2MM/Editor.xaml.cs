@@ -36,6 +36,8 @@ namespace KinectP2MM
 
             sequenceCount = 1;
 
+            sequenceComboBox.Visibility = Visibility.Hidden;
+
             this.parentWindow = parentWindow;
 
             // Create the CommandBinding.
@@ -53,11 +55,18 @@ namespace KinectP2MM
             this.CommandBindings.Add(OpenCommandBinding);
             this.CommandBindings.Add(SaveCommandBinding);
             this.CommandBindings.Add(SaveAsCommandBinding);
+
+            // KeyGesture for SaveAs
+            KeyGesture saveAsCmdKeyGesture = new KeyGesture(Key.S,
+            ModifierKeys.Control | ModifierKeys.Shift);            
+
+            ApplicationCommands.SaveAs.InputGestures.Add(saveAsCmdKeyGesture);
+
         }
 
         private void SaveAsCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Console.WriteLine("Un fichier est enregistré sous");
+            saveFileChooser();
         }
 
         private void SaveAsCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
@@ -77,19 +86,18 @@ namespace KinectP2MM
 
         private void OpenCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Console.WriteLine("Un fichier est ouvert");
+            openFile();
         }
 
         private void OpenCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
-        }
-        
+        }   
 
         private void NewCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            Console.WriteLine("Un fichier est créé");
-        }
+            newFile();
+        }        
 
         private void NewCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -109,6 +117,55 @@ namespace KinectP2MM
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             saveFileChooser();            
+        }
+
+        private void openFile()
+        {
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and default file extension 
+            dlg.DefaultExt = ".p2mm";
+            dlg.Filter = "Fichiers P2MM (*.p2mm)|*.p2mm";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                jsonManager = new JsonManager(filename);
+                listSequences.Clear();
+                listSequences = this.jsonManager.load();
+
+                sequenceComboBox.Items.Clear();
+                sequenceNumber.Visibility = Visibility.Hidden;
+                sequenceComboBox.Visibility = Visibility.Visible;
+
+                this.sequenceCount = 1;
+                foreach (Sequence sequence in listSequences)
+                {
+                    this.sequenceComboBox.Items.Add("Sequence " + sequenceCount);
+                    sequenceCount++;
+                }
+
+                this.sequenceComboBox.SelectedItem = "Sequence 1";
+
+            }
+        }
+
+        private void newFile()
+        {
+            listSequences.Clear();
+            clearSequence();
+            sequenceCount = 1;
+            sequenceNumber.Content = "Sequence " + sequenceCount;
+            sequenceNumber.Visibility = Visibility.Visible;
+            sequenceComboBox.Visibility = Visibility.Hidden;
         }
 
         private void saveFileChooser()
@@ -168,13 +225,18 @@ namespace KinectP2MM
 
             listSequences.Add(new Sequence(words, canZoom, canRotate));
 
+            clearSequence();
+            sequenceCount++;
+            sequenceNumber.Content = "Sequence " + sequenceCount;
+        }
+
+        private void clearSequence()
+        {
             listWordsTextBox.Clear();
             listXTextBox.Clear();
             listYTextBox.Clear();
             canZoomBox.IsChecked = false;
             canRotateBox.IsChecked = false;
-            sequenceCount++;
-            sequenceNumber.Content = "Sequence " + sequenceCount;
         }
 
         private void canRotate_Checked(object sender, RoutedEventArgs e)
@@ -197,14 +259,33 @@ namespace KinectP2MM
             canZoom = false;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void sequenceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Enregistrer sous");
-        }
+            clearSequence();
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Enregistrer");
+            // permet d'éviter de faire l'action quand on réinitialise la ComboBox
+            if (sequenceComboBox.SelectedItem == null)
+                return;
+
+            String sequence = (String)sequenceComboBox.SelectedItem;
+            Console.WriteLine(sequence);
+            sequence = sequence.Replace("Sequence ", String.Empty);
+            Console.WriteLine(sequence);
+
+            int sequenceNumber = Convert.ToInt32(sequence);
+
+            if (listSequences[sequenceNumber - 1].canRotate)
+                canRotateBox.IsChecked = true;
+            if (listSequences[sequenceNumber - 1].canZoom)
+                canZoomBox.IsChecked = true;
+
+            foreach(Word word in listSequences[sequenceNumber - 1].words)
+            {
+                listWordsTextBox.Text += word.wordTop.Content + "\r\n";
+                listXTextBox.Text += word.x + "\r\n";
+                listYTextBox.Text += word.y + "\r\n";
+            }
+
         }
     }
 }
