@@ -302,7 +302,7 @@ namespace KinectP2MM
                 }
 
                 if (newIndex < 0)
-                    newIndex = -1;
+                    newIndex = 0;
                 this.sequenceComboBox.SelectedIndex = newIndex;
             }
             else
