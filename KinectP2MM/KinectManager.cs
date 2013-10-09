@@ -59,7 +59,7 @@ namespace KinectP2MM
 
                     //Because we have the Kinect for XBox 360, we can't use the Near Range
                     _sensor.DepthStream.Range = DepthRange.Default;
-                    _sensor.SkeletonStream.EnableTrackingInNearRange = false;
+                    _sensor.SkeletonStream.EnableTrackingInNearRange = true;
 
                     _interactionStream = new InteractionStream(_sensor, new DummyInteractionClient());
                     _interactionStream.InteractionFrameReady += InteractionStreamOnInteractionFrameReady;

@@ -14,7 +14,7 @@ namespace KinectP2MM
 
         private String file;
 
-        public JsonManager(String file = "sequences.p2mm")
+        public JsonManager(String file="")
         {
             this.file = file;
         }
@@ -22,15 +22,18 @@ namespace KinectP2MM
         public List<Sequence> load()
         {
             List<Sequence> listSequences = new List<Sequence>();
-            //lecture du fichier json et creation des mots
-            foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
+            if (file != String.Empty)
             {
-                List<Word> words = new List<Word>();
-                foreach (var jWord in jSeq.words)
+                //lecture du fichier json et creation des mots
+                foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
                 {
-                    words.Add(new Word(jWord.content, jWord.x, jWord.y));
+                    List<Word> words = new List<Word>();
+                    foreach (var jWord in jSeq.words)
+                    {
+                        words.Add(new Word(jWord.content, jWord.x, jWord.y));
+                    }
+                    listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
                 }
-                listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
             }
             return listSequences;
         }

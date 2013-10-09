@@ -4,7 +4,7 @@
         Title="KinectP2MM"  Background="Black" WindowStartupLocation="CenterScreen" WindowState="Normal" Cursor="None">
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Panel.ZIndex="1" />
-        <Canvas x:Name="canvas" Margin="10" Background="#FF171717">
+        <Canvas x:Name="canvas" Margin="10" Background="Black">
             <local:Hand x:Name="leftCursor" Height="50" Width="50" Canvas.Left="300" Canvas.Top="370" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <Image x:Name="cursorImage" Height="50" Width="50" Margin="0,0" Source="images/left_cursor.png"/>
             </local:Hand>
@@ -13,7 +13,11 @@
             </local:Hand>
         </Canvas>
         <Grid x:Name="InputBox" Visibility="Collapsed">
-            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" Height="48" FontSize="30" Width="400" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" FontSize="72" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0" FontFamily="Demibas" CaretBrush="#333333"/>
         </Grid>
+        <Image x:Name="ZoomOn" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/zoom_on.png" Width="150"/>
+        <Image x:Name="ZoomOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/zoom_off.png" Width="150"/>
+        <Image x:Name="RotateOn" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/rotate_on.png" Width="150"/>
+        <Image x:Name="RotateOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/rotate_off.png" Width="150"/>
     </Grid>
 </Window>

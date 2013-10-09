@@ -9,6 +9,7 @@ using Microsoft.Kinect.Toolkit.Interaction;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace KinectP2MM
 {
@@ -311,7 +312,7 @@ namespace KinectP2MM
         {   // Detect if both hands are on the word
             if (secondHand.grip && secondHand.attachedObjectId == word.id)
             {
-                if (word.typeWord == "complete")
+                if (word.typeWord == WordType.FULL)
                 {
                     Word nouveau = word.Duplicate();
                     this.sequence.words.Add(nouveau);
@@ -334,7 +335,7 @@ namespace KinectP2MM
             {
                 if (word != currentWord && !forbiddenCoupleDetection(word, currentWord))
                 {
-                    if ((word.typeWord == "top" && currentWord.typeWord == "bottom") || (currentWord.typeWord == "top" && word.typeWord == "bottom"))
+                    if ((word.typeWord == WordType.TOP && currentWord.typeWord == WordType.BOTTOM) || (currentWord.typeWord == WordType.TOP && word.typeWord == WordType.BOTTOM))
                     {
                         if (ImageTools.getDistance(word, currentWord) < 4000)
                         {
@@ -374,13 +375,41 @@ namespace KinectP2MM
             //window.userText.Content = s;
         }
 
-        internal void addWord(string p)
+        internal void addWord(string p, WordType type)
         {
             if(p.Equals(String.Empty)) return;
             //center the word on the screen
-            Word w = new Word(p, ((int) window.canvas.ActualWidth/2 - (p.Length*50)/2) , (int) (window.canvas.ActualHeight/2-50));
+            Word w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type);
             sequence.words.Add(w);
             this.window.canvas.Children.Add(w);
+        }
+
+        internal void toggleZoom()
+        {
+            sequence.canZoom = !sequence.canZoom;
+            if (sequence.canZoom)
+                animateImage(this.window.ZoomOn);            
+            else
+                animateImage(this.window.ZoomOff);
+        }
+
+        internal void toggleRotation()
+        {
+            sequence.canRotate = !sequence.canRotate;
+            if (sequence.canRotate)
+                animateImage(this.window.RotateOn);
+            else
+                animateImage(this.window.RotateOff);
+        }
+
+        private void animateImage(Image img, int time = 500)
+        {
+            img.Visibility = Visibility.Visible;
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 1;
+            da.To = 0;
+            da.Duration = new Duration(TimeSpan.FromMilliseconds(time));
+            img.BeginAnimation(UIElement.OpacityProperty, da);
         }
     }
 }

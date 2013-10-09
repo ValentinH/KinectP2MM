@@ -6,6 +6,13 @@ using System.Windows.Media.Imaging;
 
 namespace KinectP2MM
 {
+    public enum WordType
+    {
+        FULL = 0,
+        BOTTOM = 1,
+        TOP = 2
+    }
+
     class Word : GUIObject
     {
         public static int MIN_FONTSIZE = 20, MAX_FONTSIZE = 200;
@@ -15,7 +22,7 @@ namespace KinectP2MM
         public double beginRotation { get; set; }
         public Label wordTop { get; set; }
         public Label wordBottom { get; set; }
-        public String typeWord { get; set; }
+        public WordType typeWord { get; set; }
         public double fontSize { get; set; }
         public double marginBas { get; set; }
         public Guid id { get; set; }
@@ -24,19 +31,18 @@ namespace KinectP2MM
         {
             this.beginRotation = 0;
             this._hover = false;
-            this.typeWord = "complete";
+            this.typeWord = WordType.FULL;
             this.id = Guid.NewGuid();
             Loaded +=WordLoaded;
         }
 
-        public Word(String content, int x = 0, int y = 0)
+        public Word(String content, int x = 0, int y = 0, WordType type = WordType.FULL)
         {
             this.beginRotation = 0;
             this._hover = false;
-            this.typeWord = "complete";
             this.id = Guid.NewGuid();
 
-                                
+            this.typeWord = type;
             this.x = x;
             this.y = y;
             this.fontSize = FONTSIZE;
@@ -56,6 +62,7 @@ namespace KinectP2MM
             this.wordBottom.Margin = MarginBas;
             this.wordBottom.FontFamily = FontBas;
             this.wordBottom.FontSize = FONTSIZE;
+            if (type == WordType.TOP) this.wordBottom.Opacity = 0;
 
             this.wordTop = new Label();
             this.wordTop.Foreground = Brushes.White;
@@ -64,6 +71,7 @@ namespace KinectP2MM
             this.wordTop.Margin = MarginHaut;
             this.wordTop.FontFamily = FontHaut;
             this.wordTop.FontSize = FONTSIZE;
+            if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
 
         }
 
@@ -153,28 +161,28 @@ namespace KinectP2MM
         {
             Word top = new Word(this);
             this.wordTop.Opacity = 0;
-            this.typeWord = "bottom";
+            this.typeWord = WordType.BOTTOM;
             
             top.wordBottom.Opacity = 0;
-            top.typeWord = "top";
+            top.typeWord = WordType.TOP;
             return top;
         }
 
         public void Fusion(Word secondWord)
         {
-            if(this.typeWord == "top")
+            if(this.typeWord == WordType.TOP)
             {                
                 this.wordBottom.Opacity = 1;
                 this.wordBottom.Content = secondWord.wordBottom.Content;
-                this.typeWord = "complete";
+                this.typeWord = WordType.FULL;
                 this.id = Guid.NewGuid();
             }
             else
-                if(this.typeWord == "bottom")
+                if(this.typeWord == WordType.BOTTOM)
                 {                
                     this.wordTop.Opacity = 1;
                     this.wordTop.Content = secondWord.wordTop.Content;
-                    this.typeWord = "complete";
+                    this.typeWord = WordType.FULL;
                     this.id = Guid.NewGuid();
                 }          
         }

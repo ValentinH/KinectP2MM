@@ -190,6 +190,10 @@
   <ItemGroup>
     <Resource Include="images\left_cursor.png" />
     <Resource Include="images\left_cursor_grip.png" />
+    <Resource Include="images\zoom_off.png" />
+    <Resource Include="images\zoom_on.png" />
+    <Resource Include="images\rotate_off.png" />
+    <Resource Include="images\rotate_on.png" />
     <Content Include="KinectInteraction170_32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

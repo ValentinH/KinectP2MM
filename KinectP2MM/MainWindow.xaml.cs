@@ -23,6 +23,7 @@ namespace KinectP2MM
         private bool fullScreen;
         private bool inputOpen;
         private JsonManager jsonManager;
+        private WordType wordType;
 
         public MainWindow()
         {
@@ -82,14 +83,21 @@ namespace KinectP2MM
 
                 if (e.Key == Key.N)
                     showAddWord();
+                if (e.Key == Key.H)
+                    showAddWordHaut();
+                if (e.Key == Key.B)
+                    showAddWordBas();
 
                 if (e.Key == Key.E)
                     openEditor();
 
                 if (e.Key == Key.O)
-                {
                     openFileChooser();
-                }
+
+                if (e.Key == Key.R)
+                    this.sequenceManager.toggleRotation();
+                if (e.Key == Key.Z)
+                    this.sequenceManager.toggleZoom();
             }
             else
             {
@@ -101,6 +109,8 @@ namespace KinectP2MM
                     cancelInput();
             }
         }
+
+       
 
         private void openEditor()
         {
@@ -144,14 +154,39 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
+            InputTextBox.FontFamily = new FontFamily("Demibas");
+            InputTextBox.FontSize = 100;
             Keyboard.Focus(InputTextBox);
+            wordType = WordType.FULL;
+        }
+
+        private void showAddWordBas()
+        {
+            inputOpen = true;
+            InputBox.Visibility = System.Windows.Visibility.Visible;
+            InputTextBox.Focusable = true;
+            InputTextBox.FontFamily = new FontFamily("Demibas (partiebasse)");
+            InputTextBox.FontSize = 48;
+            Keyboard.Focus(InputTextBox);
+            wordType = WordType.BOTTOM;
+        }
+
+        private void showAddWordHaut()
+        {
+            inputOpen = true;
+            InputBox.Visibility = System.Windows.Visibility.Visible;
+            InputTextBox.Focusable = true;
+            InputTextBox.FontFamily = new FontFamily("Demibas (partiehaut)");
+            InputTextBox.FontSize = 48;
+            Keyboard.Focus(InputTextBox);
+            wordType = WordType.TOP;
         }
 
 
         private void validateInput()
         {
             inputOpen = false;
-            this.sequenceManager.addWord(InputTextBox.Text);
+            this.sequenceManager.addWord(InputTextBox.Text, wordType);
             InputBox.Visibility = System.Windows.Visibility.Collapsed;
             InputTextBox.Text = String.Empty;
         }

@@ -74,7 +74,10 @@ namespace KinectP2MM
         private void SaveCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             if (filename != String.Empty)
+            {
+                saveSequence();
                 jsonManager.save(listSequences, filename);
+            }
             else
                 saveFileChooser();
         }
