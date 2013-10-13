@@ -57,9 +57,8 @@ namespace KinectP2MM
                     _sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
                     _sensor.SkeletonStream.Enable();
 
-                    //Because we have the Kinect for XBox 360, we can't use the Near Range
                     _sensor.DepthStream.Range = DepthRange.Default;
-                    _sensor.SkeletonStream.EnableTrackingInNearRange = true;
+                    _sensor.SkeletonStream.EnableTrackingInNearRange = false;
 
                     _interactionStream = new InteractionStream(_sensor, new DummyInteractionClient());
                     _interactionStream.InteractionFrameReady += InteractionStreamOnInteractionFrameReady;

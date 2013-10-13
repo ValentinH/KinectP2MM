@@ -150,6 +150,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Demibas %28partiehaut%29.ttf" />
+    <Resource Include="polices\Demibas %28partiebasse%29.ttf" />
+    <Resource Include="polices\Demibas %28partiehaut%29.ttf" />
+    <Resource Include="polices\Demibas_2010.ttf" />
+    <Resource Include="polices\Demihaut_2010.ttf" />
     <None Include="sequences.p2mm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -201,6 +206,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
