@@ -24,6 +24,7 @@ namespace KinectP2MM
         private int sequenceCount;
         private MainWindow parentWindow;
         private String filename;
+        private bool unsaveChanges;
 
         public Editor(MainWindow parentWindow)
         {
@@ -89,9 +90,10 @@ namespace KinectP2MM
 
         private void OpenCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
+            VerificatinSauvegarde();   
             openFile();
         }
-
+        
         private void OpenCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -99,12 +101,32 @@ namespace KinectP2MM
 
         private void NewCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
+            VerificatinSauvegarde();  
             newFile();
         }        
 
         private void NewCanExecuteHandler(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void VerificatinSauvegarde()
+        {
+            if (unsaveChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez vous enregistrer le fichier actuel ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (filename != String.Empty)
+                    {
+                        saveSequence();
+                        jsonManager.save(listSequences, filename);
+                    }
+                    else
+                        saveFileChooser();
+                }
+            }
+            
         }
                 
         private void openFile()
@@ -140,9 +162,9 @@ namespace KinectP2MM
                 }
                 
                 this.sequenceComboBox.SelectedItem = this.sequenceComboBox.Items[0];
-
+                unsaveChanges = false;
             }
-        }
+        }               
 
         private void newFile()
         {
@@ -152,6 +174,8 @@ namespace KinectP2MM
             clearSequence();
             sequenceCount = 0;
             addSequence();
+            Properties.Settings.Default.left_hand_grip_pat
+            unsaveChanges = false;
         }
 
         private void saveFileChooser()
@@ -185,6 +209,7 @@ namespace KinectP2MM
             saveSequence();
             sequenceComboBox.SelectedItem = null;
             addSequence();
+            unsaveChanges = true;
         }
 
         private void addSequence()
@@ -208,21 +233,25 @@ namespace KinectP2MM
         private void canRotate_Checked(object sender, RoutedEventArgs e)
         {
             canRotate = true;
+            unsaveChanges = true;
         }
 
         private void canRotate_Unchecked(object sender, RoutedEventArgs e)
         {
             canRotate = false;
+            unsaveChanges = true;
         }        
 
         private void canZoom_Checked(object sender, RoutedEventArgs e)
         {
             canZoom = true;
+            unsaveChanges = true;
         }
 
         private void canZoom_Unchecked(object sender, RoutedEventArgs e)
         {
             canZoom = false;
+            unsaveChanges = true;
         }
 
         private void sequenceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -246,6 +275,7 @@ namespace KinectP2MM
                 listXTextBox.Text += word.x + "\r\n";
                 listYTextBox.Text += word.y + "\r\n";
             }
+            unsaveChanges = false;
 
         }
 
@@ -274,6 +304,10 @@ namespace KinectP2MM
             {
                 if (i < xTreated.Count() && i < yTreated.Count())
                     words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i])));
+                else if (i < xTreated.Count())
+                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), 0));
+                else if (i < yTreated.Count())
+                    words.Add(new Word(wordsTreated[i], 0, Convert.ToInt32(yTreated[i])));
                 else
                     words.Add(new Word(wordsTreated[i], 0, 0));
 
@@ -284,6 +318,8 @@ namespace KinectP2MM
             listSequences[sequenceNumber].canRotate = canRotate;
             listSequences[sequenceNumber].canZoom = canZoom;
             listSequences[sequenceNumber].words = words;
+
+            unsaveChanges = false;
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -307,11 +343,35 @@ namespace KinectP2MM
                 if (newIndex < 0)
                     newIndex = 0;
                 this.sequenceComboBox.SelectedIndex = newIndex;
+                unsaveChanges = true;
             }
             else
             {
                 newFile();
             }
+
+        }
+        
+        private void Editor_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            VerificatinSauvegarde();
+            unsaveChanges = false;
+        }
+
+        private void listWordsTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listXTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listYTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
         }
     }
+
 }

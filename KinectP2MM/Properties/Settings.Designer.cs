@@ -22,5 +22,41 @@ namespace KinectP2MM.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor.png")]
+        public string right_hand_path {
+            get {
+                return ((string)(this["right_hand_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor.png")]
+        public string left_hand_path {
+            get {
+                return ((string)(this["left_hand_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor_grip.png")]
+        public string right_hand_grip_path {
+            get {
+                return ((string)(this["right_hand_grip_path"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor_grip.png")]
+        public string left_hand_grip_path {
+            get {
+                return ((string)(this["left_hand_grip_path"]));
+            }
+        }
     }
 }

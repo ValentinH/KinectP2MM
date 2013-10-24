@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="KinectP2MM.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="right_hand_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">images/right_cursor.png</Value>
+    </Setting>
+    <Setting Name="left_hand_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">images/left_cursor.png</Value>
+    </Setting>
+    <Setting Name="right_hand_grip_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">images/right_cursor_grip.png</Value>
+    </Setting>
+    <Setting Name="left_hand_grip_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">images/left_cursor_grip.png</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
