@@ -174,7 +174,6 @@ namespace KinectP2MM
             clearSequence();
             sequenceCount = 0;
             addSequence();
-            Properties.Settings.Default.left_hand_grip_pat
             unsaveChanges = false;
         }
 
