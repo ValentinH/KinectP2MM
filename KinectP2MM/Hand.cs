@@ -14,6 +14,7 @@ namespace KinectP2MM
         public bool justReleased { get; set; }
         public Guid attachedObjectId { get; set; }
         public String path { get; set; }
+        public String path_grip { get; set; }
         public String lastEvent { get; set; }
         public static double distance = 0;
 
@@ -54,9 +55,9 @@ namespace KinectP2MM
             {
                 _grip = value;
                 if (_grip)
-                    this.handCursor.Source = new BitmapImage(new Uri(path + "_grip.png", UriKind.Relative));
+                    this.handCursor.Source = new BitmapImage(new Uri(path_grip, UriKind.Relative));
                 else
-                    this.handCursor.Source = new BitmapImage(new Uri(path + ".png", UriKind.Relative));
+                    this.handCursor.Source = new BitmapImage(new Uri(path, UriKind.Relative));
 
             }
         }

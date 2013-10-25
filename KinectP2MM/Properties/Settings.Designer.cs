@@ -23,39 +23,51 @@ namespace KinectP2MM.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor.png")]
-        public string right_hand_path {
-            get {
-                return ((string)(this["right_hand_path"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor.png")]
-        public string left_hand_path {
+        public string left_hand {
             get {
-                return ((string)(this["left_hand_path"]));
+                return ((string)(this["left_hand"]));
+            }
+            set {
+                this["left_hand"] = value;
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor_grip.png")]
-        public string right_hand_grip_path {
+        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor.png")]
+        public string right_hand {
             get {
-                return ((string)(this["right_hand_grip_path"]));
+                return ((string)(this["right_hand"]));
+            }
+            set {
+                this["right_hand"] = value;
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor_grip.png")]
-        public string left_hand_grip_path {
+        public string left_hand_grip {
             get {
-                return ((string)(this["left_hand_grip_path"]));
+                return ((string)(this["left_hand_grip"]));
+            }
+            set {
+                this["left_hand_grip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor_grip.png")]
+        public string right_hand_grip {
+            get {
+                return ((string)(this["right_hand_grip"]));
+            }
+            set {
+                this["right_hand_grip"] = value;
             }
         }
     }

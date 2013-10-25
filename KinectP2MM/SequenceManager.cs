@@ -36,8 +36,10 @@ namespace KinectP2MM
         {
             this.window = window;
             this.hands = new Tuple<Hand, Hand>(this.window.leftCursor, this.window.rightCursor);
-            this.hands.Item1.path = "images/left_cursor";
-            this.hands.Item2.path = "images/right_cursor";
+            this.hands.Item1.path = Properties.Settings.Default.left_hand;
+            this.hands.Item2.path = Properties.Settings.Default.right_hand;
+            this.hands.Item1.path_grip = Properties.Settings.Default.left_hand_grip;
+            this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
 
             sequence = new Sequence();
             splitWordsCouple = new List<Tuple<Word, Word>>();                               
