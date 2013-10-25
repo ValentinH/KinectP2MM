@@ -72,6 +72,7 @@ namespace KinectP2MM
             this.justReleased = false;
             this.attachedObjectId = Guid.Empty;
             this.path = "";
+            this.path_grip = "";
             this.lastEvent = "";
 
             Loaded += HandLoaded;
@@ -81,6 +82,7 @@ namespace KinectP2MM
         private void HandLoaded(object sender, RoutedEventArgs e)
         {
             this.handCursor = (Image)this.Children[0];
+            this.handCursor.Source = new BitmapImage(new Uri(path, UriKind.Relative));
         } 
 
         
