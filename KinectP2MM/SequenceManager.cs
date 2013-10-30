@@ -377,11 +377,21 @@ namespace KinectP2MM
             //window.userText.Content = s;
         }
 
-        internal void addWord(string p, WordType type)
+        internal void addWord(string p, WordType type = WordType.FULL, bool random = true)
         {
             if(p.Equals(String.Empty)) return;
             //center the word on the screen
-            Word w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type);
+            Word w;
+            if (random)
+            {
+                Random rnd = new Random();
+                var x = rnd.Next(0, (int)window.canvas.ActualWidth - (p.Length * 50));
+                var y = rnd.Next(0, (int)window.canvas.ActualHeight - 50);
+                w = new Word(p, x, y);
+            }
+            else
+                w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type);
+           
             sequence.words.Add(w);
             this.window.canvas.Children.Add(w);
         }

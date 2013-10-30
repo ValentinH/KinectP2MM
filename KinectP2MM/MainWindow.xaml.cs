@@ -12,6 +12,9 @@ using Microsoft.Kinect.Toolkit;
 using Microsoft.Kinect.Toolkit.Controls;
 using Microsoft.Kinect.Toolkit.Interaction;
 using System.Windows.Input;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Xml;
 
 
 namespace KinectP2MM
@@ -20,10 +23,12 @@ namespace KinectP2MM
     public partial class MainWindow : Window
     {
         private SequenceManager sequenceManager;
+        private APIManager apiManager;
         private bool fullScreen;
         private bool inputOpen;
         private JsonManager jsonManager;
         private WordType wordType;
+        private String lastAddedWord;
 
         public MainWindow()
         {
@@ -39,8 +44,10 @@ namespace KinectP2MM
             fullScreen = false;
             inputOpen = false;
             this.sequenceManager = new SequenceManager(this);
+            this.apiManager = new APIManager();
             this.Activate();
             jsonManager = new JsonManager();
+            lastAddedWord = "";
         }
 
         // Manage Key Events
@@ -98,6 +105,11 @@ namespace KinectP2MM
                     this.sequenceManager.toggleRotation();
                 if (e.Key == Key.Z)
                     this.sequenceManager.toggleZoom();
+
+                if (e.Key == Key.Space)
+                {
+                    addCompatibleWord();
+                }
             }
             else
             {
@@ -110,7 +122,11 @@ namespace KinectP2MM
             }
         }
 
-       
+        private async void addCompatibleWord()
+        {
+            var newWord = await apiManager.getCompatibleWord(lastAddedWord);
+            this.sequenceManager.addWord(newWord);
+        }
 
         private void openEditor()
         {
@@ -145,9 +161,9 @@ namespace KinectP2MM
         {
             jsonManager = new JsonManager(filename);
             this.sequenceManager.loadSequence(new Sequence());
-        }  
-      
-       
+        }
+
+
 
         private void showAddWord()
         {
@@ -186,7 +202,8 @@ namespace KinectP2MM
         private void validateInput()
         {
             inputOpen = false;
-            this.sequenceManager.addWord(InputTextBox.Text, wordType);
+            lastAddedWord = InputTextBox.Text;
+            this.sequenceManager.addWord(lastAddedWord, wordType, false);
             InputBox.Visibility = System.Windows.Visibility.Collapsed;
             InputTextBox.Text = String.Empty;
         }
@@ -218,9 +235,7 @@ namespace KinectP2MM
             }
         }
 
-        
     }
-
 }
 
 
