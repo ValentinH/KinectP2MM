@@ -97,6 +97,8 @@ namespace KinectP2MM
 
                 if (e.Key == Key.E)
                     openEditor();
+                if (e.Key == Key.C)
+                    openConfig();
 
                 if (e.Key == Key.O)
                     openFileChooser();
@@ -132,6 +134,12 @@ namespace KinectP2MM
         {
             Editor editeur = new Editor(this);
             editeur.Show();
+        }
+
+        private void openConfig()
+        {
+            Configuration config = new Configuration(this);
+            config.Show();
         }
 
         private void openFileChooser()
