@@ -125,8 +125,7 @@ namespace KinectP2MM
                     else
                         saveFileChooser();
                 }
-            }
-            
+            }            
         }
                 
         private void openFile()

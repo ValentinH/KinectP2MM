@@ -18,6 +18,8 @@ namespace KinectP2MM
     public partial class Configuration : Window
     {
         private MainWindow parentWindow;
+        bool unsaveChanges;
+        bool firstOpening;
 
         public Configuration(MainWindow parentWindow)
         {
@@ -29,6 +31,9 @@ namespace KinectP2MM
             RightHandTextBox.Text = Properties.Settings.Default.right_hand;
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
+
+            unsaveChanges = false;
+            firstOpening = true;
         }
 
         private String openFileChooser()
@@ -39,8 +44,12 @@ namespace KinectP2MM
             // Set filter for file extension and default file extension 
             //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
             //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
+            if (firstOpening)
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
             dlg.Filter = "Images (*.png;*.jpg)|*.png;*.jpg";
+            dlg.RestoreDirectory = false;
+
+            firstOpening = false;
 
 
             // Display OpenFileDialog by calling ShowDialog method 
@@ -109,6 +118,13 @@ namespace KinectP2MM
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            save();
+            unsaveChanges = false;
+            this.Close();
+        }
+
+        private void save()
+        {
             if (LeftHandTextBox.Text != String.Empty)
                 Properties.Settings.Default.left_hand = LeftHandTextBox.Text;
 
@@ -124,8 +140,6 @@ namespace KinectP2MM
             Properties.Settings.Default.Save();
 
             parentWindow.sequenceManager.reloadHands();
-
-            this.Close();
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -135,6 +149,38 @@ namespace KinectP2MM
             RightHandTextBox.Text = Properties.Settings.Default.right_hand;
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {            
+            if (unsaveChanges)
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez vous sauvegarder les modifications ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    save();
+                }
+            }            
+        }
+
+        private void LeftHandTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void RightHandTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void LeftHandGripTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void RightHandGripTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
         }
     }
 }
