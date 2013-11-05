@@ -353,6 +353,7 @@ namespace KinectP2MM
         private void Editor_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             VerificatinSauvegarde();
+            parentWindow.loadJson(filename);
             unsaveChanges = false;
         }
 
