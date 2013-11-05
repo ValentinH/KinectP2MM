@@ -86,8 +86,10 @@ namespace KinectP2MM
         }
 
         public void reload()
-        {            
-            this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute));
+        {
+            Uri uri = new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute);
+            if(uri != null && uri.IsFile)
+                this.handCursor.Source = new BitmapImage(uri);
         } 
 
         

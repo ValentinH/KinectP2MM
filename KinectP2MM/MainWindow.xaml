@@ -13,7 +13,7 @@
             </local:Hand>
         </Canvas>
         <Grid x:Name="InputBox" Visibility="Collapsed">
-            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" FontSize="72" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0" FontFamily="Demibas" CaretBrush="#333333"/>
+            <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" FontSize="72" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0" FontFamily="Adobe Naskh Medium" CaretBrush="#333333"/>
         </Grid>
         <Image x:Name="ZoomOn" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/zoom_on.png" Width="150"/>
         <Image x:Name="ZoomOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/zoom_off.png" Width="150"/>

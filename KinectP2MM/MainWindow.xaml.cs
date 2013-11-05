@@ -190,7 +190,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily("Demibas");
+            InputTextBox.FontFamily = new FontFamily("Demihaut");
             InputTextBox.FontSize = 100;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.FULL;
