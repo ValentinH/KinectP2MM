@@ -13,7 +13,7 @@ namespace KinectP2MM
         TOP = 2
     }
 
-    class Word : GUIObject
+    public class Word : GUIObject
     {
         public static int MIN_FONTSIZE = 20, MAX_FONTSIZE = 200;
         public static int FONTSIZE = 50, MARGIN_BOTTOM = 41;

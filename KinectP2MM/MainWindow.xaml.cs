@@ -22,13 +22,16 @@ namespace KinectP2MM
     // Logique d'interaction pour MainWindow.xaml
     public partial class MainWindow : Window
     {
-        private SequenceManager sequenceManager;
+        public SequenceManager sequenceManager;
         private APIManager apiManager;
         private bool fullScreen;
         private bool inputOpen;
         private JsonManager jsonManager;
         private WordType wordType;
         private String lastAddedWord;
+        private Configuration config;
+        private Editor editor;
+
 
         public MainWindow()
         {
@@ -36,6 +39,7 @@ namespace KinectP2MM
             //references the OnLoaded function on the OnLoaded event
             Loaded += WindowLoaded;
             KeyUp += KeyManager;
+            Closed += WindowClosed;
         }
 
         // Execute startup tasks
@@ -48,6 +52,14 @@ namespace KinectP2MM
             this.Activate();
             jsonManager = new JsonManager();
             lastAddedWord = "";
+        }
+
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            if (config != null)
+                config.Close();
+            if (editor != null)
+                editor.Close();           
         }
 
         // Manage Key Events
@@ -132,13 +144,13 @@ namespace KinectP2MM
 
         private void openEditor()
         {
-            Editor editeur = new Editor(this);
-            editeur.Show();
+            editor = new Editor(this);
+            editor.Show();
         }
 
         private void openConfig()
         {
-            Configuration config = new Configuration(this);
+            config = new Configuration(this);
             config.Show();
         }
 

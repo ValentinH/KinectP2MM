@@ -55,9 +55,9 @@ namespace KinectP2MM
             {
                 _grip = value;
                 if (_grip)
-                    this.handCursor.Source = new BitmapImage(new Uri(path_grip, UriKind.Relative));
+                    this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path_grip, UriKind.Absolute));
                 else
-                    this.handCursor.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+                    this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute));
 
             }
         }
@@ -82,7 +82,12 @@ namespace KinectP2MM
         private void HandLoaded(object sender, RoutedEventArgs e)
         {
             this.handCursor = (Image)this.Children[0];
-            this.handCursor.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+            this.reload();
+        }
+
+        public void reload()
+        {            
+            this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute));
         } 
 
         

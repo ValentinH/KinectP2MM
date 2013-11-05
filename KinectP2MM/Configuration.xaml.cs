@@ -38,8 +38,8 @@ namespace KinectP2MM
 
             // Set filter for file extension and default file extension 
             //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-            dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
-            //dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\P2MM\\images\\";
+            //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
             dlg.Filter = "Images (*.png;*.jpg)|*.png;*.jpg";
 
 
@@ -54,17 +54,15 @@ namespace KinectP2MM
                 String filename = dlg.FileName;
 
                 if (filename.StartsWith(dlg.InitialDirectory))
-                {
-
-                }
+                {}
                 else
                 {
-                    String file = dlg.SafeFileName; // utiliser SafeFileName
-                    System.IO.File.Copy(filename, dlg.InitialDirectory + "\\" + file);
+                    String file = dlg.SafeFileName;
+                    System.IO.File.Copy(filename, dlg.InitialDirectory + "\\" + file, true);
                     filename = dlg.InitialDirectory + "\\" + file;
                 }
 
-                filename = filename.Substring(filename.IndexOf("images"));
+                filename = filename.Substring(filename.IndexOf("images") + 7);
                 return filename;
             }
             else
@@ -124,6 +122,19 @@ namespace KinectP2MM
                 Properties.Settings.Default.right_hand_grip = RightHandGripTextBox.Text;
 
             Properties.Settings.Default.Save();
+
+            parentWindow.sequenceManager.reloadHands();
+
+            this.Close();
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            LeftHandTextBox.Text = Properties.Settings.Default.left_hand;
+            RightHandTextBox.Text = Properties.Settings.Default.right_hand;
+            LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
+            RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
         }
     }
 }

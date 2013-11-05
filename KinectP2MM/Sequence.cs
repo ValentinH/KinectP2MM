@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KinectP2MM
 {
-    class Sequence
+    public class Sequence
     {
         public List<Word> words { get; set; }
         public bool canZoom { get; set; }

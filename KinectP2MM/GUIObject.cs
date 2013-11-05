@@ -2,7 +2,7 @@
 
 namespace KinectP2MM
 {
-    class GUIObject : Grid
+    public class GUIObject : Grid
     {
         protected double _x;
         protected double _y;

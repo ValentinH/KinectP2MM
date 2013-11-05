@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="left_hand" Type="System.String" Scope="User">
-      <Value Profile="(Default)">images/left_cursor.png</Value>
+      <Value Profile="(Default)">left_cursor.png</Value>
     </Setting>
     <Setting Name="right_hand" Type="System.String" Scope="User">
-      <Value Profile="(Default)">images/right_cursor.png</Value>
+      <Value Profile="(Default)">right_cursor.png</Value>
     </Setting>
     <Setting Name="left_hand_grip" Type="System.String" Scope="User">
-      <Value Profile="(Default)">images/left_cursor_grip.png</Value>
+      <Value Profile="(Default)">left_cursor_grip.png</Value>
     </Setting>
     <Setting Name="right_hand_grip" Type="System.String" Scope="User">
-      <Value Profile="(Default)">images/right_cursor_grip.png</Value>
+      <Value Profile="(Default)">right_cursor_grip.png</Value>
     </Setting>
   </Settings>
 </SettingsFile>

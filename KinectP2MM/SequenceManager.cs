@@ -13,7 +13,7 @@ using System.Windows.Media.Animation;
 
 namespace KinectP2MM
 {
-    class SequenceManager
+    public class SequenceManager
     {
         //main window
         private MainWindow window;
@@ -422,6 +422,16 @@ namespace KinectP2MM
             da.To = 0;
             da.Duration = new Duration(TimeSpan.FromMilliseconds(time));
             img.BeginAnimation(UIElement.OpacityProperty, da);
+        }
+
+        public void reloadHands()
+        {
+            this.hands.Item1.path = Properties.Settings.Default.left_hand;
+            this.hands.Item2.path = Properties.Settings.Default.right_hand;
+            this.hands.Item1.path_grip = Properties.Settings.Default.left_hand_grip;
+            this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
+            this.hands.Item1.reload();
+            this.hands.Item2.reload();
         }
     }
 }

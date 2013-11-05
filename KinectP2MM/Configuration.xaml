@@ -16,6 +16,7 @@
         <TextBox x:Name="LeftHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
         <Button x:Name="LeftHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,107,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandGripButton_Click"/>
         <Button x:Name="Save" Content="Sauvegarder" HorizontalAlignment="Left" Margin="245,217,0,0" VerticalAlignment="Top" Width="116" Height="24" Click="Save_Click"/>
+        <Button x:Name="Reset" Content="Réinitialiser" HorizontalAlignment="Left" Margin="445,219,0,0" VerticalAlignment="Top" Width="107" Click="Reset_Click"/>
 
     </Grid>
 </Window>

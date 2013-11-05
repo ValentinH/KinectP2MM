@@ -25,7 +25,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("left_cursor.png")]
         public string left_hand {
             get {
                 return ((string)(this["left_hand"]));
@@ -37,7 +37,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("right_cursor.png")]
         public string right_hand {
             get {
                 return ((string)(this["right_hand"]));
@@ -49,7 +49,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/left_cursor_grip.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("left_cursor_grip.png")]
         public string left_hand_grip {
             get {
                 return ((string)(this["left_hand_grip"]));
@@ -61,7 +61,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("images/right_cursor_grip.png")]
+        [global::System.Configuration.DefaultSettingValueAttribute("right_cursor_grip.png")]
         public string right_hand_grip {
             get {
                 return ((string)(this["right_hand_grip"]));
