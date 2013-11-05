@@ -24,6 +24,11 @@ namespace KinectP2MM
             InitializeComponent();
 
             this.parentWindow = parentWindow;
+
+            LeftHandTextBox.Text = Properties.Settings.Default.left_hand;
+            RightHandTextBox.Text = Properties.Settings.Default.right_hand;
+            LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
+            RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
         }
 
         private String openFileChooser()
@@ -32,7 +37,9 @@ namespace KinectP2MM
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
             // Set filter for file extension and default file extension 
-            dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
+            //dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\P2MM\\images\\";
             dlg.Filter = "Images (*.png;*.jpg)|*.png;*.jpg";
 
 
@@ -45,10 +52,25 @@ namespace KinectP2MM
             {
                 // Open document 
                 String filename = dlg.FileName;
+
+                if (filename.StartsWith(dlg.InitialDirectory))
+                {
+
+                }
+                else
+                {
+                    String file = dlg.SafeFileName; // utiliser SafeFileName
+                    System.IO.File.Copy(filename, dlg.InitialDirectory + "\\" + file);
+                    filename = dlg.InitialDirectory + "\\" + file;
+                }
+
+                filename = filename.Substring(filename.IndexOf("images"));
                 return filename;
             }
             else
+            {
                 return null;
+            }
         }
 
         private void RightHandButton_Click(object sender, RoutedEventArgs e)

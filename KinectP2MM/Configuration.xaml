@@ -1,20 +1,20 @@
 ﻿<Window x:Class="KinectP2MM.Configuration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Configuration" Height="300" Width="606">
+        Title="Configuration" Height="300" Width="600">
     <Grid>
-        <Label Content="Main Droite" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="RightHandTextBox" HorizontalAlignment="Left" Height="23" Margin="178,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
-        <Button x:Name="RightHandButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,23,0,0" VerticalAlignment="Top" Width="120" Click="RightHandButton_Click"/>
-        <Label Content="Main Gauche" HorizontalAlignment="Left" Margin="27,59,0,0" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="LeftHandTextBox" HorizontalAlignment="Left" Height="23" Margin="178,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
-        <Button x:Name="LeftHandButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,63,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandButton_Click"/>
-        <Label Content="Main Droite Fermée" HorizontalAlignment="Left" Margin="27,100,0,0" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="RightHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
-        <Button x:Name="RightHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,104,0,0" VerticalAlignment="Top" Width="120" Click="RightHandGripButton_Click"/>
-        <Label Content="Main Gauche Fermée" HorizontalAlignment="Left" Margin="27,142,0,0" VerticalAlignment="Top" Width="126"/>
-        <TextBox x:Name="LeftHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
-        <Button x:Name="LeftHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,146,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandGripButton_Click"/>
+        <Label Content="Main Droite" HorizontalAlignment="Left" Margin="27,62,0,0" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="RightHandTextBox" HorizontalAlignment="Left" Height="23" Margin="178,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <Button x:Name="RightHandButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,66,0,0" VerticalAlignment="Top" Width="120" Click="RightHandButton_Click"/>
+        <Label Content="Main Gauche" HorizontalAlignment="Left" Margin="27,22,0,0" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="LeftHandTextBox" HorizontalAlignment="Left" Height="23" Margin="178,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <Button x:Name="LeftHandButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,26,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandButton_Click"/>
+        <Label Content="Main Droite Fermée" HorizontalAlignment="Left" Margin="27,143,0,0" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="RightHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <Button x:Name="RightHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,147,0,0" VerticalAlignment="Top" Width="120" Click="RightHandGripButton_Click"/>
+        <Label Content="Main Gauche Fermée" HorizontalAlignment="Left" Margin="27,103,0,0" VerticalAlignment="Top" Width="126"/>
+        <TextBox x:Name="LeftHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <Button x:Name="LeftHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,107,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandGripButton_Click"/>
         <Button x:Name="Save" Content="Sauvegarder" HorizontalAlignment="Left" Margin="245,217,0,0" VerticalAlignment="Top" Width="116" Height="24" Click="Save_Click"/>
 
     </Grid>
