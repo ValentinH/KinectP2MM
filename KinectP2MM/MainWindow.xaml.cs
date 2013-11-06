@@ -117,6 +117,8 @@ namespace KinectP2MM
                     this.sequenceManager.toggleRotation();
                 if (e.Key == Key.Z)
                     this.sequenceManager.toggleZoom();
+                if (e.Key == Key.P)
+                    changeFont();
 
              
             }
@@ -129,6 +131,14 @@ namespace KinectP2MM
                 if (e.Key == Key.Escape)
                     cancelInput();
             }
+        }
+
+        private void changeFont()
+        {
+            if (App.FONT_TYPE == "Demibas")
+                App.FONT_TYPE = "Demihaut";
+            else
+                App.FONT_TYPE = "Demibas";
         }
 
 
@@ -180,7 +190,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily("Demihaut");
+            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE);
             InputTextBox.FontSize = 100;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.FULL;
@@ -191,7 +201,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily("Demibas (partiebasse)");
+            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE + " (partiebasse)");
             InputTextBox.FontSize = 48;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.BOTTOM;
@@ -202,7 +212,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily("Demibas (partiehaut)");
+            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE + " (partiehaut)");
             InputTextBox.FontSize = 48;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.TOP;
