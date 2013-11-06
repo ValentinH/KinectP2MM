@@ -12,6 +12,7 @@ namespace KinectP2MM
         public bool pressed { get; set; }
         public bool justGrip { get; set; }
         public bool justReleased { get; set; }
+        public bool justPressed { get; set; }
         public Guid attachedObjectId { get; set; }
         public String path { get; set; }
         public String path_grip { get; set; }
@@ -70,6 +71,7 @@ namespace KinectP2MM
             this.pressed = false;
             this.justGrip = false;
             this.justReleased = false;
+            this.justPressed = false;
             this.attachedObjectId = Guid.Empty;
             this.path = "";
             this.path_grip = "";
@@ -89,7 +91,7 @@ namespace KinectP2MM
         {
             Uri uri = new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute);
             if(uri != null && uri.IsFile)
-                this.handCursor.Source = new BitmapImage(uri);
+               this.handCursor.Source = new BitmapImage(uri);
         } 
 
         

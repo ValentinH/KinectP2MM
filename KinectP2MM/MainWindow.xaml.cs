@@ -23,7 +23,6 @@ namespace KinectP2MM
     public partial class MainWindow : Window
     {
         public SequenceManager sequenceManager;
-        private APIManager apiManager;
         private bool fullScreen;
         private bool inputOpen;
         private JsonManager jsonManager;
@@ -48,7 +47,6 @@ namespace KinectP2MM
             fullScreen = false;
             inputOpen = false;
             this.sequenceManager = new SequenceManager(this);
-            this.apiManager = new APIManager();
             this.Activate();
             jsonManager = new JsonManager();
             lastAddedWord = "";
@@ -120,10 +118,7 @@ namespace KinectP2MM
                 if (e.Key == Key.Z)
                     this.sequenceManager.toggleZoom();
 
-                if (e.Key == Key.Space)
-                {
-                    addCompatibleWord();
-                }
+             
             }
             else
             {
@@ -136,11 +131,6 @@ namespace KinectP2MM
             }
         }
 
-        private async void addCompatibleWord()
-        {
-            var newWord = await apiManager.getCompatibleWord(lastAddedWord);
-            this.sequenceManager.addWord(newWord);
-        }
 
         private void openEditor()
         {

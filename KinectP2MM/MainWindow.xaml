@@ -1,6 +1,8 @@
 ﻿<Window x:Class="KinectP2MM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:k="http://schemas.microsoft.com/kinect/2013" xmlns:local="clr-namespace:KinectP2MM"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:k="http://schemas.microsoft.com/kinect/2013" xmlns:local="clr-namespace:KinectP2MM" 
+        xmlns:gif="http://wpfanimatedgif.codeplex.com" 
+        gif:ImageBehavior.AnimateInDesignMode="True"
         Title="KinectP2MM"  Background="Black" WindowStartupLocation="CenterScreen" WindowState="Normal" Cursor="None">
     <Grid>
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" Panel.ZIndex="1" />
@@ -19,5 +21,6 @@
         <Image x:Name="ZoomOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/zoom_off.png" Width="150"/>
         <Image x:Name="RotateOn" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/rotate_on.png" Width="150"/>
         <Image x:Name="RotateOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/rotate_off.png" Width="150"/>
+        <Image x:Name="Loader" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" gif:ImageBehavior.AnimatedSource="images/loader.GIF" Width="150"/>
     </Grid>
 </Window>

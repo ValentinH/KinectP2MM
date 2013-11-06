@@ -21,6 +21,9 @@ namespace KinectP2MM
         //kinect manager
         private KinectManager kinectManager;
 
+        //API manager
+        private APIManager apiManager;
+
         // our two hands
         private Tuple<Hand, Hand> hands;
 
@@ -30,7 +33,6 @@ namespace KinectP2MM
         //list of words couple split
         private List<Tuple<Word, Word>> splitWordsCouple;
 
-        //private Bin bin;
 
         public SequenceManager(MainWindow window)
         {
@@ -46,6 +48,7 @@ namespace KinectP2MM
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);
+            this.apiManager = new APIManager();
         }
 
         public void loadSequence(Sequence sequence)
@@ -112,12 +115,16 @@ namespace KinectP2MM
             if (h.PressExtent > 1 && !hand.pressed)
             {
                 hand.pressed = true;
+                hand.justPressed = true;
             }
             else
+            {
+                hand.justPressed = false;
                 if (h.PressExtent == 0 && hand.pressed)
                 {
                     hand.pressed = false;
                 }
+            }
 
             //set the just grip or just release value
             if (h.HandEventType == InteractionHandEventType.Grip && hand.lastEvent != "Grip")
@@ -250,7 +257,7 @@ namespace KinectP2MM
             }
 
             //moving of the attached text
-            if (hand.grip && !hand.pressed && hand.attachedObjectId == word.id)
+            if (hand.grip && hand.attachedObjectId == word.id)
             {
                 //this is to keep the words inside the canvas
                 Point newPos = new Point(hand.x + hand.ActualWidth / 2 - word.ActualWidth / 2, hand.y + hand.ActualHeight / 2 - word.ActualHeight / 2);
@@ -267,6 +274,11 @@ namespace KinectP2MM
                 else if (newPos.Y > 0 && newPos.Y < this.window.canvas.ActualHeight - word.ActualHeight)
                 {
                     word.y = newPos.Y;
+                }
+
+                if (hand.justPressed)
+                {
+                    addCompatibleWord(word);
                 }
             }
         }
@@ -433,5 +445,13 @@ namespace KinectP2MM
             this.hands.Item1.reload();
             this.hands.Item2.reload();
         }
+
+        private async void addCompatibleWord(Word w)
+        {
+            this.window.Loader.Visibility = Visibility.Visible;
+            var newWord = await apiManager.getCompatibleWord(w.getContent());
+            this.addWord(newWord);
+            this.window.Loader.Visibility = Visibility.Collapsed;
+        }        
     }
 }

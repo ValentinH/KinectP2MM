@@ -187,6 +187,14 @@ namespace KinectP2MM
                 }          
         }
 
+        public String getContent()
+        {
+            if (this.typeWord == WordType.BOTTOM)
+                return this.wordBottom.Content.ToString();
+
+            return this.wordTop.Content.ToString();
+        }
+
         public void applyZoom(double zoom)
         {
             if (this.fontSize * zoom > MAX_FONTSIZE || this.fontSize * zoom < MIN_FONTSIZE)
