@@ -45,7 +45,8 @@ namespace KinectP2MM
             //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
             //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
             if (firstOpening)
-                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
+                dlg.InitialDirectory = App.IMAGE_PATH;
+            MessageBox.Show(dlg.InitialDirectory);
             dlg.Filter = "Images (*.png;*.jpg)|*.png;*.jpg";
             dlg.RestoreDirectory = false;
 

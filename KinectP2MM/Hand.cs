@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.IO;
 
 namespace KinectP2MM
 {
@@ -56,9 +57,9 @@ namespace KinectP2MM
             {
                 _grip = value;
                 if (_grip)
-                    this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path_grip, UriKind.Absolute));
+                    setSourcePath(this.path_grip);
                 else
-                    this.handCursor.Source = new BitmapImage(new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute));
+                    setSourcePath(this.path);
 
             }
         }
@@ -89,10 +90,22 @@ namespace KinectP2MM
 
         public void reload()
         {
-            Uri uri = new Uri(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images\\" + path, UriKind.Absolute);
-            if(uri != null && uri.IsFile)
-               this.handCursor.Source = new BitmapImage(uri);
-        } 
+            setSourcePath(this.path);
+        }
+
+        private void setSourcePath(String p)
+        {
+            try
+            {
+                Uri uri = new Uri(App.IMAGE_PATH + "\\" + p, UriKind.Absolute);
+                if (uri != null && uri.IsFile)
+                    this.handCursor.Source = new BitmapImage(uri);
+            }
+            catch (Exception)
+            {
+                this.handCursor.Source = new BitmapImage(new Uri("images/"+p, UriKind.Relative));
+            }
+        }
 
         
         public override string ToString()

@@ -16,8 +16,12 @@ namespace KinectP2MM
     /// </summary>
     public partial class App : Application
     {
+        public static String IMAGE_PATH;
+
         protected override void OnStartup(StartupEventArgs e)
         {
+            IMAGE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
+
             if (IsKinectRuntimeInstalled)
             {
                 //go ahead and load the StartupUri as defined in App.xaml
