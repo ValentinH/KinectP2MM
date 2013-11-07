@@ -56,6 +56,8 @@ namespace KinectP2MM
             this.sequence = sequence;
             resetWordsOnCanvas();
 
+            //App.FONT_TYPE = this.sequence.fontType;
+
             //add words to canvas
             foreach (var word in this.sequence.words)
             {
