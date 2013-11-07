@@ -41,14 +41,11 @@ namespace KinectP2MM
             // Create OpenFileDialog 
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-            // Set filter for file extension and default file extension 
-            //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-            //dlg.InitialDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\images";
+            // Set filter for file extension and default file extension
             if (firstOpening)
                 dlg.InitialDirectory = App.IMAGE_PATH;
-            MessageBox.Show(dlg.InitialDirectory);
             dlg.Filter = "Images (*.png;*.jpg)|*.png;*.jpg";
-            dlg.RestoreDirectory = false;
+            dlg.RestoreDirectory = true;
 
             firstOpening = false;
 
