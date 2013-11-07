@@ -224,6 +224,7 @@ namespace KinectP2MM
             listWordsTextBox.Clear();
             listXTextBox.Clear();
             listYTextBox.Clear();
+            listTypeTextBox.Clear();
             canZoomBox.IsChecked = false;
             canRotateBox.IsChecked = false;
         }
@@ -267,11 +268,14 @@ namespace KinectP2MM
             if (listSequences[sequenceNumber].canZoom)
                 canZoomBox.IsChecked = true;
 
+            TypeFontComboBox.Text = listSequences[sequenceNumber].fontType;
+
             foreach(Word word in listSequences[sequenceNumber].words)
             {
                 listWordsTextBox.Text += word.wordTop.Content + "\r\n";
                 listXTextBox.Text += word.x + "\r\n";
                 listYTextBox.Text += word.y + "\r\n";
+                listTypeTextBox.Text += (int)word.typeWord + "\r\n";
             }
             unsaveChanges = false;
 
@@ -288,6 +292,8 @@ namespace KinectP2MM
                 return;
 
             List<Word> words = new List<Word>();
+            WordType type = WordType.FULL;
+
             String[] splitString = { "\r\n" };
             String wordsUntreated = listWordsTextBox.Text;
             String[] wordsTreated = wordsUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
@@ -298,16 +304,37 @@ namespace KinectP2MM
             String yUntreated = listYTextBox.Text;
             String[] yTreated = yUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
 
+            String TypeUntreated = listTypeTextBox.Text;
+            String[] TypeTreated = TypeUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < wordsTreated.Count(); i++)
             {
-                if (i < xTreated.Count() && i < yTreated.Count())
-                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i])));
-                else if (i < xTreated.Count())
-                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), 0));
-                else if (i < yTreated.Count())
-                    words.Add(new Word(wordsTreated[i], 0, Convert.ToInt32(yTreated[i])));
+                if (Convert.ToInt32(TypeTreated[i]) == 0)
+                    type = WordType.FULL;
+                else if (Convert.ToInt32(TypeTreated[i]) == 1)
+                    type = WordType.BOTTOM;
+                else if (Convert.ToInt32(TypeTreated[i]) == 2)
+                    type = WordType.TOP;
                 else
-                    words.Add(new Word(wordsTreated[i], 0, 0));
+                    type = WordType.FULL;
+
+                if (i < xTreated.Count() && i < yTreated.Count())
+                {
+
+                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i]), type));
+                }
+                else if (i < xTreated.Count())
+                {
+                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), 0, type));
+                }
+                else if (i < yTreated.Count())
+                {
+                    words.Add(new Word(wordsTreated[i], 0, Convert.ToInt32(yTreated[i]), type));
+                }
+                else
+                {
+                    words.Add(new Word(wordsTreated[i], 0, 0, type));
+                }
 
             }
 
@@ -316,6 +343,7 @@ namespace KinectP2MM
             listSequences[sequenceNumber].canRotate = canRotate;
             listSequences[sequenceNumber].canZoom = canZoom;
             listSequences[sequenceNumber].words = words;
+            listSequences[sequenceNumber].fontType = TypeFontComboBox.Text;
 
             unsaveChanges = false;
         }
@@ -368,6 +396,11 @@ namespace KinectP2MM
         }
 
         private void listYTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void TypeFontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             unsaveChanges = true;
         }
