@@ -24,11 +24,14 @@ namespace KinectP2MM
             List<Sequence> listSequences = new List<Sequence>();
             if (file != String.Empty)
             {
+                String saveFontType = App.FONT_TYPE;
                 WordType type;
 
                 //lecture du fichier json et creation des mots
                 foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
                 {
+                    App.FONT_TYPE = jSeq.fontType;
+
                     List<Word> words = new List<Word>();
                     foreach (var jWord in jSeq.words)
                     {
@@ -45,6 +48,8 @@ namespace KinectP2MM
                     }
                     listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate, jSeq.fontType));
                 }
+
+                App.FONT_TYPE = saveFontType;
             }
             return listSequences;
         }

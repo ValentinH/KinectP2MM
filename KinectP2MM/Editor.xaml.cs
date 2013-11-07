@@ -217,6 +217,7 @@ namespace KinectP2MM
             clearSequence();
             this.sequenceComboBox.Items.Add("Séquence " + (sequenceCount+1));
             sequenceComboBox.SelectedIndex = sequenceCount++;
+            TypeFontComboBox.SelectedIndex = 0;
         }
 
         private void clearSequence()

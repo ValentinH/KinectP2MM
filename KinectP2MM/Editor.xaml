@@ -25,7 +25,7 @@
         <Button x:Name="addButton" Content="Ajouter une séquence" HorizontalAlignment="Left" Margin="246,177,0,0" VerticalAlignment="Top" Width="131" Click="addButton_Click" RenderTransformOrigin="1.45,0.682"/>
         <TextBlock HorizontalAlignment="Left" Margin="118,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="Mots"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="315,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="1,0.652"><Run Language="fr-fr" Text="X"/></TextBlock>
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="135,227,0,0" x:Name="TypeFontComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="TypeFontComboBox_SelectionChanged" SelectedIndex="0">
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="135,227,0,0" x:Name="TypeFontComboBox" VerticalAlignment="Top" Width="120" SelectionChanged="TypeFontComboBox_SelectionChanged">
             <ComboBoxItem Content="Demibas" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="Demihaut" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
