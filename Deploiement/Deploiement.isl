@@ -347,7 +347,6 @@
 		<row><td>KinectInteraction180_32.dll</td><td>{E9B763E2-4183-4C3F-9588-60199807599B}</td><td>INSTALLDIR</td><td>2</td><td/><td>kinectinteraction180_32.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>KinectInteraction180_64.dll</td><td>{AD9EDEFB-4280-4F7D-9ABE-31B8523B0C57}</td><td>INSTALLDIR</td><td>2</td><td/><td>kinectinteraction180_64.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>KinectP2MM.Sortie_principale</td><td>{B79C3F94-78EB-4454-8C42-3D5A6A70E8D4}</td><td>INSTALLDIR</td><td>2</td><td/><td>kinectp2mm.sortie_principale</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>KinectRuntime_v1.8_Setup.exe</td><td>{C333B809-1425-46D5-8FA0-246EFB252AD7}</td><td>PREREQUIS</td><td>2</td><td/><td>kinectruntime_v1.8_setup.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1076,7 +1075,6 @@
 		<row><td>ISSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFiles</td><td/><td/></row>
 		<row><td>ISSelfRegisterFinalize</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFinalize</td><td/><td/></row>
 		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
-		<row><td>KinectRuntime</td><td>3154</td><td>kinectruntime_v1.8_setup.exe</td><td/><td/><td>Installation du Kinect Runtime</td></row>
 		<row><td>LaunchProgramFileFromSetupCompleteSuccess</td><td>1</td><td>NewBinary19</td><td>LaunchProgram</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
@@ -1881,7 +1879,6 @@
 		<row><td>AlwaysInstall</td><td>KinectInteraction180_32.dll</td></row>
 		<row><td>AlwaysInstall</td><td>KinectInteraction180_64.dll</td></row>
 		<row><td>AlwaysInstall</td><td>KinectP2MM.Sortie_principale</td></row>
-		<row><td>AlwaysInstall</td><td>KinectRuntime_v1.8_Setup.exe</td></row>
 	</table>
 
 	<table name="File">
@@ -1905,7 +1902,6 @@
 		<row><td>kinectinteraction180_32.dll</td><td>KinectInteraction180_32.dll</td><td>KINECT~1.DLL|KinectInteraction180_32.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\KinectInteraction180_32.dll</td><td>1</td><td/></row>
 		<row><td>kinectinteraction180_64.dll</td><td>KinectInteraction180_64.dll</td><td>KINECT~1.DLL|KinectInteraction180_64.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\KinectInteraction180_64.dll</td><td>1</td><td/></row>
 		<row><td>kinectp2mm.sortie_principale</td><td>KinectP2MM.Sortie_principale</td><td>KinectP2MM.Sortie principale</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;KinectP2MM&gt;|Built</td><td>3</td><td/></row>
-		<row><td>kinectruntime_v1.8_setup.exe</td><td>KinectRuntime_v1.8_Setup.exe</td><td>KINECT~1.EXE|KinectRuntime-v1.8-Setup.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\DLLs\KinectRuntime-v1.8-Setup.exe</td><td>1</td><td/></row>
 		<row><td>left_cursor.png2</td><td>ISX_DEFAULTCOMPONENT4</td><td>LEFT_C~1.PNG|left_cursor.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\images\left_cursor.png</td><td>1</td><td/></row>
 		<row><td>left_cursor_grip.png2</td><td>ISX_DEFAULTCOMPONENT4</td><td>LEFT_C~1.PNG|left_cursor_grip.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\images\left_cursor_grip.png</td><td>1</td><td/></row>
 		<row><td>right_cursor.png2</td><td>ISX_DEFAULTCOMPONENT4</td><td>RIGHT_~1.PNG|right_cursor.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\images\right_cursor.png</td><td>1</td><td/></row>
@@ -2180,7 +2176,6 @@
 		<row><td>KinectInteraction180_32.dll</td><td/><td/><td>_C1A81FCE_4E1F_4329_9FAE_DA962BD81475_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>KinectInteraction180_64.dll</td><td/><td/><td>_AC147632_3A72_48BF_BF66_E2350511C3A6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>KinectP2MM.Sortie_principale</td><td/><td/><td>_7A9438F9_3C5E_494F_9B81_395D164AC521_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>KinectRuntime_v1.8_Setup.exe</td><td/><td/><td>_BE8309ED_8EDE_45BE_8FCD_28E974DE0F4A_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2811,7 +2806,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1036</td><td>P2MM</td><td>0</td><td/><td>-316577168</td></row>
+		<row><td>COMPANY_NAME</td><td>1036</td><td>P2MM</td><td>0</td><td/><td>1168199148</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1036</td><td>Toujours installer</td><td>0</td><td/><td>-316543313</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1036</td><td>Les paramètres couleur de votre système ne sont pas adaptés à l'exécution de [ProductName].</td><td>0</td><td/><td>-316602673</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1036</td><td>Le système d'exploitation n'est pas adapté à l'exécution de [ProductName].</td><td>0</td><td/><td>-316602673</td></row>
@@ -3912,8 +3907,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1036</td><td>Le processeur n'est pas correct pour exécuter [ProductName].</td><td>0</td><td/><td>-316602673</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1036</td><td>Le taux RAM n'est pas correct pour exécuter [ProductName].</td><td>0</td><td/><td>-316602673</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1036</td><td>La résolution de l'écran n'est pas correcte pour exécuter [ProductName].</td><td>0</td><td/><td>-316602673</td></row>
-		<row><td>ID_STRING1</td><td>1036</td><td>http://www.P2MM.com</td><td>0</td><td/><td>765530929</td></row>
-		<row><td>ID_STRING2</td><td>1036</td><td>P2MM</td><td>0</td><td/><td>-316577168</td></row>
+		<row><td>ID_STRING1</td><td>1036</td><td>http://www.P2MM.com</td><td>0</td><td/><td>1168199148</td></row>
+		<row><td>ID_STRING2</td><td>1036</td><td>P2MM</td><td>0</td><td/><td>1168199148</td></row>
 		<row><td>ID_STRING3</td><td>1036</td><td>KinectP2MM</td><td>0</td><td/><td>-316543313</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>NEWSHO~1|NewShortcut1</td><td>0</td><td/><td>765544535</td></row>
 		<row><td>ID_STRING4</td><td>1036</td><td>DSINST~1|Désinstaller</td><td>0</td><td/><td>765548631</td></row>
@@ -4080,7 +4075,6 @@
 		<row><td>InstallServices</td><td>VersionNT</td><td>5800</td><td>InstallServices</td><td/></row>
 		<row><td>InstallValidate</td><td/><td>1400</td><td>InstallValidate</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
-		<row><td>KinectRuntime</td><td>Not Installed</td><td>6405</td><td/><td/></row>
 		<row><td>LaunchConditions</td><td>Not Installed</td><td>410</td><td>LaunchConditions</td><td/></row>
 		<row><td>MigrateFeatureStates</td><td/><td>1010</td><td>MigrateFeatureStates</td><td/></row>
 		<row><td>MoveFiles</td><td/><td>3800</td><td>MoveFiles</td><td/></row>
@@ -4613,8 +4607,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>KinectRuntime_v1.8_Setup.exe</td><td/><td>kinect_1_kinectp2mm</td><td>2</td></row>
-		<row><td>FileKey2</td><td>KinectRuntime_v1.8_Setup.exe</td><td/><td>kinect_1_kinectp2mm1</td><td>2</td></row>
 		<row><td>NewShortcut1</td><td>ISX_DEFAULTCOMPONENT1</td><td/><td>kinect_1_kinectp2mm1</td><td>2</td></row>
 		<row><td>_Built</td><td>KinectP2MM.Sortie_principale</td><td/><td>kinect_1_kinectp2mm1</td><td>2</td></row>
 	</table>

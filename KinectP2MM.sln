@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectP2MM", "KinectP2MM\KinectP2MM.csproj", "{E242038B-35DF-4027-B02E-3C9E92E320E5}"
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Deploiement", "Deploiement\Deploiement.isproj", "{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E242038B-35DF-4027-B02E-3C9E92E320E5} = {E242038B-35DF-4027-B02E-3C9E92E320E5}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -22,6 +27,16 @@ Global
 		{E242038B-35DF-4027-B02E-3C9E92E320E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E242038B-35DF-4027-B02E-3C9E92E320E5}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{E242038B-35DF-4027-B02E-3C9E92E320E5}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.Debug|Any CPU.ActiveCfg = SingleImage
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.Debug|Any CPU.Build.0 = SingleImage
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.DVD-5|Any CPU.Build.0 = DVD-5
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.Release|Any CPU.ActiveCfg = SingleImage
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.Release|Any CPU.Build.0 = SingleImage
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{A4B07FA7-859F-4BD0-8CF6-90958EFF52B5}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
