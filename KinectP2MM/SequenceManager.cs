@@ -54,6 +54,7 @@ namespace KinectP2MM
         public void loadSequence(Sequence sequence)
         {
             this.sequence = sequence;
+
             resetWordsOnCanvas();
 
             //add words to canvas
@@ -61,6 +62,8 @@ namespace KinectP2MM
             {
                 this.window.canvas.Children.Add(word);
             }
+
+            App.FONT_TYPE = this.sequence.fontType;
 
             splitWordsCouple.Clear();
         }
