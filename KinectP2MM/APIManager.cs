@@ -29,6 +29,7 @@ namespace KinectP2MM
         public Procede procede { get; set; }
         public Casse casse { get; set; }
         String currentWord;
+        Procede currentProcede;
         List<XMLWord> wordsList;
 
         public APIManager()
@@ -38,13 +39,33 @@ namespace KinectP2MM
             procede = Procede.coupable_min_haut;
             casse = Casse.MINUSCULE;
             currentWord = "";
+            currentProcede = Procede.coupable_min_bas;
             wordsList = new List<XMLWord>();
         }
 
-        public async Task<String> getCompatibleWord(String word)
+        public async Task<String> getCompatibleWord(String word, String fontType)
         {
+            if (fontType.Equals("Demibas"))
+            {
+                if (IsAllUpperCase(word))
+                    this.procede = Procede.coupable_maj_bas;
+                else
+                    this.procede = Procede.coupable_min_bas;
+            }
+            else
+                if (IsAllUpperCase(word))
+                    this.procede = Procede.coupable_maj_haut;
+                else
+                    this.procede = Procede.coupable_min_haut;
+
+            if (IsAllUpperCase(word))
+                this.casse = Casse.MAJUSCULE;
+            else
+                this.casse = Casse.MINUSCULE;
+
+
             //on ne refait pas de requete et on passe le prochain mot
-            if (!word.Equals(currentWord))
+            if (!word.Equals(currentWord) || !currentProcede.Equals(currentProcede))
             {
                 currentWord = word;
                 wordsList = new List<XMLWord>();
@@ -53,7 +74,7 @@ namespace KinectP2MM
 
             if (wordsList.Count > 0)
             {
-                XMLWord w  = wordsList.First();
+                XMLWord w = wordsList.First();
                 wordsList.RemoveAt(0);
                 return w.content;
             }
@@ -69,7 +90,7 @@ namespace KinectP2MM
                 var response = await client.GetAsync("words.php?procedes=" + procede + "&word=" + word + "&casse=" + Convert.ToInt32(casse));
                 response.EnsureSuccessStatusCode(); // Throw on error code.
                 var content = await response.Content.ReadAsStringAsync();
-                
+
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(content);
                 XmlNodeList elemList = xmlDoc.GetElementsByTagName("word");
@@ -91,6 +112,11 @@ namespace KinectP2MM
             finally
             {
             }
+        }
+
+        private bool IsAllUpperCase(string value)
+        {
+            return (value.Equals(value.ToUpper()));
         }
     }
 

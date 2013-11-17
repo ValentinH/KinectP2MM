@@ -25,6 +25,7 @@ namespace KinectP2MM
         public WordType typeWord { get; set; }
         public double fontSize { get; set; }
         public double marginBas { get; set; }
+        public String fontType { get; set; }
         public Guid id { get; set; }
 
         public Word()
@@ -50,6 +51,7 @@ namespace KinectP2MM
             Point center = new Point(0.5,0.5);
             this.RenderTransformOrigin = center;
 
+            this.fontType = App.FONT_TYPE;
             FontFamily FontHaut = new FontFamily(App.FONT_TYPE + " (partiehaut)");
             FontFamily FontBas = new FontFamily(App.FONT_TYPE + " (partiebasse)");
             Thickness MarginHaut = new Thickness(0, 0, 0, 0);
@@ -100,7 +102,10 @@ namespace KinectP2MM
             this.wordTop.Width = source.wordTop.Width;
             this.wordTop.FontFamily = source.wordTop.FontFamily;
             this.wordTop.FontSize = source.wordTop.FontSize;
-            this.wordTop.Content = source.wordTop.Content;                   
+            this.wordTop.Content = source.wordTop.Content;
+
+
+            this.fontType = source.fontType;
             
             this.Children.Add(this.wordTop);
             this.Children.Add(this.wordBottom);           

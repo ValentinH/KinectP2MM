@@ -452,7 +452,7 @@ namespace KinectP2MM
         private async void addCompatibleWord(Word w)
         {
             this.window.Loader.Visibility = Visibility.Visible;
-            var newWord = await apiManager.getCompatibleWord(w.getContent());
+            var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontType);
             this.addWord(newWord);
             this.window.Loader.Visibility = Visibility.Collapsed;
         }        
