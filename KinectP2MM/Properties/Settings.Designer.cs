@@ -70,5 +70,77 @@ namespace KinectP2MM.Properties {
                 this["right_hand_grip"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demibas")]
+        public string font1_full {
+            get {
+                return ((string)(this["font1_full"]));
+            }
+            set {
+                this["font1_full"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demibas (partiebasse)")]
+        public string font1_bottom {
+            get {
+                return ((string)(this["font1_bottom"]));
+            }
+            set {
+                this["font1_bottom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demibas (partiehaut)")]
+        public string font1_top {
+            get {
+                return ((string)(this["font1_top"]));
+            }
+            set {
+                this["font1_top"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demihaut")]
+        public string font2_full {
+            get {
+                return ((string)(this["font2_full"]));
+            }
+            set {
+                this["font2_full"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demihaut (partiebasse)")]
+        public string font2_bottom {
+            get {
+                return ((string)(this["font2_bottom"]));
+            }
+            set {
+                this["font2_bottom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Demihaut (partiehaut)")]
+        public string font2_top {
+            get {
+                return ((string)(this["font2_top"]));
+            }
+            set {
+                this["font2_top"] = value;
+            }
+        }
     }
 }

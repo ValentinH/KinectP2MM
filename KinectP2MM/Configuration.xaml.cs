@@ -32,6 +32,39 @@ namespace KinectP2MM
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
 
+            ICollection<FontFamily> ListFonts = Fonts.SystemFontFamilies;
+
+            foreach (FontFamily fontFamily in ListFonts)
+            {
+                ComboBoxItem font1 = new ComboBoxItem();
+                ComboBoxItem font2 = new ComboBoxItem();
+                ComboBoxItem font3 = new ComboBoxItem();
+                ComboBoxItem font4 = new ComboBoxItem();
+                ComboBoxItem font5 = new ComboBoxItem();
+                ComboBoxItem font6 = new ComboBoxItem();
+
+                font1.Content = fontFamily.Source;
+                font2.Content = fontFamily.Source;
+                font3.Content = fontFamily.Source;
+                font4.Content = fontFamily.Source;
+                font5.Content = fontFamily.Source;
+                font6.Content = fontFamily.Source;
+
+                this.ComboBoxEntiere1.Items.Add(font1);
+                this.ComboBoxEntiere2.Items.Add(font2);
+                this.ComboBoxBas1.Items.Add(font3);
+                this.ComboBoxBas2.Items.Add(font4);
+                this.ComboBoxHaut1.Items.Add(font5);
+                this.ComboBoxHaut2.Items.Add(font6);
+            }
+
+            this.ComboBoxEntiere1.Text = Properties.Settings.Default.font1_full;
+            this.ComboBoxEntiere2.Text = Properties.Settings.Default.font2_full;
+            this.ComboBoxBas1.Text = Properties.Settings.Default.font1_bottom;
+            this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
+            this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
+            this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
+
             unsaveChanges = false;
             firstOpening = true;
         }
@@ -147,6 +180,7 @@ namespace KinectP2MM
             RightHandTextBox.Text = Properties.Settings.Default.right_hand;
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
+            saveFonts();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -177,6 +211,67 @@ namespace KinectP2MM
         }
 
         private void RightHandGripTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ResetFont_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            this.ComboBoxEntiere1.Text = Properties.Settings.Default.font1_full;
+            this.ComboBoxEntiere2.Text = Properties.Settings.Default.font2_full;
+            this.ComboBoxBas1.Text = Properties.Settings.Default.font1_bottom;
+            this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
+            this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
+            this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
+            save();
+        }
+
+        private void SaveFont_Click(object sender, RoutedEventArgs e)
+        {
+            saveFonts();
+            unsaveChanges = false;
+            this.Close();
+        }
+
+        private void saveFonts()
+        {
+            Properties.Settings.Default.font1_full = this.ComboBoxEntiere1.Text;
+            Properties.Settings.Default.font2_full = this.ComboBoxEntiere2.Text;
+            Properties.Settings.Default.font1_bottom = this.ComboBoxBas1.Text;
+            Properties.Settings.Default.font2_bottom = this.ComboBoxBas2.Text;
+            Properties.Settings.Default.font1_top = this.ComboBoxHaut1.Text;
+            Properties.Settings.Default.font2_top = this.ComboBoxHaut2.Text;
+
+            Properties.Settings.Default.Save();
+        }
+
+        private void ComboBoxEntiere1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ComboBoxBas1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ComboBoxHaut1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ComboBoxEntiere2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ComboBoxBas2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ComboBoxHaut2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             unsaveChanges = true;
         }

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="KinectP2MM.Configuration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Configuration" Height="300" Width="600" Closing="Window_Closing">
+        Title="Configuration" Height="507" Width="600" Closing="Window_Closing">
     <Grid>
         <Label Content="Main Droite" HorizontalAlignment="Left" Margin="27,62,0,0" VerticalAlignment="Top" Width="116"/>
         <TextBox x:Name="RightHandTextBox" HorizontalAlignment="Left" Height="23" Margin="178,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" TextChanged="RightHandTextBox_TextChanged"/>
@@ -15,8 +15,24 @@
         <Label Content="Main Gauche Fermée" HorizontalAlignment="Left" Margin="27,103,0,0" VerticalAlignment="Top" Width="126"/>
         <TextBox x:Name="LeftHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="178,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" TextChanged="LeftHandGripTextBox_TextChanged"/>
         <Button x:Name="LeftHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="445,107,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandGripButton_Click"/>
-        <Button x:Name="Save" Content="Sauvegarder" HorizontalAlignment="Left" Margin="245,217,0,0" VerticalAlignment="Top" Width="116" Height="24" Click="Save_Click"/>
-        <Button x:Name="Reset" Content="Réinitialiser" HorizontalAlignment="Left" Margin="445,219,0,0" VerticalAlignment="Top" Width="107" Click="Reset_Click"/>
+        <Button x:Name="Save" Content="Sauvegarder Mains" HorizontalAlignment="Left" Margin="250,195,0,0" VerticalAlignment="Top" Width="116" Height="24" Click="Save_Click"/>
+        <Button x:Name="Reset" Content="Réinitialiser" HorizontalAlignment="Left" Margin="445,197,0,0" VerticalAlignment="Top" Width="107" Click="Reset_Click"/>
+        <Label Content="Police 1 :" HorizontalAlignment="Left" Margin="36,236,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Entière" HorizontalAlignment="Left" Margin="162,236,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Bas" HorizontalAlignment="Left" Margin="319,236,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Haut" HorizontalAlignment="Left" Margin="463,236,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269" Height="26"/>
+        <Label Content="Police 2 :" HorizontalAlignment="Left" Margin="36,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Entière" HorizontalAlignment="Left" Margin="162,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Bas" HorizontalAlignment="Left" Margin="319,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269"/>
+        <Label Content="Haut" HorizontalAlignment="Left" Margin="463,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.947,-2.269" Height="26"/>
+        <Button x:Name="SaveFont" Content="Sauvegarder Polices" HorizontalAlignment="Left" Margin="250,423,0,0" VerticalAlignment="Top" Width="116" Height="24" Click="SaveFont_Click"/>
+        <Button x:Name="ResetFont" Content="Réinitialiser" HorizontalAlignment="Left" Margin="445,425,0,0" VerticalAlignment="Top" Width="107" RenderTransformOrigin="0.486,1.909" Click="ResetFont_Click"/>
+        <ComboBox x:Name="ComboBoxEntiere1" HorizontalAlignment="Left" Margin="125,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxEntiere1_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxBas1" HorizontalAlignment="Left" Margin="274,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas1_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxHaut1" HorizontalAlignment="Left" Margin="423,278,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut1_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxEntiere2" HorizontalAlignment="Left" Margin="125,368,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxEntiere2_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxBas2" HorizontalAlignment="Left" Margin="274,368,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas2_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxHaut2" HorizontalAlignment="Left" Margin="423,368,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut2_SelectionChanged"/>
 
     </Grid>
 </Window>

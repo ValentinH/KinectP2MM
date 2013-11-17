@@ -14,5 +14,23 @@
     <Setting Name="right_hand_grip" Type="System.String" Scope="User">
       <Value Profile="(Default)">right_cursor_grip.png</Value>
     </Setting>
+    <Setting Name="font1_full" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demibas</Value>
+    </Setting>
+    <Setting Name="font1_bottom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demibas (partiebasse)</Value>
+    </Setting>
+    <Setting Name="font1_top" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demibas (partiehaut)</Value>
+    </Setting>
+    <Setting Name="font2_full" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demihaut</Value>
+    </Setting>
+    <Setting Name="font2_bottom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demihaut (partiebasse)</Value>
+    </Setting>
+    <Setting Name="font2_top" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Demihaut (partiehaut)</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
