@@ -47,7 +47,7 @@ namespace KinectP2MM
             splitWordsCouple = new List<Tuple<Word, Word>>();                               
 
             //has to be done at last
-            this.kinectManager = new KinectManager(this, this.window.sensorChooserUi);
+            this.kinectManager = new KinectManager(this, this.window.sensorChooserUi, 10);
             this.apiManager = new APIManager();
         }
 

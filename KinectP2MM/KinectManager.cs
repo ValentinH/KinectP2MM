@@ -19,14 +19,16 @@ namespace KinectP2MM
         private KinectSensorChooser sensorChooser;
         private UserInfo[] _userInfos;
         private SequenceManager sequenceManager;
+        private int defaultElevation;
 
-        public KinectManager(SequenceManager manager, KinectSensorChooserUI sensorUi)
+        public KinectManager(SequenceManager manager, KinectSensorChooserUI sensorUi, int elevation)
         {
             this.sequenceManager = manager;
             //initialize the sensor chooser UI
             this.sensorChooser = new KinectSensorChooser();
             this.sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
             sensorUi.KinectSensorChooser = this.sensorChooser;
+            this.defaultElevation = elevation;
             this.sensorChooser.Start();
 
         }
@@ -70,6 +72,8 @@ namespace KinectP2MM
                     _sensor.SkeletonFrameReady += SensorOnSkeletonFrameReady;
 
                     _sensor.Start();
+                    setElevation(defaultElevation);
+
                 }
                 catch (InvalidOperationException)
                 {
@@ -106,6 +110,10 @@ namespace KinectP2MM
                 sequenceManager.setInformationText("User Tracked");
         }
 
+        public void setElevation(int el)
+        {
+            _sensor.ElevationAngle = el;
+        }
         #region necessary code for the interaction stream
 
         public class DummyInteractionClient : IInteractionClient
