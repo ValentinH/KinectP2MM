@@ -341,7 +341,7 @@ namespace KinectP2MM
 
                 if (hand.justPressed)
                 {
-                    addCompatibleWord(word);
+                    //addCompatibleWord(word);
                 }
             }
         }
