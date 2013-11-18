@@ -30,7 +30,7 @@ namespace KinectP2MM
                 //lecture du fichier json et creation des mots
                 foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
                 {
-                    App.FONT_FAMILY = jSeq.fontType;
+                    App.loadFont(jSeq.fontType);
 
                     List<Word> words = new List<Word>();
                     foreach (var jWord in jSeq.words)
@@ -49,7 +49,7 @@ namespace KinectP2MM
                     listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate, jSeq.fontType));
                 }
 
-                App.FONT_FAMILY = saveFontType;
+                App.loadFont(saveFontType);
             }
             return listSequences;
         }
