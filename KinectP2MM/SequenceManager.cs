@@ -19,7 +19,7 @@ namespace KinectP2MM
         private MainWindow window;
 
         //kinect manager
-        private KinectManager kinectManager;
+        public KinectManager kinectManager;
 
         //API manager
         private APIManager apiManager;

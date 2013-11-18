@@ -13,6 +13,10 @@
             <local:Hand x:Name="rightCursor" Height="50" Width="50" Canvas.Right="300" Canvas.Top="370" VerticalAlignment="Center" HorizontalAlignment="Center" >
                 <Image/>
             </local:Hand>
+            <!--<local:Word Canvas.Left="145" Canvas.Top="168">
+                <Label Content="label" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontFamily="/KinectP2MM;component/polices/#Demibas (partiehaut)" FontSize="50"/>
+                <Label Content="label" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontFamily="/KinectP2MM;component/polices/#Demibas (partiebasse)" Margin="0,41,0,0" FontSize="50"/>
+            </local:Word>-->
         </Canvas>
         <Grid x:Name="InputBox" Visibility="Collapsed">
             <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="InputTextBox" FontSize="72" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0" FontFamily="Adobe Naskh Medium" CaretBrush="#333333"/>

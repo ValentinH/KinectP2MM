@@ -12,7 +12,7 @@ using Microsoft.Kinect.Toolkit.Interaction;
 
 namespace KinectP2MM
 {
-    class KinectManager
+    public class KinectManager
     {
         private KinectSensor _sensor;
         private InteractionStream _interactionStream;
@@ -72,7 +72,7 @@ namespace KinectP2MM
                     _sensor.SkeletonFrameReady += SensorOnSkeletonFrameReady;
 
                     _sensor.Start();
-                    setElevation(defaultElevation);
+                    this._sensor.ElevationAngle = defaultElevation;
 
                 }
                 catch (InvalidOperationException)
@@ -91,7 +91,7 @@ namespace KinectP2MM
                     return;
                 iaf.CopyInteractionDataTo(_userInfos);
             }
-            
+
             var hasUser = false;
             foreach (var userInfo in _userInfos)
             {
@@ -110,9 +110,28 @@ namespace KinectP2MM
                 sequenceManager.setInformationText("User Tracked");
         }
 
-        public void setElevation(int el)
+        public void incElevation()
         {
-            _sensor.ElevationAngle = el;
+            if (this._sensor.ElevationAngle +5 <= this._sensor.MaxElevationAngle)
+            {
+                try
+                {
+                    _sensor.ElevationAngle+=5;
+                }
+                catch (Exception) { }
+            }
+        }
+
+        public void decElevation()
+        {
+            if (this._sensor.ElevationAngle -5 >= this._sensor.MinElevationAngle)
+            {
+                try
+                {
+                    _sensor.ElevationAngle-=5;
+                }
+                catch (Exception) { }
+            }
         }
         #region necessary code for the interaction stream
 

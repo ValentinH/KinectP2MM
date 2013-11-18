@@ -37,7 +37,8 @@ namespace KinectP2MM
             InitializeComponent();
             //references the OnLoaded function on the OnLoaded event
             Loaded += WindowLoaded;
-            KeyUp += KeyManager;
+            KeyUp += KeyUpManager;
+            KeyDown += KeyDownManager;
             Closed += WindowClosed;
         }
 
@@ -61,7 +62,7 @@ namespace KinectP2MM
         }
 
         // Manage Key Events
-        private void KeyManager(object sender, KeyEventArgs e)
+        private void KeyUpManager(object sender, KeyEventArgs e)
         {
             if (!inputOpen)
             {
@@ -105,9 +106,9 @@ namespace KinectP2MM
                 if (e.Key == Key.B)
                     showAddWordBas();
 
-                if (e.Key == Key.E)
+                if (e.Key == Key.E && !fullScreen)
                     openEditor();
-                if (e.Key == Key.C)
+                if (e.Key == Key.C && !fullScreen)
                     openConfig();
 
                 if (e.Key == Key.O)
@@ -120,7 +121,6 @@ namespace KinectP2MM
                 if (e.Key == Key.P)
                     changeFont();
 
-             
             }
             else
             {
@@ -130,6 +130,18 @@ namespace KinectP2MM
                 }
                 if (e.Key == Key.Escape)
                     cancelInput();
+            }
+        }
+        // Manage Key Events
+        private void KeyDownManager(object sender, KeyEventArgs e)
+        {
+            if (!inputOpen)
+            {                
+                if (e.Key == Key.Up)
+                    this.sequenceManager.kinectManager.incElevation();
+
+                if (e.Key == Key.Down)
+                    this.sequenceManager.kinectManager.decElevation();
             }
         }
 
