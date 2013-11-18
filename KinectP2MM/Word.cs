@@ -51,9 +51,9 @@ namespace KinectP2MM
             Point center = new Point(0.5,0.5);
             this.RenderTransformOrigin = center;
 
-            this.fontType = App.FONT_TYPE;
-            FontFamily FontHaut = new FontFamily(App.FONT_TYPE + " (partiehaut)");
-            FontFamily FontBas = new FontFamily(App.FONT_TYPE + " (partiebasse)");
+            this.fontType = App.FONT_FAMILY;
+            FontFamily FontHaut = new FontFamily(App.FONT_FAMILY + " (partiehaut)");
+            FontFamily FontBas = new FontFamily(App.FONT_FAMILY + " (partiebasse)");
             Thickness MarginHaut = new Thickness(0, 0, 0, 0);
             Thickness MarginBas = new Thickness(0, MARGIN_BOTTOM, 0, 0);
 

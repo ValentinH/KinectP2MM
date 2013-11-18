@@ -63,7 +63,7 @@ namespace KinectP2MM
                 this.window.canvas.Children.Add(word);
             }
 
-            App.FONT_TYPE = this.sequence.fontType;
+            App.FONT_FAMILY = this.sequence.fontType;
 
             splitWordsCouple.Clear();
         }

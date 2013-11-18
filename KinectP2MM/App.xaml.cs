@@ -17,12 +17,16 @@ namespace KinectP2MM
     public partial class App : Application
     {
         public static String IMAGE_PATH;
-        public static String FONT_TYPE;
+        public static String FONT_FAMILY;
+        public static String FONT_FAMILY_BOTTOM;
+        public static String FONT_FAMILY_TOP;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             IMAGE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\KinectP2MM\\images";
-            FONT_TYPE = "Demibas";
+            FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font1_full;
+            FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font1_bottom;
+            FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font1_top;
 
             if (IsKinectRuntimeInstalled)
             {

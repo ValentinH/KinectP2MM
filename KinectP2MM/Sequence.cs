@@ -18,7 +18,7 @@ namespace KinectP2MM
             this.words = new List<Word>();
             this.canZoom = true;
             this.canRotate = true;
-            this.fontType = App.FONT_TYPE;
+            this.fontType = App.FONT_FAMILY;
         }
 
         public Sequence(List<Word> words, bool canZoom, bool canRotate, String fontType)

@@ -147,10 +147,18 @@ namespace KinectP2MM
 
         private void changeFont()
         {
-            if (App.FONT_TYPE == "Demibas")
-                App.FONT_TYPE = "Demihaut";
+            if (App.FONT_FAMILY == KinectP2MM.Properties.Settings.Default.font1_full)
+            {
+                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font2_full;
+                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font2_bottom;
+                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font2_top;
+            }
             else
-                App.FONT_TYPE = "Demibas";
+            {
+                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font1_full;
+                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font1_bottom;
+                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font1_top;
+            }
         }
 
 
@@ -202,7 +210,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE);
+            InputTextBox.FontFamily = new FontFamily(App.FONT_FAMILY);
             InputTextBox.FontSize = 100;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.FULL;
@@ -213,7 +221,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE + " (partiebasse)");
+            InputTextBox.FontFamily = new FontFamily(App.FONT_FAMILY_BOTTOM);
             InputTextBox.FontSize = 48;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.BOTTOM;
@@ -224,7 +232,7 @@ namespace KinectP2MM
             inputOpen = true;
             InputBox.Visibility = System.Windows.Visibility.Visible;
             InputTextBox.Focusable = true;
-            InputTextBox.FontFamily = new FontFamily(App.FONT_TYPE + " (partiehaut)");
+            InputTextBox.FontFamily = new FontFamily(App.FONT_FAMILY_TOP);
             InputTextBox.FontSize = 48;
             Keyboard.Focus(InputTextBox);
             wordType = WordType.TOP;
