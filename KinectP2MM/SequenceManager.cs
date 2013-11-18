@@ -168,6 +168,7 @@ namespace KinectP2MM
             //bin.hover = false;
             reinitialize(splitWordsCouple);
 
+
             foreach (var word in this.sequence.words.ToList())
             {
                 word.hover = false;
@@ -218,6 +219,65 @@ namespace KinectP2MM
                 }  
             }
             
+            checkHotCorners(InteractionHandType.Left);
+            checkHotCorners(InteractionHandType.Right);
+            
+        }
+
+        private void checkHotCorners(InteractionHandType which)
+        {
+            var hand = which == InteractionHandType.Left ? hands.Item1 : hands.Item2;
+
+            if (hand.justGrip && hand.attachedObjectId == Guid.Empty)
+            {
+                //top left
+                if (hand.x < 0 && hand.y < 0)
+                {
+                    Word newWord = this.addWord("top left");
+                    if (newWord != null)
+                    {
+                        hand.attachedObjectId = newWord.id;
+                        newWord.hover = true;
+                        newWord.x = newWord.y = -1000;
+                    }
+                }
+                else //top right
+                    if (hand.x > this.window.canvas.ActualWidth && hand.y < 0)
+                    {
+                        Word newWord = this.addWord("top right");
+                        if (newWord != null)
+                        {
+                            hand.attachedObjectId = newWord.id;
+                            newWord.hover = true;
+                            newWord.x = this.window.canvas.ActualWidth + 1000;
+                            newWord.y = -1000;
+                        }
+                    }
+                    else //bottom right
+                        if (hand.x > this.window.canvas.ActualWidth && hand.y > this.window.canvas.ActualHeight)
+                        {
+                            Word newWord = this.addWord("bottom right");
+                            if (newWord != null)
+                            {
+                                hand.attachedObjectId = newWord.id;
+                                newWord.hover = true;
+                                newWord.x = this.window.canvas.ActualWidth + 1000;
+                                newWord.y = this.window.canvas.ActualHeight + 1000;
+                            }
+                        }
+                        else //bottom left
+                            if (hand.x < 0 && hand.y > this.window.canvas.ActualHeight)
+                            {
+                                Word newWord = this.addWord("bottom left");
+                                if (newWord != null)
+                                {
+                                    hand.attachedObjectId = newWord.id;
+                                    newWord.hover = true;
+                                    newWord.x = -1000;
+                                    newWord.y = this.window.canvas.ActualHeight + 1000;
+                                }
+                            }
+            }
         }
 
         private void reinitialize(List<Tuple<Word, Word>> couplesList)
@@ -392,11 +452,11 @@ namespace KinectP2MM
             //window.userText.Content = s;
         }
 
-        internal void addWord(string p, WordType type = WordType.FULL, bool random = true)
+        internal Word addWord(string p, WordType type = WordType.FULL, bool random = true)
         {
-            if(p.Equals(String.Empty)) return;
+            if(p.Equals(String.Empty)) return null;
             //center the word on the screen
-            Word w;
+            Word w = null;
             if (random)
             {
                 Random rnd = new Random();
@@ -409,6 +469,7 @@ namespace KinectP2MM
            
             sequence.words.Add(w);
             this.window.canvas.Children.Add(w);
+            return w;
         }
 
         internal void toggleZoom()
