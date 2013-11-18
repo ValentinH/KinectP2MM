@@ -148,17 +148,9 @@ namespace KinectP2MM
         private void changeFont()
         {
             if (App.FONT_FAMILY == KinectP2MM.Properties.Settings.Default.font1_full)
-            {
-                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font2_full;
-                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font2_bottom;
-                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font2_top;
-            }
+                App.loadFont(Properties.Settings.Default.font2_full);
             else
-            {
-                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font1_full;
-                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font1_bottom;
-                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font1_top;
-            }
+                App.loadFont(Properties.Settings.Default.font1_full);
         }
 
 

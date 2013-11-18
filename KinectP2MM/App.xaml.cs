@@ -40,6 +40,22 @@ namespace KinectP2MM
             }
         }
 
+        public static void loadFont(String font_full)
+        {
+            if (font_full == KinectP2MM.Properties.Settings.Default.font1_full)
+            {
+                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font1_full;
+                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font1_bottom;
+                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font1_top;
+            }
+            else
+            {
+                App.FONT_FAMILY = KinectP2MM.Properties.Settings.Default.font2_full;
+                App.FONT_FAMILY_BOTTOM = KinectP2MM.Properties.Settings.Default.font2_bottom;
+                App.FONT_FAMILY_TOP = KinectP2MM.Properties.Settings.Default.font2_top;
+            }
+        }
+
         public bool IsKinectRuntimeInstalled
         {
             get
