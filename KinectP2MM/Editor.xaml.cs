@@ -37,6 +37,8 @@ namespace KinectP2MM
 
             this.parentWindow = parentWindow;
 
+            PoliceTextBlock.Text = "Police :\n  1 : " + Properties.Settings.Default.font1_full + "\n  2 : " + Properties.Settings.Default.font2_full;
+
             newFile();
 
             // Create the CommandBinding.
@@ -217,7 +219,6 @@ namespace KinectP2MM
             clearSequence();
             this.sequenceComboBox.Items.Add("Séquence " + (sequenceCount+1));
             sequenceComboBox.SelectedIndex = sequenceCount++;
-            TypeFontComboBox.SelectedIndex = 0;
         }
 
         private void clearSequence()
@@ -226,32 +227,10 @@ namespace KinectP2MM
             listXTextBox.Clear();
             listYTextBox.Clear();
             listTypeTextBox.Clear();
+            listPoliceTextBox.Clear();
+            listTailleTextBox.Clear();
             canZoomBox.IsChecked = false;
             canRotateBox.IsChecked = false;
-        }
-
-        private void canRotate_Checked(object sender, RoutedEventArgs e)
-        {
-            canRotate = true;
-            unsaveChanges = true;
-        }
-
-        private void canRotate_Unchecked(object sender, RoutedEventArgs e)
-        {
-            canRotate = false;
-            unsaveChanges = true;
-        }        
-
-        private void canZoom_Checked(object sender, RoutedEventArgs e)
-        {
-            canZoom = true;
-            unsaveChanges = true;
-        }
-
-        private void canZoom_Unchecked(object sender, RoutedEventArgs e)
-        {
-            canZoom = false;
-            unsaveChanges = true;
         }
 
         private void sequenceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -269,14 +248,17 @@ namespace KinectP2MM
             if (listSequences[sequenceNumber].canZoom)
                 canZoomBox.IsChecked = true;
 
-            TypeFontComboBox.Text = listSequences[sequenceNumber].fontType;
-
             foreach(Word word in listSequences[sequenceNumber].words)
             {
                 listWordsTextBox.Text += word.wordTop.Content + "\r\n";
                 listXTextBox.Text += word.x + "\r\n";
                 listYTextBox.Text += word.y + "\r\n";
                 listTypeTextBox.Text += (int)word.typeWord + "\r\n";
+                if(word.fontFamily == Properties.Settings.Default.font1_full)
+                    listPoliceTextBox.Text += 1 + "\r\n";
+                else
+                    listPoliceTextBox.Text += 2 + "\r\n";
+                listTailleTextBox.Text += word.fontSize + "\r\n";
             }
             unsaveChanges = false;
 
@@ -293,7 +275,10 @@ namespace KinectP2MM
                 return;
 
             List<Word> words = new List<Word>();
+            int x = 0, y = 0;
             WordType type = WordType.FULL;
+            String fontFamily = Properties.Settings.Default.font1_full;
+            int fontSize = Word.FONTSIZE;
 
             String[] splitString = { "\r\n" };
             String wordsUntreated = listWordsTextBox.Text;
@@ -308,34 +293,49 @@ namespace KinectP2MM
             String TypeUntreated = listTypeTextBox.Text;
             String[] TypeTreated = TypeUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
 
+            String PoliceUntreated = listPoliceTextBox.Text;
+            String[] PoliceTreated = PoliceUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String TailleUntreated = listTailleTextBox.Text;
+            String[] TailleTreated = TailleUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < wordsTreated.Count(); i++)
-            {
-                if (Convert.ToInt32(TypeTreated[i]) == 0)
-                    type = WordType.FULL;
-                else if (Convert.ToInt32(TypeTreated[i]) == 1)
-                    type = WordType.BOTTOM;
-                else if (Convert.ToInt32(TypeTreated[i]) == 2)
-                    type = WordType.TOP;
-                else
-                    type = WordType.FULL;
+            {                
+                // Gestion de x
+                if (i < xTreated.Count())
+                    x = Convert.ToInt32(xTreated[i]);
+                
+                //Gestion de y
+                if(i < yTreated.Count())
+                    y = Convert.ToInt32(yTreated[i]);
 
-                if (i < xTreated.Count() && i < yTreated.Count())
+                // Gestion du type
+                if(i < TypeTreated.Count())
                 {
+                    if(Convert.ToInt32(TypeTreated[i]) == 0)
+                        type = WordType.FULL;
+                    else if (Convert.ToInt32(TypeTreated[i]) == 1)
+                        type = WordType.BOTTOM;
+                    else if (Convert.ToInt32(TypeTreated[i]) == 2)
+                        type = WordType.TOP;
+                }
 
-                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), Convert.ToInt32(yTreated[i]), type));
-                }
-                else if (i < xTreated.Count())
+                //Gestion de la police
+                if (i < PoliceTreated.Count())
                 {
-                    words.Add(new Word(wordsTreated[i], Convert.ToInt32(xTreated[i]), 0, type));
+                    if (Convert.ToInt32(PoliceTreated[i]) == 1)
+                        fontFamily = Properties.Settings.Default.font1_full;
+                    else if (Convert.ToInt32(PoliceTreated[i]) == 2)
+                        fontFamily = Properties.Settings.Default.font2_full;
                 }
-                else if (i < yTreated.Count())
-                {
-                    words.Add(new Word(wordsTreated[i], 0, Convert.ToInt32(yTreated[i]), type));
-                }
-                else
-                {
-                    words.Add(new Word(wordsTreated[i], 0, 0, type));
-                }
+
+                //Gestion de la taille
+                if (i < TailleTreated.Count() && Convert.ToInt32(TailleTreated[i]) != 0)
+                    fontSize = Convert.ToInt32(TailleTreated[i]);
+
+
+                //Création du mot avec les données vérifiées
+                words.Add(new Word(wordsTreated[i], fontFamily, fontSize, x, y, type));
 
             }
 
@@ -344,7 +344,6 @@ namespace KinectP2MM
             listSequences[sequenceNumber].canRotate = canRotate;
             listSequences[sequenceNumber].canZoom = canZoom;
             listSequences[sequenceNumber].words = words;
-            listSequences[sequenceNumber].fontType = TypeFontComboBox.Text;
 
             unsaveChanges = false;
         }
@@ -387,6 +386,30 @@ namespace KinectP2MM
             unsaveChanges = false;
         }
 
+        private void canRotate_Checked(object sender, RoutedEventArgs e)
+        {
+            canRotate = true;
+            unsaveChanges = true;
+        }
+
+        private void canRotate_Unchecked(object sender, RoutedEventArgs e)
+        {
+            canRotate = false;
+            unsaveChanges = true;
+        }
+
+        private void canZoom_Checked(object sender, RoutedEventArgs e)
+        {
+            canZoom = true;
+            unsaveChanges = true;
+        }
+
+        private void canZoom_Unchecked(object sender, RoutedEventArgs e)
+        {
+            canZoom = false;
+            unsaveChanges = true;
+        }
+
         private void listWordsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             unsaveChanges = true;
@@ -402,7 +425,12 @@ namespace KinectP2MM
             unsaveChanges = true;
         }
 
-        private void TypeFontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listTailleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listPoliceTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             unsaveChanges = true;
         }

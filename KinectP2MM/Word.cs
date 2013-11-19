@@ -25,7 +25,7 @@ namespace KinectP2MM
         public WordType typeWord { get; set; }
         public double fontSize { get; set; }
         public double marginBas { get; set; }
-        public String fontType { get; set; }
+        public String fontFamily { get; set; }
         public Guid id { get; set; }
 
         public Word()
@@ -48,12 +48,12 @@ namespace KinectP2MM
             this.y = y;
             this.fontSize = FONTSIZE;
             this.marginBas = MARGIN_BOTTOM;
-            Point center = new Point(0.5,0.5);
+            Point center = new Point(0.5, 0.5);
             this.RenderTransformOrigin = center;
 
-            this.fontType = App.FONT_FAMILY;
-            FontFamily FontHaut = new FontFamily(App.FONT_FAMILY + " (partiehaut)");
-            FontFamily FontBas = new FontFamily(App.FONT_FAMILY + " (partiebasse)");
+            this.fontFamily = App.FONT_FAMILY;
+            FontFamily FontHaut = new FontFamily(App.FONT_FAMILY_TOP);
+            FontFamily FontBas = new FontFamily(App.FONT_FAMILY_BOTTOM);
             Thickness MarginHaut = new Thickness(0, 0, 0, 0);
             Thickness MarginBas = new Thickness(0, MARGIN_BOTTOM, 0, 0);
 
@@ -74,6 +74,51 @@ namespace KinectP2MM
             this.wordTop.FontFamily = FontHaut;
             this.wordTop.FontSize = FONTSIZE;
             if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
+
+        }
+
+        public Word(String content, String fontFamily, double fontSize, int x = 0, int y = 0, WordType type = WordType.FULL)
+        {
+            this.beginRotation = 0;
+            this._hover = false;
+            this.id = Guid.NewGuid();
+
+            this.typeWord = type;
+            this.x = x;
+            this.y = y;
+            this.fontSize = FONTSIZE;
+            this.marginBas = MARGIN_BOTTOM;
+            Point center = new Point(0.5,0.5);
+            this.RenderTransformOrigin = center;
+
+            this.fontFamily = fontFamily;
+            String saveFontFamily = App.FONT_FAMILY;
+            App.loadFont(fontFamily);
+            FontFamily FontHaut = new FontFamily(App.FONT_FAMILY_TOP);
+            FontFamily FontBas = new FontFamily(App.FONT_FAMILY_BOTTOM);
+            Thickness MarginHaut = new Thickness(0, 0, 0, 0);
+            Thickness MarginBas = new Thickness(0, MARGIN_BOTTOM, 0, 0);
+            App.loadFont(saveFontFamily);
+
+            this.wordBottom = new Label();
+            this.wordBottom.Foreground = Brushes.White;
+            this.Children.Add(this.wordBottom);
+            this.wordBottom.Content = content;
+            this.wordBottom.Margin = MarginBas;
+            this.wordBottom.FontFamily = FontBas;
+            this.wordBottom.FontSize = FONTSIZE;
+            if (type == WordType.TOP) this.wordBottom.Opacity = 0;
+
+            this.wordTop = new Label();
+            this.wordTop.Foreground = Brushes.White;
+            this.Children.Add(this.wordTop);
+            this.wordTop.Content = content;
+            this.wordTop.Margin = MarginHaut;
+            this.wordTop.FontFamily = FontHaut;
+            this.wordTop.FontSize = FONTSIZE;
+            if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
+
+            this.applyZoom(fontSize / FONTSIZE);
 
         }
 
@@ -105,7 +150,7 @@ namespace KinectP2MM
             this.wordTop.Content = source.wordTop.Content;
 
 
-            this.fontType = source.fontType;
+            this.fontFamily = source.fontFamily;
             
             this.Children.Add(this.wordTop);
             this.Children.Add(this.wordBottom);           

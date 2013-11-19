@@ -180,7 +180,7 @@ namespace KinectP2MM
             RightHandTextBox.Text = Properties.Settings.Default.right_hand;
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
-            saveFonts();
+            saveFonts(); // // pour ne pas réinitialiser les polices
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -224,7 +224,7 @@ namespace KinectP2MM
             this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
             this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
             this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
-            save();
+            save(); // pour ne pas réinitialiser les mains
         }
 
         private void SaveFont_Click(object sender, RoutedEventArgs e)

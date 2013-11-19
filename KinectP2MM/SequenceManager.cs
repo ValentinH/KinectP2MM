@@ -63,8 +63,6 @@ namespace KinectP2MM
                 this.window.canvas.Children.Add(word);
             }
 
-            App.loadFont(this.sequence.fontType);
-
             splitWordsCouple.Clear();
         }
 
@@ -513,7 +511,7 @@ namespace KinectP2MM
         private async void addCompatibleWord(Word w)
         {
             this.window.Loader.Visibility = Visibility.Visible;
-            var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontType);
+            var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontFamily);
             this.addWord(newWord);
             this.window.Loader.Visibility = Visibility.Collapsed;
         }        

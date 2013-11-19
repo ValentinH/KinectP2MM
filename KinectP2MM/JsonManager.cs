@@ -24,13 +24,12 @@ namespace KinectP2MM
             List<Sequence> listSequences = new List<Sequence>();
             if (file != String.Empty)
             {
-                String saveFontType = App.FONT_FAMILY;
+                String saveFontFamily = App.FONT_FAMILY;
                 WordType type;
 
                 //lecture du fichier json et creation des mots
                 foreach (JsonSequence jSeq in JsonConvert.DeserializeObject<List<JsonSequence>>(File.ReadAllText(file)))
                 {
-                    App.loadFont(jSeq.fontType);
 
                     List<Word> words = new List<Word>();
                     foreach (var jWord in jSeq.words)
@@ -44,12 +43,12 @@ namespace KinectP2MM
                         else
                             type = WordType.FULL;
 
-                        words.Add(new Word(jWord.content, jWord.x, jWord.y, type));
+                        words.Add(new Word(jWord.content, jWord.fontFamily, jWord.fontSize, jWord.x, jWord.y, type));
                     }
-                    listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate, jSeq.fontType));
+                    listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
                 }
 
-                App.loadFont(saveFontType);
+                App.loadFont(saveFontFamily);
             }
             return listSequences;
         }
@@ -64,9 +63,9 @@ namespace KinectP2MM
                 List<JsonWord> list = new List<JsonWord>();
                 foreach (Word word in sequence.words)
                 {
-                    list.Add(new JsonWord((String)word.wordTop.Content, (int)word.x, (int)word.y, (int)word.typeWord));
+                    list.Add(new JsonWord((String)word.wordTop.Content, (int)word.x, (int)word.y, (int)word.typeWord, (String)word.fontFamily, (double)word.fontSize));
                 }
-                listJsonSeq.Add(new JsonSequence(list, sequence.canZoom, sequence.canRotate, sequence.fontType));
+                listJsonSeq.Add(new JsonSequence(list, sequence.canZoom, sequence.canRotate));
             }
 
             string json = JsonConvert.SerializeObject(listJsonSeq, Formatting.Indented);
@@ -76,33 +75,35 @@ namespace KinectP2MM
 
     class JsonWord
     {
-        public JsonWord(String content, int x, int y, int type)
+        public JsonWord(String content, int x, int y, int type, String fontFamily, double fontSize)
         {
             this.content = content;
             this.x = x;
             this.y = y;
             this.type = type;
+            this.fontFamily = fontFamily;
+            this.fontSize = fontSize;
         }
         public int x { get; set; }
         public int y { get; set; }
         public String content { get; set; }
         public int type { get; set; }
+        public String fontFamily { get; set; }
+        public double fontSize { get; set; }
     }
 
 
     class JsonSequence
     {
-        public JsonSequence(List<JsonWord> words, bool canZoom, bool canRotate, String fontType)
+        public JsonSequence(List<JsonWord> words, bool canZoom, bool canRotate)
         {
             this.words = words;
             this.canZoom = canZoom;
             this.canRotate = canRotate;
-            this.fontType = fontType;
         }
         public List<JsonWord> words { get; set; }
         public bool canZoom { get; set; }
         public bool canRotate { get; set; }
-        public String fontType { get; set; }
     }
 
 }
