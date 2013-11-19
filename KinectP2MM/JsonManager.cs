@@ -24,7 +24,6 @@ namespace KinectP2MM
             List<Sequence> listSequences = new List<Sequence>();
             if (file != String.Empty)
             {
-                String saveFontFamily = App.FONT_FAMILY;
                 WordType type;
 
                 //lecture du fichier json et creation des mots
@@ -47,8 +46,6 @@ namespace KinectP2MM
                     }
                     listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
                 }
-
-                App.loadFont(saveFontFamily);
             }
             return listSequences;
         }
