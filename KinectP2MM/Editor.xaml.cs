@@ -299,6 +299,18 @@ namespace KinectP2MM
             String TailleUntreated = listTailleTextBox.Text;
             String[] TailleTreated = TailleUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
 
+            String LeftBottomCornerUntreated = listLeftBottomCornerTextBox.Text;
+            String[] LeftBottomCornerTreated = LeftBottomCornerUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String RightBottomCornerUntreated = listRightBottomCornerTextBox.Text;
+            String[] RightBottomCornerTreated = RightBottomCornerUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String LeftTopCornerUntreated = listLeftTopCornerTextBox.Text;
+            String[] LeftTopCornerTreated = LeftTopCornerUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
+            String RightTopCornerUntreated = listRightTopCornerTextBox.Text;
+            String[] RightTopCornerTreated = RightTopCornerUntreated.Split(splitString, StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < wordsTreated.Count(); i++)
             {                
                 // Gestion de x
@@ -336,7 +348,7 @@ namespace KinectP2MM
 
                 //Création du mot avec les données vérifiées
                 words.Add(new Word(wordsTreated[i], fontFamily, fontSize, x, y, type));
-
+                
             }
 
             int sequenceNumber = sequenceComboBox.SelectedIndex;
@@ -344,6 +356,10 @@ namespace KinectP2MM
             listSequences[sequenceNumber].canRotate = canRotate;
             listSequences[sequenceNumber].canZoom = canZoom;
             listSequences[sequenceNumber].words = words;
+            /*listSequences[sequenceNumber]. = LeftBottomCornerTreated;
+            listSequences[sequenceNumber]. = RightBottomCornerTreated;
+            listSequences[sequenceNumber]. = LeftTopCornerTreated;
+            listSequences[sequenceNumber]. = RightTopCornerTreated;*/
 
             unsaveChanges = false;
         }
@@ -431,6 +447,26 @@ namespace KinectP2MM
         }
 
         private void listPoliceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listLeftBottomCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listRightBottomCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listLeftTopCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void listRightTopCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             unsaveChanges = true;
         }

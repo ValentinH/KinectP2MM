@@ -11,6 +11,10 @@ namespace KinectP2MM
         public List<Word> words { get; set; }
         public bool canZoom { get; set; }
         public bool canRotate { get; set; }
+        /*public List<String> leftBottomCornerWords { get; set; }
+        public List<String> rightBottomCornerWords { get; set; }
+        public List<String> leftTopCornerWords { get; set; }
+        public List<String> rightTopCornerWords { get; set; }*/
 
         public Sequence()
         {
