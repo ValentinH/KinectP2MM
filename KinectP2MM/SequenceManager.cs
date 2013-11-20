@@ -322,7 +322,7 @@ namespace KinectP2MM
             {
                 //this is to keep the words inside the canvas
                 Point newPos = new Point(hand.x + hand.ActualWidth / 2 - word.ActualWidth / 2, hand.y + hand.ActualHeight / 2 - word.ActualHeight / 2);
-                if (newPos.X > 0 && newPos.X - word.ActualWidth / 2 < this.window.canvas.ActualWidth - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.ActualHeight - word.ActualHeight)
+                if (newPos.X - word.ActualWidth / 2 < this.window.canvas.ActualWidth - word.ActualWidth && newPos.Y > 0 && newPos.Y < this.window.canvas.ActualHeight - word.ActualHeight)
                 {
                     word.x = newPos.X;
                     word.y = newPos.Y;
