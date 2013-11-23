@@ -260,6 +260,27 @@ namespace KinectP2MM
                     listPoliceTextBox.Text += 2 + "\r\n";
                 listTailleTextBox.Text += word.fontSize + "\r\n";
             }
+
+            foreach (String mot in listSequences[sequenceNumber].leftBottomCornerWords)
+            {
+                listLeftBottomCornerTextBox.Text += mot + "\r\n";
+            }
+
+            foreach (String mot in listSequences[sequenceNumber].rightBottomCornerWords)
+            {
+                listRightBottomCornerTextBox.Text += mot + "\r\n";
+            }
+
+            foreach (String mot in listSequences[sequenceNumber].leftTopCornerWords)
+            {
+                listLeftTopCornerTextBox.Text += mot + "\r\n";
+            }
+
+            foreach (String mot in listSequences[sequenceNumber].rightTopCornerWords)
+            {
+                listRightTopCornerTextBox.Text += mot + "\r\n";
+            }
+
             unsaveChanges = false;
 
         }
@@ -356,10 +377,10 @@ namespace KinectP2MM
             listSequences[sequenceNumber].canRotate = canRotate;
             listSequences[sequenceNumber].canZoom = canZoom;
             listSequences[sequenceNumber].words = words;
-            /*listSequences[sequenceNumber]. = LeftBottomCornerTreated;
-            listSequences[sequenceNumber]. = RightBottomCornerTreated;
-            listSequences[sequenceNumber]. = LeftTopCornerTreated;
-            listSequences[sequenceNumber]. = RightTopCornerTreated;*/
+            listSequences[sequenceNumber].leftBottomCornerWords = new List<String>(LeftBottomCornerTreated);
+            listSequences[sequenceNumber].rightBottomCornerWords = new List<String>(RightBottomCornerTreated);
+            listSequences[sequenceNumber].leftTopCornerWords = new List<String>(LeftTopCornerTreated);
+            listSequences[sequenceNumber].rightTopCornerWords = new List<String>(RightTopCornerTreated);
 
             unsaveChanges = false;
         }

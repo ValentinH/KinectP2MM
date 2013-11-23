@@ -44,7 +44,8 @@ namespace KinectP2MM
 
                         words.Add(new Word(jWord.content, jWord.fontFamily, jWord.fontSize, jWord.x, jWord.y, type));
                     }
-                    listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate));
+                    listSequences.Add(new Sequence(words, jSeq.canZoom, jSeq.canRotate, jSeq.leftBottomCornerWords,
+            jSeq.rightBottomCornerWords, jSeq.leftTopCornerWords, jSeq.rightTopCornerWords));
                 }
             }
             return listSequences;
@@ -62,7 +63,8 @@ namespace KinectP2MM
                 {
                     list.Add(new JsonWord((String)word.wordTop.Content, (int)word.x, (int)word.y, (int)word.typeWord, (String)word.fontFamily, (double)word.fontSize));
                 }
-                listJsonSeq.Add(new JsonSequence(list, sequence.canZoom, sequence.canRotate));
+                listJsonSeq.Add(new JsonSequence(list, sequence.canZoom, sequence.canRotate, sequence.leftBottomCornerWords,
+            sequence.rightBottomCornerWords, sequence.leftTopCornerWords, sequence.rightTopCornerWords));
             }
 
             string json = JsonConvert.SerializeObject(listJsonSeq, Formatting.Indented);
@@ -92,15 +94,24 @@ namespace KinectP2MM
 
     class JsonSequence
     {
-        public JsonSequence(List<JsonWord> words, bool canZoom, bool canRotate)
+        public JsonSequence(List<JsonWord> words, bool canZoom, bool canRotate, List<String> leftBottomCornerWords,
+            List<String> rightBottomCornerWords, List<String> leftTopCornerWords, List<String> rightTopCornerWords)
         {
             this.words = words;
             this.canZoom = canZoom;
             this.canRotate = canRotate;
+            this.leftBottomCornerWords = leftBottomCornerWords;
+            this.rightBottomCornerWords = rightBottomCornerWords;
+            this.leftTopCornerWords = leftTopCornerWords;
+            this.rightTopCornerWords = rightTopCornerWords;
         }
         public List<JsonWord> words { get; set; }
         public bool canZoom { get; set; }
         public bool canRotate { get; set; }
+        public List<String> leftBottomCornerWords { get; set; }
+        public List<String> rightBottomCornerWords { get; set; }
+        public List<String> leftTopCornerWords { get; set; }
+        public List<String> rightTopCornerWords { get; set; }
     }
 
 }

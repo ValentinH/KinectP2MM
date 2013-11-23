@@ -231,48 +231,64 @@ namespace KinectP2MM
                 //top left
                 if (hand.x < 0 && hand.y < 0)
                 {
-                    Word newWord = this.addWord("top left");
-                    if (newWord != null)
+                    if (sequence.leftTopCornerWords.Count() != 0)
                     {
-                        hand.attachedObjectId = newWord.id;
-                        newWord.hover = true;
-                        newWord.x = newWord.y = -1000;
+                        Word newWord = this.addWord(sequence.leftTopCornerWords.First());
+                        sequence.leftTopCornerWords.RemoveAt(0);
+                        if (newWord != null)
+                        {
+                            hand.attachedObjectId = newWord.id;
+                            newWord.hover = true;
+                            newWord.x = newWord.y = -1000;
+                        }
                     }
                 }
                 else //top right
                     if (hand.x > this.window.canvas.ActualWidth && hand.y < 0)
                     {
-                        Word newWord = this.addWord("top right");
-                        if (newWord != null)
+                        if (sequence.leftTopCornerWords.Count() != 0)
                         {
-                            hand.attachedObjectId = newWord.id;
-                            newWord.hover = true;
-                            newWord.x = this.window.canvas.ActualWidth + 1000;
-                            newWord.y = -1000;
-                        }
-                    }
-                    else //bottom right
-                        if (hand.x > this.window.canvas.ActualWidth && hand.y > this.window.canvas.ActualHeight)
-                        {
-                            Word newWord = this.addWord("bottom right");
+                            Word newWord = this.addWord(sequence.rightTopCornerWords.First());
+                            sequence.rightTopCornerWords.RemoveAt(0);
                             if (newWord != null)
                             {
                                 hand.attachedObjectId = newWord.id;
                                 newWord.hover = true;
                                 newWord.x = this.window.canvas.ActualWidth + 1000;
-                                newWord.y = this.window.canvas.ActualHeight + 1000;
+                                newWord.y = -1000;
+                            }
+                        }                        
+                    }
+                    else //bottom right
+                        if (hand.x > this.window.canvas.ActualWidth && hand.y > this.window.canvas.ActualHeight)
+                        {
+                            if (sequence.leftTopCornerWords.Count() != 0)
+                            {
+                                Word newWord = this.addWord(sequence.rightBottomCornerWords.First());
+                                sequence.rightBottomCornerWords.RemoveAt(0);                                
+                                if (newWord != null)
+                                {
+                                    hand.attachedObjectId = newWord.id;
+                                    newWord.hover = true;
+                                    newWord.x = this.window.canvas.ActualWidth + 1000;
+                                    newWord.y = this.window.canvas.ActualHeight + 1000;
+                                }
                             }
                         }
                         else //bottom left
                             if (hand.x < 0 && hand.y > this.window.canvas.ActualHeight)
                             {
-                                Word newWord = this.addWord("bottom left");
-                                if (newWord != null)
+                                if (sequence.leftTopCornerWords.Count() != 0)
                                 {
-                                    hand.attachedObjectId = newWord.id;
-                                    newWord.hover = true;
-                                    newWord.x = -1000;
-                                    newWord.y = this.window.canvas.ActualHeight + 1000;
+                                    Word newWord = this.addWord(sequence.leftBottomCornerWords.First());
+                                    sequence.leftBottomCornerWords.RemoveAt(0);
+                                    if (newWord != null)
+                                    {
+                                        hand.attachedObjectId = newWord.id;
+                                        newWord.hover = true;
+                                        newWord.x = -1000;
+                                        newWord.y = this.window.canvas.ActualHeight + 1000;
+                                    }
                                 }
                             }
             }
