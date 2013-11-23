@@ -246,7 +246,7 @@ namespace KinectP2MM
                 else //top right
                     if (hand.x > this.window.canvas.ActualWidth && hand.y < 0)
                     {
-                        if (sequence.leftTopCornerWords.Count() != 0)
+                        if (sequence.rightTopCornerWords.Count() != 0)
                         {
                             Word newWord = this.addWord(sequence.rightTopCornerWords.First());
                             sequence.rightTopCornerWords.RemoveAt(0);
@@ -262,7 +262,7 @@ namespace KinectP2MM
                     else //bottom right
                         if (hand.x > this.window.canvas.ActualWidth && hand.y > this.window.canvas.ActualHeight)
                         {
-                            if (sequence.leftTopCornerWords.Count() != 0)
+                            if (sequence.rightBottomCornerWords.Count() != 0)
                             {
                                 Word newWord = this.addWord(sequence.rightBottomCornerWords.First());
                                 sequence.rightBottomCornerWords.RemoveAt(0);                                
@@ -278,7 +278,7 @@ namespace KinectP2MM
                         else //bottom left
                             if (hand.x < 0 && hand.y > this.window.canvas.ActualHeight)
                             {
-                                if (sequence.leftTopCornerWords.Count() != 0)
+                                if (sequence.leftBottomCornerWords.Count() != 0)
                                 {
                                     Word newWord = this.addWord(sequence.leftBottomCornerWords.First());
                                     sequence.leftBottomCornerWords.RemoveAt(0);
