@@ -229,6 +229,10 @@ namespace KinectP2MM
             listTypeTextBox.Clear();
             listPoliceTextBox.Clear();
             listTailleTextBox.Clear();
+            listLeftBottomCornerTextBox.Clear();
+            listLeftTopCornerTextBox.Clear();
+            listRightBottomCornerTextBox.Clear();
+            listRightTopCornerTextBox.Clear();
             canZoomBox.IsChecked = false;
             canRotateBox.IsChecked = false;
         }
@@ -261,25 +265,29 @@ namespace KinectP2MM
                 listTailleTextBox.Text += word.fontSize + "\r\n";
             }
 
-            foreach (String mot in listSequences[sequenceNumber].leftBottomCornerWords)
-            {
-                listLeftBottomCornerTextBox.Text += mot + "\r\n";
-            }
+            if(listSequences[sequenceNumber].leftBottomCornerWords != null)
+                foreach (String mot in listSequences[sequenceNumber].leftBottomCornerWords)
+                {
+                    listLeftBottomCornerTextBox.Text += mot + "\r\n";
+                }
 
-            foreach (String mot in listSequences[sequenceNumber].rightBottomCornerWords)
-            {
-                listRightBottomCornerTextBox.Text += mot + "\r\n";
-            }
+            if (listSequences[sequenceNumber].rightBottomCornerWords != null)
+                foreach (String mot in listSequences[sequenceNumber].rightBottomCornerWords)
+                {
+                    listRightBottomCornerTextBox.Text += mot + "\r\n";
+                }
 
-            foreach (String mot in listSequences[sequenceNumber].leftTopCornerWords)
-            {
-                listLeftTopCornerTextBox.Text += mot + "\r\n";
-            }
+            if (listSequences[sequenceNumber].leftTopCornerWords != null)
+                foreach (String mot in listSequences[sequenceNumber].leftTopCornerWords)
+                {
+                    listLeftTopCornerTextBox.Text += mot + "\r\n";
+                }
 
-            foreach (String mot in listSequences[sequenceNumber].rightTopCornerWords)
-            {
-                listRightTopCornerTextBox.Text += mot + "\r\n";
-            }
+            if (listSequences[sequenceNumber].rightTopCornerWords != null)
+                foreach (String mot in listSequences[sequenceNumber].rightTopCornerWords)
+                {
+                    listRightTopCornerTextBox.Text += mot + "\r\n";
+                }
 
             unsaveChanges = false;
 
