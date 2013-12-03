@@ -92,7 +92,7 @@ namespace KinectP2MM
 
         private void OpenCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            VerificatinSauvegarde();   
+            VerificationSauvegarde();   
             openFile();
         }
         
@@ -103,7 +103,7 @@ namespace KinectP2MM
 
         private void NewCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            VerificatinSauvegarde();  
+            VerificationSauvegarde();  
             newFile();
         }        
 
@@ -112,7 +112,7 @@ namespace KinectP2MM
             e.CanExecute = true;
         }
 
-        private void VerificatinSauvegarde()
+        private void VerificationSauvegarde()
         {
             if (unsaveChanges)
             {
@@ -235,6 +235,11 @@ namespace KinectP2MM
             listRightTopCornerTextBox.Clear();
             canZoomBox.IsChecked = false;
             canRotateBox.IsChecked = false;
+
+            //load default colors
+            this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.foreground_color);
+            this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
+
         }
 
         private void sequenceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -288,6 +293,14 @@ namespace KinectP2MM
                 {
                     listRightTopCornerTextBox.Text += mot + "\r\n";
                 }
+
+            if (listSequences[sequenceNumber].foregroundColor != null)
+                this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(listSequences[sequenceNumber].foregroundColor);
+            if (listSequences[sequenceNumber].backgroundColor != null)
+                this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(listSequences[sequenceNumber].backgroundColor);
+           
+
+
 
             unsaveChanges = false;
 
@@ -389,6 +402,9 @@ namespace KinectP2MM
             listSequences[sequenceNumber].rightBottomCornerWords = new List<String>(RightBottomCornerTreated);
             listSequences[sequenceNumber].leftTopCornerWords = new List<String>(LeftTopCornerTreated);
             listSequences[sequenceNumber].rightTopCornerWords = new List<String>(RightTopCornerTreated);
+            listSequences[sequenceNumber].foregroundColor = ClrPcker_Foreground.SelectedColor.ToString();
+            listSequences[sequenceNumber].backgroundColor = ClrPcker_Background.SelectedColor.ToString();
+
 
             unsaveChanges = false;
         }
@@ -425,7 +441,7 @@ namespace KinectP2MM
         
         private void Editor_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            VerificatinSauvegarde();
+            VerificationSauvegarde();
             if(filename != String.Empty)
                 parentWindow.loadJson(filename);
             unsaveChanges = false;
@@ -496,6 +512,15 @@ namespace KinectP2MM
         }
 
         private void listRightTopCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        {
+            unsaveChanges = true;
+        }
+        private void ClrPcker_Foreground_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
             unsaveChanges = true;
         }

@@ -58,7 +58,6 @@ namespace KinectP2MM
             Thickness MarginBas = new Thickness(0, MARGIN_BOTTOM, 0, 0);
 
             this.wordBottom = new Label();
-            this.wordBottom.Foreground = Brushes.White;
             this.Children.Add(this.wordBottom);
             this.wordBottom.Content = content;
             this.wordBottom.Margin = MarginBas;
@@ -67,7 +66,6 @@ namespace KinectP2MM
             if (type == WordType.TOP) this.wordBottom.Opacity = 0;
 
             this.wordTop = new Label();
-            this.wordTop.Foreground = Brushes.White;
             this.Children.Add(this.wordTop);
             this.wordTop.Content = content;
             this.wordTop.Margin = MarginHaut;
@@ -75,9 +73,11 @@ namespace KinectP2MM
             this.wordTop.FontSize = FONTSIZE;
             if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
 
+            setColor("");
+
         }
 
-        public Word(String content, String fontFamily, double fontSize, int x = 0, int y = 0, WordType type = WordType.FULL)
+        public Word(String content, String fontFamily, double fontSize, int x = 0, int y = 0, WordType type = WordType.FULL, String color = "")
         {
             this.beginRotation = 0;
             this._hover = false;
@@ -101,7 +101,6 @@ namespace KinectP2MM
             App.loadFont(saveFontFamily);
 
             this.wordBottom = new Label();
-            this.wordBottom.Foreground = Brushes.White;
             this.Children.Add(this.wordBottom);
             this.wordBottom.Content = content;
             this.wordBottom.Margin = MarginBas;
@@ -110,13 +109,14 @@ namespace KinectP2MM
             if (type == WordType.TOP) this.wordBottom.Opacity = 0;
 
             this.wordTop = new Label();
-            this.wordTop.Foreground = Brushes.White;
             this.Children.Add(this.wordTop);
             this.wordTop.Content = content;
             this.wordTop.Margin = MarginHaut;
             this.wordTop.FontFamily = FontHaut;
             this.wordTop.FontSize = FONTSIZE;
             if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
+
+            setColor(color);
 
             this.applyZoom(fontSize / FONTSIZE);
 
@@ -132,7 +132,6 @@ namespace KinectP2MM
             this.RenderTransform = source.RenderTransform;
 
             this.wordBottom = new Label();
-            this.wordBottom.Foreground = source.wordBottom.Foreground;
             this.wordBottom.Margin = source.wordBottom.Margin;
             this.wordBottom.Height = source.wordBottom.Height;
             this.wordBottom.Width = source.wordBottom.Width;
@@ -141,13 +140,14 @@ namespace KinectP2MM
             this.wordBottom.Content = source.wordBottom.Content;
 
             this.wordTop = new Label();
-            this.wordTop.Foreground = source.wordTop.Foreground;
             this.wordTop.Margin = source.wordTop.Margin;
             this.wordTop.Height = source.wordTop.Height;
             this.wordTop.Width = source.wordTop.Width;
             this.wordTop.FontFamily = source.wordTop.FontFamily;
             this.wordTop.FontSize = source.wordTop.FontSize;
             this.wordTop.Content = source.wordTop.Content;
+
+            this.setColor("");
 
 
             this.fontFamily = source.fontFamily;
@@ -161,7 +161,18 @@ namespace KinectP2MM
         {
             this.wordTop = (Label)this.Children[0];
             this.wordBottom = (Label)this.Children[1];
-        } 
+        }
+
+        public void setColor(String color)
+        {
+            if (color.Equals("")) color = Properties.Settings.Default.foreground_color;
+            if (Properties.Settings.Default.foreground_color != null)
+            {
+                var bc = new BrushConverter();
+                this.wordTop.Foreground = (Brush)bc.ConvertFrom(color);
+                this.wordBottom.Foreground = (Brush)bc.ConvertFrom(color);
+            }
+        }
                
         private bool _hover { get; set; }
         public bool hover

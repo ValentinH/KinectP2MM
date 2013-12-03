@@ -65,6 +65,9 @@ namespace KinectP2MM
             this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
             this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
 
+            this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.foreground_color);
+            this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
+
             unsaveChanges = false;
             firstOpening = true;
         }
@@ -191,6 +194,7 @@ namespace KinectP2MM
                 if (result == MessageBoxResult.Yes)
                 {
                     save();
+                    saveColors();
                 }
             }            
         }
@@ -272,6 +276,29 @@ namespace KinectP2MM
         }
 
         private void ComboBoxHaut2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            unsaveChanges = true;
+        }
+
+        private void SaveColor_Click(object sender, RoutedEventArgs e)
+        {
+            saveColors();
+            unsaveChanges = false;
+            this.Close();
+        }
+
+        private void saveColors()
+        {
+            Properties.Settings.Default.background_color = ClrPcker_Background.SelectedColor.ToString();
+            Properties.Settings.Default.foreground_color = ClrPcker_Foreground.SelectedColor.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        {
+            unsaveChanges = true;
+        }
+        private void ClrPcker_Foreground_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
             unsaveChanges = true;
         }

@@ -32,5 +32,11 @@
     <Setting Name="font2_top" Type="System.String" Scope="User">
       <Value Profile="(Default)">Demihaut (partiehaut)</Value>
     </Setting>
+    <Setting Name="background_color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#000000</Value>
+    </Setting>
+    <Setting Name="foreground_color" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#00FF00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

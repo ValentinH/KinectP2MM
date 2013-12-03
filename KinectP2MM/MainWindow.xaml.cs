@@ -39,7 +39,7 @@ namespace KinectP2MM
             Loaded += WindowLoaded;
             KeyUp += KeyUpManager;
             KeyDown += KeyDownManager;
-            Closed += WindowClosed;
+            Closed += WindowClosed;         
         }
 
         // Execute startup tasks
@@ -51,6 +51,22 @@ namespace KinectP2MM
             this.Activate();
             jsonManager = new JsonManager();
             lastAddedWord = "";
+
+            updateColors();
+        }
+
+        public void updateColors()
+        {
+            if (Properties.Settings.Default.background_color != null)
+            {
+                var bc = new BrushConverter();
+                Background = (Brush)bc.ConvertFrom(Properties.Settings.Default.background_color);
+            }
+            if (Properties.Settings.Default.foreground_color != null)
+            {
+                var bc = new BrushConverter();
+                InputTextBox.Foreground = (Brush)bc.ConvertFrom(Properties.Settings.Default.foreground_color);
+            }
         }
 
         private void WindowClosed(object sender, EventArgs e)
