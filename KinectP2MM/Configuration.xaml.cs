@@ -153,7 +153,10 @@ namespace KinectP2MM
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             save();
+            saveFonts();
+            saveColors();
             unsaveChanges = false;
+            MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.");
             this.Close();
         }
 
@@ -172,7 +175,6 @@ namespace KinectP2MM
                 Properties.Settings.Default.right_hand_grip = RightHandGripTextBox.Text;
 
             Properties.Settings.Default.Save();
-
             parentWindow.sequenceManager.reloadHands();
         }
 
@@ -184,6 +186,7 @@ namespace KinectP2MM
             LeftHandGripTextBox.Text = Properties.Settings.Default.left_hand_grip;
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
             saveFonts(); // // pour ne pas réinitialiser les polices
+            saveColors();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -194,9 +197,53 @@ namespace KinectP2MM
                 if (result == MessageBoxResult.Yes)
                 {
                     save();
+                    saveFonts();
                     saveColors();
+                    MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.");
                 }
             }            
+        }
+
+        private void ResetFont_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            this.ComboBoxEntiere1.Text = Properties.Settings.Default.font1_full;
+            this.ComboBoxEntiere2.Text = Properties.Settings.Default.font2_full;
+            this.ComboBoxBas1.Text = Properties.Settings.Default.font1_bottom;
+            this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
+            this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
+            this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
+            save(); // pour ne pas réinitialiser les mains
+            saveColors();
+        }
+
+        private void ResetColor_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
+            this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.foreground_color);
+            this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
+            save(); // pour ne pas réinitialiser le reste
+            saveFonts();
+        }
+
+        private void saveFonts()
+        {
+            Properties.Settings.Default.font1_full = this.ComboBoxEntiere1.Text;
+            Properties.Settings.Default.font2_full = this.ComboBoxEntiere2.Text;
+            Properties.Settings.Default.font1_bottom = this.ComboBoxBas1.Text;
+            Properties.Settings.Default.font2_bottom = this.ComboBoxBas2.Text;
+            Properties.Settings.Default.font1_top = this.ComboBoxHaut1.Text;
+            Properties.Settings.Default.font2_top = this.ComboBoxHaut2.Text;
+
+            Properties.Settings.Default.Save();
+        }
+
+
+        private void saveColors()
+        {
+            Properties.Settings.Default.background_color = ClrPcker_Background.SelectedColor.ToString();
+            Properties.Settings.Default.foreground_color = ClrPcker_Foreground.SelectedColor.ToString();
+            Properties.Settings.Default.Save();
         }
 
         private void LeftHandTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -217,37 +264,6 @@ namespace KinectP2MM
         private void RightHandGripTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             unsaveChanges = true;
-        }
-
-        private void ResetFont_Click(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.Reset();
-            this.ComboBoxEntiere1.Text = Properties.Settings.Default.font1_full;
-            this.ComboBoxEntiere2.Text = Properties.Settings.Default.font2_full;
-            this.ComboBoxBas1.Text = Properties.Settings.Default.font1_bottom;
-            this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
-            this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
-            this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
-            save(); // pour ne pas réinitialiser les mains
-        }
-
-        private void SaveFont_Click(object sender, RoutedEventArgs e)
-        {
-            saveFonts();
-            unsaveChanges = false;
-            this.Close();
-        }
-
-        private void saveFonts()
-        {
-            Properties.Settings.Default.font1_full = this.ComboBoxEntiere1.Text;
-            Properties.Settings.Default.font2_full = this.ComboBoxEntiere2.Text;
-            Properties.Settings.Default.font1_bottom = this.ComboBoxBas1.Text;
-            Properties.Settings.Default.font2_bottom = this.ComboBoxBas2.Text;
-            Properties.Settings.Default.font1_top = this.ComboBoxHaut1.Text;
-            Properties.Settings.Default.font2_top = this.ComboBoxHaut2.Text;
-
-            Properties.Settings.Default.Save();
         }
 
         private void ComboBoxEntiere1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -279,21 +295,7 @@ namespace KinectP2MM
         {
             unsaveChanges = true;
         }
-
-        private void SaveColor_Click(object sender, RoutedEventArgs e)
-        {
-            saveColors();
-            unsaveChanges = false;
-            this.Close();
-        }
-
-        private void saveColors()
-        {
-            Properties.Settings.Default.background_color = ClrPcker_Background.SelectedColor.ToString();
-            Properties.Settings.Default.foreground_color = ClrPcker_Foreground.SelectedColor.ToString();
-            Properties.Settings.Default.Save();
-        }
-
+        
         private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
             unsaveChanges = true;

@@ -145,7 +145,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#000000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ff000000")]
         public string background_color {
             get {
                 return ((string)(this["background_color"]));
@@ -157,7 +157,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("#00FF00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ffffffff")]
         public string foreground_color {
             get {
                 return ((string)(this["foreground_color"]));

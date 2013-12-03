@@ -33,10 +33,10 @@
       <Value Profile="(Default)">Demihaut (partiehaut)</Value>
     </Setting>
     <Setting Name="background_color" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#000000</Value>
+      <Value Profile="(Default)">#ff000000</Value>
     </Setting>
     <Setting Name="foreground_color" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#00FF00</Value>
+      <Value Profile="(Default)">#ffffffff</Value>
     </Setting>
   </Settings>
 </SettingsFile>
