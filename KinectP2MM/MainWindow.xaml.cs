@@ -39,7 +39,7 @@ namespace KinectP2MM
             Loaded += WindowLoaded;
             KeyUp += KeyUpManager;
             KeyDown += KeyDownManager;
-            Closed += WindowClosed;         
+            Closed += WindowClosed;
         }
 
         // Execute startup tasks
@@ -286,6 +286,12 @@ namespace KinectP2MM
             }
         }
 
+
+        public void reload()
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
     }
 }
 

@@ -152,15 +152,25 @@ namespace KinectP2MM
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            save();
-            saveFonts();
-            saveColors();
-            unsaveChanges = false;
-            MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.");
+            saveAll();
             this.Close();
         }
 
-        private void save()
+        private void saveAll()
+        {
+            saveCursors();
+            saveFonts();
+            saveColors();
+            unsaveChanges = false;
+            MessageBoxResult result = MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.\nVoulez-vous la redémarrer maintenant?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                parentWindow.reload();
+            }
+        }
+
+
+        private void saveCursors()
         {
             if (LeftHandTextBox.Text != String.Empty)
                 Properties.Settings.Default.left_hand = LeftHandTextBox.Text;
@@ -175,7 +185,6 @@ namespace KinectP2MM
                 Properties.Settings.Default.right_hand_grip = RightHandGripTextBox.Text;
 
             Properties.Settings.Default.Save();
-            parentWindow.sequenceManager.reloadHands();
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -196,10 +205,7 @@ namespace KinectP2MM
                 MessageBoxResult result = MessageBox.Show("Voulez vous sauvegarder les modifications ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    save();
-                    saveFonts();
-                    saveColors();
-                    MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.");
+                    saveAll();
                 }
             }            
         }
@@ -213,7 +219,7 @@ namespace KinectP2MM
             this.ComboBoxBas2.Text = Properties.Settings.Default.font2_bottom;
             this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
             this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
-            save(); // pour ne pas réinitialiser les mains
+            saveCursors(); // pour ne pas réinitialiser les mains
             saveColors();
         }
 
@@ -222,7 +228,7 @@ namespace KinectP2MM
             Properties.Settings.Default.Reset();
             this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.foreground_color);
             this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
-            save(); // pour ne pas réinitialiser le reste
+            saveCursors(); // pour ne pas réinitialiser le reste
             saveFonts();
         }
 

@@ -514,16 +514,6 @@ namespace KinectP2MM
             img.BeginAnimation(UIElement.OpacityProperty, da);
         }
 
-        public void reloadHands()
-        {
-            this.hands.Item1.path = Properties.Settings.Default.left_hand;
-            this.hands.Item2.path = Properties.Settings.Default.right_hand;
-            this.hands.Item1.path_grip = Properties.Settings.Default.left_hand_grip;
-            this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
-            this.hands.Item1.reload();
-            this.hands.Item2.reload();
-        }
-
         private async void addCompatibleWord(Word w)
         {
             this.window.Loader.Visibility = Visibility.Visible;
