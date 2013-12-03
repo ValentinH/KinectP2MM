@@ -27,6 +27,8 @@ namespace KinectP2MM
             this.rightBottomCornerWords = new List<String>();
             this.leftTopCornerWords = new List<String>();
             this.rightTopCornerWords = new List<String>();
+            this.foregroundColor = Properties.Settings.Default.foreground_color;
+            this.backgroundColor = Properties.Settings.Default.background_color;
         }
 
         public Sequence(List<Word> words, bool canZoom, bool canRotate, List<String> leftBottomCornerWords,

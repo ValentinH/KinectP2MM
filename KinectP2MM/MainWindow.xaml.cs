@@ -55,17 +55,20 @@ namespace KinectP2MM
             updateColors();
         }
 
-        public void updateColors()
+        public void updateColors(String foreground = "", String background = "")
         {
-            if (Properties.Settings.Default.background_color != null)
+
+            if (background != null)
             {
+                if (background.Equals("")) background = Properties.Settings.Default.background_color;
                 var bc = new BrushConverter();
-                Background = (Brush)bc.ConvertFrom(Properties.Settings.Default.background_color);
+                Background = (Brush)bc.ConvertFrom(background);
             }
-            if (Properties.Settings.Default.foreground_color != null)
+            if (foreground != null)
             {
+                if (foreground.Equals("")) foreground = Properties.Settings.Default.foreground_color;
                 var bc = new BrushConverter();
-                InputTextBox.Foreground = (Brush)bc.ConvertFrom(Properties.Settings.Default.foreground_color);
+                InputTextBox.Foreground = (Brush)bc.ConvertFrom(foreground);
             }
         }
 

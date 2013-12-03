@@ -37,7 +37,7 @@ namespace KinectP2MM
             Loaded +=WordLoaded;
         }
 
-        public Word(String content, int x = 0, int y = 0, WordType type = WordType.FULL)
+        public Word(String content, int x = 0, int y = 0, WordType type = WordType.FULL, String color = "")
         {
             this.beginRotation = 0;
             this._hover = false;
@@ -73,7 +73,7 @@ namespace KinectP2MM
             this.wordTop.FontSize = FONTSIZE;
             if (type == WordType.BOTTOM) this.wordTop.Opacity = 0;
 
-            setColor("");
+            setColor(color);
 
         }
 

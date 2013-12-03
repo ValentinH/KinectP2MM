@@ -62,8 +62,8 @@ namespace KinectP2MM
             {
                 this.window.canvas.Children.Add(word);
             }
-
             splitWordsCouple.Clear();
+            this.window.updateColors(sequence.foregroundColor, sequence.backgroundColor);
         }
 
         private void resetWordsOnCanvas()
@@ -479,7 +479,7 @@ namespace KinectP2MM
                 w = new Word(p, x, y);
             }
             else
-                w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type);
+                w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type, this.sequence.foregroundColor);
            
             sequence.words.Add(w);
             this.window.canvas.Children.Add(w);
