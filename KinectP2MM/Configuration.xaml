@@ -19,7 +19,7 @@
                 <Label Content="Main Gauche Fermée" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="126" Height="26" FontWeight="Normal"/>
                 <TextBox x:Name="LeftHandGripTextBox" HorizontalAlignment="Left" Height="23" Margin="150,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" TextChanged="LeftHandGripTextBox_TextChanged" FontWeight="Normal"/>
                 <Button x:Name="LeftHandGripButton" Content="Changer image" HorizontalAlignment="Left" Margin="407,20,0,0" VerticalAlignment="Top" Width="120" Click="LeftHandGripButton_Click" Height="23" FontWeight="Normal"/>
-                <Button x:Name="Reset" Content="Réinitialiser" HorizontalAlignment="Left" Margin="447,181,0,0" VerticalAlignment="Top" Width="107" Click="Reset_Click" Height="22" FontWeight="Normal"/>
+                <Button x:Name="Reset" Content="Réinitialiser" HorizontalAlignment="Left" Margin="444,180,0,0" VerticalAlignment="Top" Width="107" Click="Reset_Click" Height="22" FontWeight="Normal"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Polices" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Height="206" Width="574" FontWeight="Bold">
