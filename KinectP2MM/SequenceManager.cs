@@ -33,6 +33,8 @@ namespace KinectP2MM
         //list of words couple split
         private List<Tuple<Word, Word>> splitWordsCouple;
 
+        private bool isConnectedToInternet;
+
 
         public SequenceManager(MainWindow window)
         {
@@ -43,12 +45,15 @@ namespace KinectP2MM
             this.hands.Item1.path_grip = Properties.Settings.Default.left_hand_grip;
             this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
 
+            isConnectedToInternet = false;
+
             sequence = new Sequence();
             splitWordsCouple = new List<Tuple<Word, Word>>();                               
 
             //has to be done at last
             this.kinectManager = new KinectManager(this, this.window.sensorChooserUi, 10);
             this.apiManager = new APIManager();
+            this.checkInternetConnection();
         }
 
         public void loadSequence(Sequence sequence)
@@ -355,7 +360,7 @@ namespace KinectP2MM
 
                 if (hand.justPressed)
                 {
-                    //addCompatibleWord(word);
+                    addCompatibleWord(word);
                 }
             }
         }
@@ -516,10 +521,18 @@ namespace KinectP2MM
 
         private async void addCompatibleWord(Word w)
         {
-            this.window.Loader.Visibility = Visibility.Visible;
-            var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontFamily);
-            this.addWord(newWord);
-            this.window.Loader.Visibility = Visibility.Collapsed;
-        }        
+            if (isConnectedToInternet)
+            {
+                this.window.Loader.Visibility = Visibility.Visible;
+                var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontFamily);
+                this.addWord(newWord);
+                this.window.Loader.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private async void checkInternetConnection()
+        {
+            this.isConnectedToInternet = await apiManager.checkConnection();
+        }
     }
 }

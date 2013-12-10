@@ -29,16 +29,16 @@
                 <Label Content="Bas" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="470,10,0,0" FontWeight="Normal"/>
                 <Label Content="Haut" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="303,10,0,0" FontWeight="Normal"/>
                 <ComboBox x:Name="ComboBoxEntiere1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxEntiere1_SelectionChanged" Margin="89,36,0,0" FontWeight="Normal"/>
-                <ComboBox x:Name="ComboBoxBas1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas1_SelectionChanged" Margin="258,36,0,0" FontWeight="Normal"/>
-                <ComboBox x:Name="ComboBoxHaut1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut1_SelectionChanged" Margin="423,36,0,0" FontWeight="Normal"/>
+                <ComboBox x:Name="ComboBoxBas1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas1_SelectionChanged" Margin="423,36,0,0" FontWeight="Normal"/>
+                <ComboBox x:Name="ComboBoxHaut1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut1_SelectionChanged" Margin="258,36,0,0" FontWeight="Normal"/>
 
                 <Label Content="Police 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,83,0,0" FontWeight="Bold" FontStyle="Italic"/>
                 <Label Content="Entière" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,83,0,0" FontWeight="Normal"/>
                 <Label Content="Bas" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="470,83,0,0" FontWeight="Normal"/>
                 <Label Content="Haut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Margin="303,83,0,0" FontWeight="Normal"/>
                 <ComboBox x:Name="ComboBoxEntiere2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxEntiere2_SelectionChanged" Margin="89,109,0,0" FontWeight="Normal"/>
-                <ComboBox x:Name="ComboBoxBas2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas2_SelectionChanged" Margin="258,109,0,0" FontWeight="Normal"/>
-                <ComboBox x:Name="ComboBoxHaut2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut2_SelectionChanged" Margin="423,109,0,0" FontWeight="Normal"/>
+                <ComboBox x:Name="ComboBoxBas2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxBas2_SelectionChanged" Margin="423,109,0,0" FontWeight="Normal"/>
+                <ComboBox x:Name="ComboBoxHaut2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxHaut2_SelectionChanged" Margin="258,109,0,0" FontWeight="Normal"/>
                 <Button x:Name="ResetFont" Content="Réinitialiser" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Click="ResetFont_Click" Margin="455,162,0,0" FontWeight="Normal"/>
             </Grid>
         </GroupBox>

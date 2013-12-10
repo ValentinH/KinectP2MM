@@ -118,6 +118,23 @@ namespace KinectP2MM
         {
             return (value.Equals(value.ToUpper()));
         }
+
+        public async Task<bool> checkConnection()
+        {
+            try
+            {
+                var response = await client.GetAsync("procedes.php");
+                response.EnsureSuccessStatusCode(); // Throw on error code.
+                return true;
+            }
+            catch (HttpRequestException )
+            {
+            }
+            finally
+            {
+            }
+            return false;
+        }
     }
 
     class XMLWord
