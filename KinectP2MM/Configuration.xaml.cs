@@ -33,8 +33,9 @@ namespace KinectP2MM
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
 
             ICollection<FontFamily> ListFonts = Fonts.SystemFontFamilies;
+            IEnumerable<FontFamily> ListFonts2 = ListFonts.OrderBy(f => f.Source);
 
-            foreach (FontFamily fontFamily in ListFonts)
+            foreach (FontFamily fontFamily in ListFonts2)
             {
                 ComboBoxItem font1 = new ComboBoxItem();
                 ComboBoxItem font2 = new ComboBoxItem();
