@@ -49,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>KinectP2MM.App</StartupObject>
@@ -60,7 +61,7 @@
     <ManifestKeyFile>KinectP2MM_CléTemporaire.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -68,8 +69,12 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -155,6 +160,7 @@
     </Compile>
     <Compile Include="JsonManager.cs" />
     <Compile Include="Sequence.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Word.cs" />
     <Page Include="Configuration.xaml">
       <SubType>Designer</SubType>
@@ -205,9 +211,10 @@
     <Resource Include="polices\Demibas_2010.ttf" />
     <Resource Include="polices\Demihaut_2010.ttf" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="sequences.p2mm" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
