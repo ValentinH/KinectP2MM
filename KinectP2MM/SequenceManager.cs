@@ -359,7 +359,8 @@ namespace KinectP2MM
 
                 if (hand.justPressed)
                 {
-                    addCompatibleWord(word);
+                    //uncomment to enable the API search
+                    //addCompatibleWord(word);
                 }
             }
         }
