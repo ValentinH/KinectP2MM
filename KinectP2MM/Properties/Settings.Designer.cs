@@ -166,5 +166,29 @@ namespace KinectP2MM.Properties {
                 this["foreground_color"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int decalage_polices {
+            get {
+                return ((int)(this["decalage_polices"]));
+            }
+            set {
+                this["decalage_polices"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4000")]
+        public int distance_attraction {
+            get {
+                return ((int)(this["distance_attraction"]));
+            }
+            set {
+                this["distance_attraction"] = value;
+            }
+        }
     }
 }

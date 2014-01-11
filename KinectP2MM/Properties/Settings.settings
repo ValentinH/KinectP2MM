@@ -38,5 +38,11 @@
     <Setting Name="foreground_color" Type="System.String" Scope="User">
       <Value Profile="(Default)">#ffffffff</Value>
     </Setting>
+    <Setting Name="decalage_polices" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="distance_attraction" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

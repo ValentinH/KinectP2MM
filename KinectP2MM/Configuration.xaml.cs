@@ -68,6 +68,10 @@ namespace KinectP2MM
             this.ComboBoxHaut1.Text = Properties.Settings.Default.font1_top;
             this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
 
+            //autres
+            this.decalagePolices.Value = Properties.Settings.Default.decalage_polices;
+            this.distanceAttraction.Value = Properties.Settings.Default.distance_attraction;
+
             this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.foreground_color);
             this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
 
@@ -100,7 +104,7 @@ namespace KinectP2MM
                 String filename = dlg.FileName;
 
                 if (filename.StartsWith(dlg.InitialDirectory))
-                {}
+                { }
                 else
                 {
                     String file = dlg.SafeFileName;
@@ -164,11 +168,14 @@ namespace KinectP2MM
             saveCursors();
             saveFonts();
             saveColors();
-            unsaveChanges = false;
-            MessageBoxResult result = MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.\nVoulez-vous la redémarrer maintenant?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (saveOthers())
             {
-                parentWindow.reload();
+                unsaveChanges = false;
+                MessageBoxResult result = MessageBox.Show("L'application doit être redémarrée pour prendre en compte toutes les modifications.\nVoulez-vous la redémarrer maintenant?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    parentWindow.reload();
+                }
             }
         }
 
@@ -190,6 +197,32 @@ namespace KinectP2MM
             Properties.Settings.Default.Save();
         }
 
+        private bool saveOthers()
+        {
+            try
+            {
+                Properties.Settings.Default.decalage_polices = (int)decalagePolices.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Valeur de décalage incorrecte.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            try
+            {
+                Properties.Settings.Default.distance_attraction = (int )distanceAttraction.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Valeur de distance incorrecte.", "Attention", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            Properties.Settings.Default.Save();
+            return true;
+        }
+
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Reset();
@@ -199,10 +232,11 @@ namespace KinectP2MM
             RightHandGripTextBox.Text = Properties.Settings.Default.right_hand_grip;
             saveFonts(); // // pour ne pas réinitialiser les polices
             saveColors();
+            saveOthers();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {            
+        {
             if (unsaveChanges)
             {
                 MessageBoxResult result = MessageBox.Show("Voulez vous sauvegarder les modifications ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -210,7 +244,7 @@ namespace KinectP2MM
                 {
                     saveAll();
                 }
-            }            
+            }
         }
 
         private void ResetFont_Click(object sender, RoutedEventArgs e)
@@ -224,6 +258,7 @@ namespace KinectP2MM
             this.ComboBoxHaut2.Text = Properties.Settings.Default.font2_top;
             saveCursors(); // pour ne pas réinitialiser les mains
             saveColors();
+            saveOthers();
         }
 
         private void ResetColor_Click(object sender, RoutedEventArgs e)
@@ -233,6 +268,7 @@ namespace KinectP2MM
             this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(Properties.Settings.Default.background_color);
             saveCursors(); // pour ne pas réinitialiser le reste
             saveFonts();
+            saveOthers();
         }
 
         private void saveFonts()
@@ -304,7 +340,7 @@ namespace KinectP2MM
         {
             unsaveChanges = true;
         }
-        
+
         private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
             unsaveChanges = true;

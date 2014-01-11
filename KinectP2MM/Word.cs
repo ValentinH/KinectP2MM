@@ -16,7 +16,7 @@ namespace KinectP2MM
     public class Word : GUIObject
     {
         public static int MIN_FONTSIZE = 20, MAX_FONTSIZE = 200;
-        public static int FONTSIZE = 50, MARGIN_BOTTOM = 50;
+        public static int FONTSIZE = 50, MARGIN_BOTTOM = Properties.Settings.Default.decalage_polices;
         public static double ZOOM_FACTOR = 1.05, UNZOOM_FACTOR = 0.95;
 
         public double beginRotation { get; set; }

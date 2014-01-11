@@ -168,7 +168,6 @@ namespace KinectP2MM
         
         private void interactionOnText()
         {
-            //bin.hover = false;
             reinitialize(splitWordsCouple);
 
 
@@ -305,7 +304,7 @@ namespace KinectP2MM
                 return;
             foreach (var couple in couplesList.ToList())
             {
-                if (ImageTools.getDistance(couple.Item1, couple.Item2) > 20000)
+                if (ImageTools.getDistance(couple.Item1, couple.Item2) > Properties.Settings.Default.distance_attraction * 5)
                 {
                     couplesList.Remove(couple);
                 }
@@ -433,7 +432,7 @@ namespace KinectP2MM
                 {
                     if ((word.typeWord == WordType.TOP && currentWord.typeWord == WordType.BOTTOM) || (currentWord.typeWord == WordType.TOP && word.typeWord == WordType.BOTTOM))
                     {
-                        if (ImageTools.getDistance(word, currentWord) < 4000)
+                        if (ImageTools.getDistance(word, currentWord) < Properties.Settings.Default.distance_attraction)
                         {
                             //do fusion
                             currentWord.Fusion(word);
