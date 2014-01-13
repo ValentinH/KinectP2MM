@@ -5,8 +5,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"        
         ResizeMode="NoResize" Top="50">
     <Grid>
-        <Menu IsMainMenu="True" Background="{x:Null}">
-            <MenuItem Header="_Fichier">
+        <Menu IsMainMenu="True" Background="Gainsboro" VerticalAlignment="Top">
+            <MenuItem Header="_Fichier" >
                 <MenuItem Header="_Nouveau fichier" Command="New" />
                 <Separator />
                 <MenuItem Header="_Ouvrir un fichier" Command="Open"/>
