@@ -262,6 +262,8 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
     <Resource Include="images\loader.GIF" />
+    <Resource Include="images\api_off.png" />
+    <Resource Include="images\api_on.png" />
     <Content Include="KinectInteraction180_32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -33,7 +33,7 @@ namespace KinectP2MM
         //list of words couple split
         private List<Tuple<Word, Word>> splitWordsCouple;
 
-        private bool isConnectedToInternet;
+        private bool APIenabled;
 
 
         public SequenceManager(MainWindow window)
@@ -45,7 +45,7 @@ namespace KinectP2MM
             this.hands.Item1.path_grip = Properties.Settings.Default.left_hand_grip;
             this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
 
-            isConnectedToInternet = false;
+            APIenabled = false;
 
             sequence = new Sequence();
             splitWordsCouple = new List<Tuple<Word, Word>>();                               
@@ -358,9 +358,8 @@ namespace KinectP2MM
                 }
 
                 if (hand.justPressed)
-                {
-                    //uncomment to enable the API search
-                    //addCompatibleWord(word);
+                {                   
+                    addCompatibleWord(word);
                 }
             }
         }
@@ -509,6 +508,15 @@ namespace KinectP2MM
                 animateImage(this.window.RotateOff);
         }
 
+        internal void toggleAPI()
+        {
+            APIenabled = !APIenabled;
+            if (APIenabled)
+                animateImage(this.window.APIOn);
+            else
+                animateImage(this.window.APIOff);
+        }
+
         private void animateImage(Image img, int time = 500)
         {
             img.Visibility = Visibility.Visible;
@@ -521,7 +529,7 @@ namespace KinectP2MM
 
         private async void addCompatibleWord(Word w)
         {
-            if (isConnectedToInternet)
+            if (APIenabled)
             {
                 this.window.Loader.Visibility = Visibility.Visible;
                 var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontFamily);
@@ -532,7 +540,7 @@ namespace KinectP2MM
 
         private async void checkInternetConnection()
         {
-            this.isConnectedToInternet = await apiManager.checkConnection();
+            this.APIenabled = await apiManager.checkConnection();
         }
     }
 }

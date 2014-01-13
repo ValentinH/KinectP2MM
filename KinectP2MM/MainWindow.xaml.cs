@@ -139,6 +139,8 @@ namespace KinectP2MM
                     this.sequenceManager.toggleZoom();
                 if (e.Key == Key.P)
                     changeFont();
+                if (e.Key == Key.I)
+                    this.sequenceManager.toggleAPI();
 
             }
             else
