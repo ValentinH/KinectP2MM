@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Editeur de séquence" Height="650.03" Width="866.687" Closing="Editor_Window_Closing"        
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"        
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" Top="50">
     <Grid>
         <Menu IsMainMenu="True" Background="{x:Null}">
             <MenuItem Header="_Fichier">
