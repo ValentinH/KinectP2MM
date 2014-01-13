@@ -53,13 +53,13 @@
         </GroupBox>
         <GroupBox Header="Autres" HorizontalAlignment="Left" Margin="10,558,0,0" VerticalAlignment="Top" Height="101" Width="574" FontWeight="Bold">
             <Grid>
-                <Label Content="Décalage polices" HorizontalAlignment="Left" Margin="5,28,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="99"/>
-                <Label Content="Distance attraction" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="118"/>
-                <Slider x:Name="decalagePolices" Minimum="0" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" Width="106"/>
-                <TextBlock Text="{Binding ElementName=decalagePolices, Path=Value}" Margin="217,34,324,29" FontWeight="Normal" TextAlignment="Right" />
-                <Slider x:Name="distanceAttraction" Minimum="4000" Maximum="100000" IsSnapToTickEnabled="True" TickFrequency="1000" HorizontalAlignment="Left" Margin="388,33,0,0" VerticalAlignment="Top" Width="106"/>
-                <TextBlock Text="{Binding ElementName=distanceAttraction, Path=Value}" Margin="499,34,5,29" FontWeight="Normal" RenderTransformOrigin="0.905,0.5" />
-                <TextBlock HorizontalAlignment="Left" Margin="241,34,0,0" TextWrapping="Wrap" Text="px" VerticalAlignment="Top" Width="20" FontWeight="Normal"/>
+                <Label Content="Décalage polices" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="99"/>
+                <Label Content="Distance attraction" HorizontalAlignment="Left" Margin="9,43,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="118"/>
+                <Slider x:Name="decalagePolices" Minimum="-100" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" HorizontalAlignment="Left" Margin="134,14,0,0" VerticalAlignment="Top" Width="360"/>
+                <TextBlock Text="{Binding ElementName=decalagePolices, Path=Value}" Margin="506,15,26,48" FontWeight="Normal" TextAlignment="Right" />
+                <Slider x:Name="distanceAttraction" Minimum="4000" Maximum="100000" IsSnapToTickEnabled="True" TickFrequency="1000" HorizontalAlignment="Left" Margin="134,47,0,0" VerticalAlignment="Top" Width="360"/>
+                <TextBlock Text="{Binding ElementName=distanceAttraction, Path=Value}" Margin="494,48,10,15" FontWeight="Normal" RenderTransformOrigin="0.905,0.5" TextAlignment="Right" />
+                <TextBlock HorizontalAlignment="Left" Margin="539,15,0,0" TextWrapping="Wrap" Text="px" VerticalAlignment="Top" Width="20" FontWeight="Normal"/>
             </Grid>
         </GroupBox>
         <Button x:Name="Save" Content="Sauvegarder et Fermer" VerticalAlignment="Bottom" Width="150" Height="30" Click="Save_Click" HorizontalAlignment="Center" Margin="0,0,0,10" />
