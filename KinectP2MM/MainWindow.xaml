@@ -27,7 +27,7 @@
         <Image x:Name="RotateOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/rotate_off.png" Width="150"/>
         <Image x:Name="Loader" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" gif:ImageBehavior.AnimatedSource="images/loader.GIF" Width="150"/>
         <Image x:Name="APIOn" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/api_on.png" Width="150"/>
-        <Image x:Name="APIOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/api_on.png" Width="150"/>
+        <Image x:Name="APIOff" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Center" Source="images/api_off.png" Width="150"/>
 
     </Grid>
 </Window>
