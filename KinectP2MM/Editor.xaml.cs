@@ -80,6 +80,7 @@ namespace KinectP2MM
             {
                 saveSequence();
                 jsonManager.save(listSequences, filename);
+                unsaveChangesFalse();
             }
             else
                 saveFileChooser();
@@ -123,6 +124,7 @@ namespace KinectP2MM
                     {
                         saveSequence();
                         jsonManager.save(listSequences, filename);
+                        unsaveChangesFalse();                       
                     }
                     else
                         saveFileChooser();
@@ -163,7 +165,7 @@ namespace KinectP2MM
                 }
                 
                 this.sequenceComboBox.SelectedItem = this.sequenceComboBox.Items[0];
-                unsaveChanges = false;
+                unsaveChangesFalse();
             }
         }               
 
@@ -175,7 +177,7 @@ namespace KinectP2MM
             clearSequence();
             sequenceCount = 0;
             addSequence();
-            unsaveChanges = false;
+            unsaveChangesFalse();
         }
 
         private void saveFileChooser()
@@ -200,7 +202,9 @@ namespace KinectP2MM
                     saveSequence();
 
                 filename = dlg.FileName;
+                saveSequence();
                 jsonManager.save(listSequences, filename);
+                unsaveChangesFalse();
             }
         }
 
@@ -209,7 +213,7 @@ namespace KinectP2MM
             saveSequence();
             sequenceComboBox.SelectedItem = null;
             addSequence();
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void addSequence()
@@ -298,12 +302,8 @@ namespace KinectP2MM
                 this.ClrPcker_Foreground.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(listSequences[sequenceNumber].foregroundColor);
             if (listSequences[sequenceNumber].backgroundColor != null)
                 this.ClrPcker_Background.SelectedColor = (System.Windows.Media.Color)ColorConverter.ConvertFromString(listSequences[sequenceNumber].backgroundColor);
-           
 
-
-
-            unsaveChanges = false;
-
+            unsaveChangesFalse();
         }
 
         private void sequenceComboBox_MouseEnter(object sender, MouseEventArgs e)
@@ -404,9 +404,6 @@ namespace KinectP2MM
             listSequences[sequenceNumber].rightTopCornerWords = new List<String>(RightTopCornerTreated);
             listSequences[sequenceNumber].foregroundColor = ClrPcker_Foreground.SelectedColor.ToString();
             listSequences[sequenceNumber].backgroundColor = ClrPcker_Background.SelectedColor.ToString();
-
-
-            unsaveChanges = false;
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -430,7 +427,7 @@ namespace KinectP2MM
                 if (newIndex < 0)
                     newIndex = 0;
                 this.sequenceComboBox.SelectedIndex = newIndex;
-                unsaveChanges = true;
+                unsaveChangesTrue();
             }
             else
             {
@@ -444,85 +441,102 @@ namespace KinectP2MM
             VerificationSauvegarde();
             if(filename != String.Empty)
                 parentWindow.loadJson(filename);
-            unsaveChanges = false;
         }
 
         private void canRotate_Checked(object sender, RoutedEventArgs e)
         {
             canRotate = true;
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void canRotate_Unchecked(object sender, RoutedEventArgs e)
         {
             canRotate = false;
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void canZoom_Checked(object sender, RoutedEventArgs e)
         {
             canZoom = true;
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void canZoom_Unchecked(object sender, RoutedEventArgs e)
         {
             canZoom = false;
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listWordsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listXTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listYTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listTailleTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listPoliceTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listLeftBottomCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listRightBottomCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listLeftTopCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void listRightTopCornerTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
 
         private void ClrPcker_Background_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
-            unsaveChanges = true;
+            unsaveChangesTrue();
         }
         private void ClrPcker_Foreground_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
+            unsaveChangesTrue();
+        }
+
+        private void unsaveChangesTrue()
+        {
             unsaveChanges = true;
+            if (filename != String.Empty)
+                this.Title = "Editeur de séquence - " + filename + " *";
+            else
+                this.Title = "Editeur de séquence - Nouveau Fichier *";
+        }
+
+        private void unsaveChangesFalse()
+        {            
+            unsaveChanges = false;
+            if (filename != String.Empty)
+                this.Title = "Editeur de séquence - " + filename;
+            else
+                this.Title = "Editeur de séquence - Nouveau Fichier";
         }
     }
 
