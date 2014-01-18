@@ -27,6 +27,7 @@ namespace KinectP2MM
         public double marginBas { get; set; }
         public String fontFamily { get; set; }
         public Guid id { get; set; }
+        public String colorString { get; set; } 
 
         public Word()
         {
@@ -37,7 +38,7 @@ namespace KinectP2MM
             Loaded +=WordLoaded;
         }
 
-        public Word(String content, int x = 0, int y = 0, WordType type = WordType.FULL, String color = "")
+        public Word(String content, int x = 0, int y = 0, String color = "", WordType type = WordType.FULL)
         {
             this.beginRotation = 0;
             this._hover = false;
@@ -147,7 +148,8 @@ namespace KinectP2MM
             this.wordTop.FontSize = source.wordTop.FontSize;
             this.wordTop.Content = source.wordTop.Content;
 
-            this.setColor("");
+            this.colorString = source.colorString;
+            this.setColor(colorString);
 
 
             this.fontFamily = source.fontFamily;
@@ -166,11 +168,12 @@ namespace KinectP2MM
         public void setColor(String color)
         {
             if (color.Equals("")) color = Properties.Settings.Default.foreground_color;
-            if (Properties.Settings.Default.foreground_color != null)
+            if (color != null)
             {
                 var bc = new BrushConverter();
                 this.wordTop.Foreground = (Brush)bc.ConvertFrom(color);
                 this.wordBottom.Foreground = (Brush)bc.ConvertFrom(color);
+                this.colorString = color;
             }
         }
                

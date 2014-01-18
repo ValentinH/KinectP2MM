@@ -18,19 +18,19 @@
       <Value Profile="(Default)">Demibas</Value>
     </Setting>
     <Setting Name="font1_bottom" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Demibas (partiebasse)</Value>
+      <Value Profile="(Default)">KINECTB</Value>
     </Setting>
     <Setting Name="font1_top" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Demibas (partiehaut)</Value>
+      <Value Profile="(Default)">KINECTH</Value>
     </Setting>
     <Setting Name="font2_full" Type="System.String" Scope="User">
       <Value Profile="(Default)">Demihaut</Value>
     </Setting>
     <Setting Name="font2_bottom" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Demihaut (partiebasse)</Value>
+      <Value Profile="(Default)">HKINECTB</Value>
     </Setting>
     <Setting Name="font2_top" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Demihaut (partiehaut)</Value>
+      <Value Profile="(Default)">HKINECTH</Value>
     </Setting>
     <Setting Name="background_color" Type="System.String" Scope="User">
       <Value Profile="(Default)">#ff000000</Value>

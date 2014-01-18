@@ -85,7 +85,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Demibas (partiebasse)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("KINECTB")]
         public string font1_bottom {
             get {
                 return ((string)(this["font1_bottom"]));
@@ -97,7 +97,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Demibas (partiehaut)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("KINECTH")]
         public string font1_top {
             get {
                 return ((string)(this["font1_top"]));
@@ -121,7 +121,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Demihaut (partiebasse)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("HKINECTB")]
         public string font2_bottom {
             get {
                 return ((string)(this["font2_bottom"]));
@@ -133,7 +133,7 @@ namespace KinectP2MM.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Demihaut (partiehaut)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("HKINECTH")]
         public string font2_top {
             get {
                 return ((string)(this["font2_top"]));

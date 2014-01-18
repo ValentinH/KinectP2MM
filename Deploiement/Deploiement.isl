@@ -1894,11 +1894,11 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>demibas_2010.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIBA~1.TTF|Demibas_2010.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demibas_2010.ttf</td><td>1</td><td/></row>
-		<row><td>demibas__partiebasse_.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIBA~1.TTF|Demibas (partiebasse).ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demibas (partiebasse).ttf</td><td>1</td><td/></row>
-		<row><td>demibas__partiehaut_.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIBA~1.TTF|Demibas (partiehaut).ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demibas (partiehaut).ttf</td><td>1</td><td/></row>
 		<row><td>demihaut_2010.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIHA~1.TTF|Demihaut_2010.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demihaut_2010.ttf</td><td>1</td><td/></row>
-		<row><td>demihaut__partiebasse_.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIHA~1.TTF|Demihaut (partiebasse).ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demihaut (partiebasse).ttf</td><td>1</td><td/></row>
-		<row><td>demihaut__partiehaut_.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>DEMIHA~1.TTF|Demihaut (partiehaut).ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Dropbox\La Séparation\POLICES\Demihaut (partiehaut).ttf</td><td>1</td><td/></row>
+		<row><td>hkinectb.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>HKINECTB.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\DLLs\HKINECTB.ttf</td><td>1</td><td/></row>
+		<row><td>hkinecth.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>HKINECTH.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\DLLs\HKINECTH.ttf</td><td>1</td><td/></row>
+		<row><td>kinectb.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>KINECTB.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\DLLs\KINECTB.ttf</td><td>1</td><td/></row>
+		<row><td>kinecth.ttf</td><td>ISX_DEFAULTCOMPONENT</td><td>KINECTH.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\DLLs\KINECTH.ttf</td><td>1</td><td/></row>
 		<row><td>kinectinteraction180_32.dll</td><td>KinectInteraction180_32.dll</td><td>KINECT~1.DLL|KinectInteraction180_32.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\KinectInteraction180_32.dll</td><td>1</td><td/></row>
 		<row><td>kinectinteraction180_64.dll</td><td>KinectInteraction180_64.dll</td><td>KINECT~1.DLL|KinectInteraction180_64.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\GitHub\KinectP2MM\KinectP2MM\KinectInteraction180_64.dll</td><td>1</td><td/></row>
 		<row><td>kinectp2mm.sortie_principale</td><td>KinectP2MM.Sortie_principale</td><td>KinectP2MM.Sortie principale</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;KinectP2MM&gt;|Built</td><td>3</td><td/></row>
@@ -1917,11 +1917,11 @@
 		<col key="yes" def="s72">File_</col>
 		<col def="S128">FontTitle</col>
 		<row><td>demibas_2010.ttf</td><td/></row>
-		<row><td>demibas__partiebasse_.ttf</td><td/></row>
-		<row><td>demibas__partiehaut_.ttf</td><td/></row>
 		<row><td>demihaut_2010.ttf</td><td/></row>
-		<row><td>demihaut__partiebasse_.ttf</td><td/></row>
-		<row><td>demihaut__partiehaut_.ttf</td><td/></row>
+		<row><td>hkinectb.ttf</td><td/></row>
+		<row><td>hkinecth.ttf</td><td/></row>
+		<row><td>kinectb.ttf</td><td/></row>
+		<row><td>kinecth.ttf</td><td/></row>
 	</table>
 
 	<table name="ISAssistantTag">

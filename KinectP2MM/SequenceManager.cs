@@ -35,6 +35,8 @@ namespace KinectP2MM
 
         private bool APIenabled;
 
+        private bool internetAccess;
+
 
         public SequenceManager(MainWindow window)
         {
@@ -46,6 +48,7 @@ namespace KinectP2MM
             this.hands.Item2.path_grip = Properties.Settings.Default.right_hand_grip;
 
             APIenabled = false;
+            internetAccess = false;
 
             sequence = new Sequence();
             splitWordsCouple = new List<Tuple<Word, Word>>();                               
@@ -480,10 +483,10 @@ namespace KinectP2MM
                 Random rnd = new Random();
                 var x = rnd.Next(0, (int)window.canvas.ActualWidth - (p.Length * 50));
                 var y = rnd.Next(0, (int)window.canvas.ActualHeight - 50);
-                w = new Word(p, x, y);
+                w = new Word(p, x, y, this.sequence.foregroundColor);
             }
             else
-                w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), type, this.sequence.foregroundColor);
+                w = new Word(p, ((int)window.canvas.ActualWidth / 2 - (p.Length * 50) / 2), (int)(window.canvas.ActualHeight / 2 - 50), this.sequence.foregroundColor, type);
            
             sequence.words.Add(w);
             this.window.canvas.Children.Add(w);
@@ -529,7 +532,7 @@ namespace KinectP2MM
 
         private async void addCompatibleWord(Word w)
         {
-            if (APIenabled)
+            if (internetAccess && APIenabled)
             {
                 this.window.Loader.Visibility = Visibility.Visible;
                 var newWord = await apiManager.getCompatibleWord(w.getContent(), w.fontFamily);
@@ -540,7 +543,8 @@ namespace KinectP2MM
 
         private async void checkInternetConnection()
         {
-            this.APIenabled = await apiManager.checkConnection();
+            this.internetAccess = await apiManager.checkConnection();
         }
+
     }
 }
